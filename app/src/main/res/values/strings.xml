@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">PetMinder</string>
+    <string name="button_addPet">Add Pet</string>
+    <string name="hint_petName">Pet Name</string>
 </resources>
