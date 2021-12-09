@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PetActivity">
+    tools:context=".activities.PetActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -40,7 +40,7 @@
             android:orientation="vertical">
 
             <EditText
-                android:id="@+id/placemarkTitle"
+                android:id="@+id/petName"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_margin="8dp"
