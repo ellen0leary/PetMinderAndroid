@@ -3,4 +3,5 @@
     <string name="button_addPet">Add Pet</string>
     <string name="hint_petName">Pet Name</string>
     <string name="menu_addPet">Pet</string>
+    <string name="menu_cancelPet">Cancel</string>
 </resources>
