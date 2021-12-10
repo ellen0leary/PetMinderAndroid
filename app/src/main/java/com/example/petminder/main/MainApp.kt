@@ -14,8 +14,8 @@ class MainApp: Application() {
             Timber.DebugTree()
         )
         i("Placemark started")
-        pets.add(PetModel("Apollo"))
-        pets.add(PetModel("Princess"))
-        pets.add(PetModel("Spot"))
+//        pets.add(PetModel("Apollo"))
+//        pets.add(PetModel("Princess"))
+//        pets.add(PetModel("Spot"))
     }
 }

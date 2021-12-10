@@ -21,11 +21,14 @@ class PetActivity : AppCompatActivity() {
 
         app = application as MainApp
         i("Pet Minder Activity started....")
+
         binding.btnAdd.setOnClickListener(){
             pet.name = binding.petName.text.toString()
             if (pet.name.isNotEmpty()) {
                 app.pets.add(pet.copy())
                 i("add Button Pressed")
+                setResult(RESULT_OK)
+                finish()
             } else{
                 Snackbar.make(it,"Please enter a name", Snackbar.LENGTH_SHORT).show()
             }
