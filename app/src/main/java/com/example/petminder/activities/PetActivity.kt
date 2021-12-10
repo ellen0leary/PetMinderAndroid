@@ -30,7 +30,7 @@ class PetActivity : AppCompatActivity() {
         binding.btnAdd.setOnClickListener(){
             pet.name = binding.petName.text.toString()
             if (pet.name.isNotEmpty()) {
-                app.pets.add(pet.copy())
+                app.pets.create(pet.copy())
                 i("add Button Pressed")
                 setResult(RESULT_OK)
                 finish()

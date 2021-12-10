@@ -26,7 +26,7 @@ class PetListActivity : AppCompatActivity() {
 
         val layoutManager = LinearLayoutManager(this)
         binding.recyclerView.layoutManager = layoutManager
-        binding.recyclerView.adapter = PetAdapter(app.pets)
+        binding.recyclerView.adapter = PetAdapter(app.pets.findAll())
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
