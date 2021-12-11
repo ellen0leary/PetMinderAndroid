@@ -27,6 +27,10 @@ class PetActivity : AppCompatActivity() {
         app = application as MainApp
         i("Pet Minder Activity started....")
 
+        if(intent.hasExtra("pet_edit")){
+            pet = intent.extras?.getParcelable("pet_edit")!!
+            binding.petName.setText(pet.name)
+        }
         binding.btnAdd.setOnClickListener(){
             pet.name = binding.petName.text.toString()
             if (pet.name.isNotEmpty()) {

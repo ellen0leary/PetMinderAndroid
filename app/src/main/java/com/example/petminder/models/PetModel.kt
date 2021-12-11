@@ -4,4 +4,5 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class PetModel(var name: String = ""): Parcelable
+data class PetModel(var id: Long=0,
+                    var name: String = ""): Parcelable

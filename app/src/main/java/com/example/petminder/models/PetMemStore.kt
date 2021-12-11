@@ -13,6 +13,14 @@ class PetMemStore : PetStore {
         pets.add(pet)
     }
 
+    override fun update(pet: PetModel) {
+        var foundPet: PetModel? = pets.find {p-> p.id == pet.id}
+        if(foundPet!= null){
+            foundPet.name = pet.name
+            logAll()
+        }
+    }
+
     fun logAll(){
         pets.forEach{ i("${it}") }
     }
