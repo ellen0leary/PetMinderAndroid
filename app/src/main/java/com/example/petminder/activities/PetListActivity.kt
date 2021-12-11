@@ -13,7 +13,7 @@ import com.example.petminder.databinding.ActivityPetListBinding
 import com.example.petminder.main.MainApp
 import com.example.petminder.models.PetModel
 
-class PetListActivity : AppCompatActivity(), PetListener {
+class PetListActivity :  PetListener,AppCompatActivity() {
 
     lateinit var app: MainApp
     private lateinit var binding: ActivityPetListBinding
@@ -31,7 +31,7 @@ class PetListActivity : AppCompatActivity(), PetListener {
         binding.recyclerView.adapter = PetAdapter(app.pets.findAll(), this)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
         return super.onCreateOptionsMenu(menu)
     }
@@ -50,5 +50,10 @@ class PetListActivity : AppCompatActivity(), PetListener {
         val launcherIntent = Intent(this, PetActivity::class.java)
         launcherIntent.putExtra("pet_edit", pet)
         startActivityForResult(launcherIntent,0)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        binding.recyclerView.adapter?.notifyDataSetChanged()
+        super.onActivityResult(requestCode, resultCode, data)
     }
 }
