@@ -8,10 +8,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.petminder.R
 import com.example.petminder.adapters.PetAdapter
+import com.example.petminder.adapters.PetListener
 import com.example.petminder.databinding.ActivityPetListBinding
 import com.example.petminder.main.MainApp
+import com.example.petminder.models.PetModel
 
-class PetListActivity : AppCompatActivity() {
+class PetListActivity : AppCompatActivity(), PetListener {
 
     lateinit var app: MainApp
     private lateinit var binding: ActivityPetListBinding
@@ -26,7 +28,7 @@ class PetListActivity : AppCompatActivity() {
 
         val layoutManager = LinearLayoutManager(this)
         binding.recyclerView.layoutManager = layoutManager
-        binding.recyclerView.adapter = PetAdapter(app.pets.findAll())
+        binding.recyclerView.adapter = PetAdapter(app.pets.findAll(), this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -42,5 +44,10 @@ class PetListActivity : AppCompatActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override  fun onPetClick(pet: PetModel){
+        val launcherIntent = Intent(this, PetActivity::class.java)
+        startActivityForResult(launcherIntent,0)
     }
 }

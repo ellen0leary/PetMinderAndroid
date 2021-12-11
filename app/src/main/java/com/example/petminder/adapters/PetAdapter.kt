@@ -6,7 +6,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.petminder.databinding.CardPetBinding
 import com.example.petminder.models.PetModel
 
-class PetAdapter constructor(private var pets: List<PetModel>) :
+interface PetListener {
+    fun onPetClick(pet: PetModel)
+}
+
+class PetAdapter constructor(private var pets: List<PetModel>, private val listener: PetListener) :
     RecyclerView.Adapter<PetAdapter.MainHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
@@ -17,8 +21,8 @@ class PetAdapter constructor(private var pets: List<PetModel>) :
     }
 
     override fun onBindViewHolder(holder: MainHolder, position: Int) {
-        val pets = pets[holder.adapterPosition]
-        holder.bind(pets)
+        val pet = pets[holder.adapterPosition]
+        holder.bind(pet, listener)
     }
 
     override fun getItemCount(): Int = pets.size
@@ -26,8 +30,10 @@ class PetAdapter constructor(private var pets: List<PetModel>) :
     class MainHolder(private val binding : CardPetBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(pet: PetModel) {
+        fun bind(pet: PetModel, listener: PetListener) {
             binding.PetName.text = pet.name
+            binding.root.setOnClickListener{listener.onPetClick(pet)}
         }
     }
 }
+
