@@ -21,6 +21,7 @@ class PetActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityPetBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        var edit=false
 
         binding.toolbarAdd.title = title
         setSupportActionBar(binding.toolbarAdd)
@@ -28,19 +29,25 @@ class PetActivity : AppCompatActivity() {
         i("Pet Minder Activity started....")
 
         if(intent.hasExtra("pet_edit")){
+            edit = true
             pet = intent.extras?.getParcelable("pet_edit")!!
             binding.petName.setText(pet.name)
+            binding.btnAdd.setText(R.string.save_pet)
         }
+
         binding.btnAdd.setOnClickListener(){
             pet.name = binding.petName.text.toString()
-            if (pet.name.isNotEmpty()) {
-                app.pets.create(pet.copy())
-                i("add Button Pressed")
-                setResult(RESULT_OK)
-                finish()
+            if (pet.name.isEmpty()) {
+                Snackbar.make(it,R.string.enter_pet_title, Snackbar.LENGTH_SHORT).show()
             } else{
-                Snackbar.make(it,"Please enter a name", Snackbar.LENGTH_SHORT).show()
+                if (edit) {
+                    app.pets.update(pet.copy())
+                } else {
+                    app.pets.create(pet.copy())
+                }
             }
+            setResult(RESULT_OK)
+            finish()
         }
     }
 

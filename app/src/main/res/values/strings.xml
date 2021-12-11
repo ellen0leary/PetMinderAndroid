@@ -4,4 +4,6 @@
     <string name="hint_petName">Pet Name</string>
     <string name="menu_addPet">Pet</string>
     <string name="menu_cancelPet">Cancel</string>
+    <string name="enter_pet_title">Please enter a Pet Name</string>
+    <string name="save_pet">Save Pet</string>
 </resources>
