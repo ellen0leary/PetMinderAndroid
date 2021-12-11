@@ -1,3 +1,7 @@
 package com.example.petminder.models
 
-data class PetModel(var name: String = "")
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
+data class PetModel(var name: String = ""): Parcelable
