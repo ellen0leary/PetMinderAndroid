@@ -47,8 +47,10 @@ class PetListActivity :  PetListener,AppCompatActivity() {
     }
 
     override  fun onPetClick(pet: PetModel){
-        val launcherIntent = Intent(this, PetActivity::class.java)
-        launcherIntent.putExtra("pet_edit", pet)
+        //change to to info
+        val launcherIntent = Intent(this, PetInfoActivity::class.java)
+//        launcherIntent.putExtra("pet_edit", pet)
+        launcherIntent.putExtra("pet_info", pet)
         startActivityForResult(launcherIntent,0)
     }
 

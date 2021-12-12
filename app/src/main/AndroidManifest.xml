@@ -22,6 +22,9 @@
         <activity android:name=".activities.PetActivity">
 
         </activity>
+        <activity android:name=".activities.PetInfoActivity">
+
+        </activity>
     </application>
 
 </manifest>
