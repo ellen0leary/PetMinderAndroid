@@ -42,7 +42,7 @@
             <EditText
                 android:id="@+id/petName"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="50dp"
                 android:layout_margin="8dp"
                 android:autofillHints="hint"
                 android:hint="@string/hint_petName"
@@ -57,7 +57,7 @@
             <EditText
                 android:id="@+id/petAge"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="50dp"
                 android:layout_margin="8dp"
                 android:ems="10"
                 android:maxLength="25"
@@ -70,7 +70,7 @@
             <EditText
                 android:id="@+id/petWeight"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="50dp"
                 android:layout_margin="8dp"
                 android:ems="10"
                 android:maxLength="25"

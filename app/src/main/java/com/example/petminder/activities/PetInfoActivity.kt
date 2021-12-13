@@ -7,6 +7,7 @@ import com.example.petminder.databinding.ActivityPetBinding
 import com.example.petminder.main.MainApp
 import com.example.petminder.models.PetModel
 import com.squareup.picasso.Picasso
+import timber.log.Timber.i
 
 class PetInfoActivity : AppCompatActivity() {
 
@@ -19,12 +20,22 @@ class PetInfoActivity : AppCompatActivity() {
         binding = ActivityInfoPetBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        app = application as MainApp
-
         //the pet
         pet  = intent.extras?.getParcelable("pet_info")!!
 
+        binding.toolbarAdd.title = pet.name
+        setSupportActionBar(binding.toolbarAdd)
+
+        app = application as MainApp
+
+
         Picasso.get().load(pet.image).into(binding.petImage)
+        val ageText = "Age - " + pet.age.toString()
+        binding.ageText.setText(ageText)
+
+        val weightText = "Weight - " + pet.weight.toString()
+        binding.weightText.setText(weightText)
+
         //name
     }
 }
