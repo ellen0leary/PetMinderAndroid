@@ -33,18 +33,18 @@ class PetInfoActivity : AppCompatActivity() {
         app = application as MainApp
 
 
-        Picasso.get().load(pet.image).into(binding.petImage)
-        val ageText = "Age - " + pet.age.toString()
-        binding.ageText.setText(ageText)
-
-        val weightText = "Weight - " + pet.weight.toString()
-        binding.weightText.setText(weightText)
+//        Picasso.get().load(pet.image).into(binding.petImage)
+//        val ageText = "Age - " + pet.age.toString()
+//        binding.ageText.setText(ageText)
+//
+//        val weightText = "Weight - " + pet.weight.toString()
+//        binding.weightText.setText(weightText)
 
         //name
     }
 
     override fun onResume() {
-//        pet  = intent.extras?.getParcelable("pet_info")!!
+        pet = app.pets.findOne(pet.id)!!
         i(pet.toString())
         Picasso.get().load(pet.image).into(binding.petImage)
         val ageText = "Age - " + pet.age.toString()

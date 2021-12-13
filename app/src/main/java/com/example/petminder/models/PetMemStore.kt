@@ -24,6 +24,10 @@ class PetMemStore : PetStore {
         }
     }
 
+    override fun findOne(id: Long) : PetModel? {
+        var foundPet: PetModel? = pets.find { p -> p.id == id }
+        return foundPet
+    }
 
 
     fun logAll(){

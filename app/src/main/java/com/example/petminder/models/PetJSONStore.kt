@@ -54,6 +54,11 @@ class PetJSONStore(private val context: Context) : PetStore{
         }
     }
 
+    override fun findOne(id: Long) : PetModel? {
+        var foundPet: PetModel? = pets.find { p -> p.id == id }
+        return foundPet
+    }
+
     private fun serialize() {
         val jsonString = petGsonBuilder.toJson(pets, PetlistType)
         write(context, PET_JSON_FILE, jsonString)
