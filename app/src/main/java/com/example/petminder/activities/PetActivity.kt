@@ -38,6 +38,8 @@ class PetActivity : AppCompatActivity() {
             edit = true
             pet  = intent.extras?.getParcelable("pet_edit")!!
             binding.petName.setText(pet.name)
+            binding.petWeight.setText(pet.weight.toString())
+            binding.petAge.setText(pet.age.toString())
             binding.btnAdd.setText(R.string.save_pet)
             binding.chooseImage.setText(R.string.update_image)
             Picasso.get().load(pet.image).into(binding.petImage)
@@ -45,12 +47,14 @@ class PetActivity : AppCompatActivity() {
         binding.btnAdd.setOnClickListener(){
             pet.name = binding.petName.text.toString()
             pet.weight = binding.petWeight.text.toString().toFloat()
-            pet.age = binding.petWeight.text.toString().toInt()
+            pet.age = binding.petAge.text.toString().toInt()
             if (pet.name.isEmpty()) {
                 Snackbar.make(it,R.string.enter_pet_title, Snackbar.LENGTH_SHORT).show()
             } else{
                 if (edit) {
                     app.pets.update(pet.copy())
+                    i(pet.toString())
+
                 } else {
                     app.pets.create(pet.copy())
                 }

@@ -17,9 +17,14 @@ class PetMemStore : PetStore {
         var foundPet: PetModel? = pets.find {p-> p.id == pet.id}
         if(foundPet!= null){
             foundPet.name = pet.name
+            foundPet.weight = pet.weight
+            foundPet.age = pet.age
+            foundPet.image = pet.image
             logAll()
         }
     }
+
+
 
     fun logAll(){
         pets.forEach{ i("${it}") }
