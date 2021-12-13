@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.petminder.R
@@ -17,6 +19,7 @@ class PetListActivity :  PetListener,AppCompatActivity() {
 
     lateinit var app: MainApp
     private lateinit var binding: ActivityPetListBinding
+    private lateinit var refreshIntentLauncher: ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,11 +27,13 @@ class PetListActivity :  PetListener,AppCompatActivity() {
         setContentView(binding.root)
         binding.toolbar.title = title
         setSupportActionBar(binding.toolbar)
+
         app = application as MainApp
 
         val layoutManager = LinearLayoutManager(this)
         binding.recyclerView.layoutManager = layoutManager
-        binding.recyclerView.adapter = PetAdapter(app.pets.findAll(), this)
+        loadPets()
+        registerRefreshCallback()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -37,25 +42,39 @@ class PetListActivity :  PetListener,AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId){
+        when (item.itemId) {
             R.id.item_add -> {
                 val launcherIntent = Intent(this, PetActivity::class.java)
-                startActivityForResult(launcherIntent, 0)
+                refreshIntentLauncher.launch(launcherIntent)
             }
         }
         return super.onOptionsItemSelected(item)
     }
 
-    override  fun onPetClick(pet: PetModel){
-        //change to to info
+    override fun onPetClick(pet: PetModel) {
         val launcherIntent = Intent(this, PetInfoActivity::class.java)
-//        launcherIntent.putExtra("pet_edit", pet)
         launcherIntent.putExtra("pet_info", pet)
-        startActivityForResult(launcherIntent,0)
+        refreshIntentLauncher.launch(launcherIntent)
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?){
         binding.recyclerView.adapter?.notifyDataSetChanged()
         super.onActivityResult(requestCode, resultCode, data)
+    }
+
+    private fun registerRefreshCallback(){
+        refreshIntentLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
+                loadPets()
+            }
+    }
+
+    private fun loadPets(){
+        showPets(app.pets.findAll())
+    }
+
+    fun showPets(pets: List<PetModel>){
+        binding.recyclerView.adapter = PetAdapter(pets,this)
+        binding.recyclerView.adapter?.notifyDataSetChanged()
     }
 }
