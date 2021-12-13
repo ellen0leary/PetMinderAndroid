@@ -54,6 +54,32 @@
                 android:textColor="@color/white"
                 android:textSize="14sp" />
 
+            <EditText
+                android:id="@+id/petAge"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_margin="8dp"
+                android:ems="10"
+                android:maxLength="25"
+                android:maxLines="1"
+                android:padding="8dp"
+                android:background="@color/colorPrimaryAccent"
+                android:textColor="@color/white"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/petWeight"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_margin="8dp"
+                android:ems="10"
+                android:maxLength="25"
+                android:maxLines="1"
+                android:padding="8dp"
+                android:background="@color/colorPrimaryAccent"
+                android:textColor="@color/white"
+                android:inputType="numberDecimal" />
+
             <Button
                 android:id="@+id/chooseImage"
                 android:layout_width="match_parent"

@@ -25,5 +25,6 @@ class PetInfoActivity : AppCompatActivity() {
         pet  = intent.extras?.getParcelable("pet_info")!!
 
         Picasso.get().load(pet.image).into(binding.petImage)
+        //name
     }
 }

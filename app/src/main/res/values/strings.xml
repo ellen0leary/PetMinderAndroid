@@ -8,4 +8,5 @@
     <string name="save_pet">Save Pet</string>
     <string name="button_addImage">Add Image</string>
     <string name="select_pet_image">Select Pet image</string>
+    <string name="update_image">Choose new image</string>
 </resources>
