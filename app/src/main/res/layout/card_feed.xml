@@ -6,12 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="8dp"
+    android:background="@color/colorPrimary"
     android:elevation="24dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
         android:padding="16dp">
 
 
@@ -22,6 +24,7 @@
             android:layout_marginTop="4dp"
             android:textAlignment="viewStart"
             android:textSize="30sp"
+            android:textColor="@color/white"
             tools:text="Time" />
 
         <TextView
@@ -33,6 +36,7 @@
             android:textAlignment="viewStart"
             app:layout_constraintLeft_toRightOf="@+id/feedTime"
             app:layout_constraintBottom_toBottomOf="@+id/feedTime"
+            android:textColor="@color/white"
             tools:text="Weight kg" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
