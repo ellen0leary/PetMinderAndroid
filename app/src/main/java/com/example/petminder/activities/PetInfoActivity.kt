@@ -31,16 +31,6 @@ class PetInfoActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbarAdd)
 
         app = application as MainApp
-
-
-//        Picasso.get().load(pet.image).into(binding.petImage)
-//        val ageText = "Age - " + pet.age.toString()
-//        binding.ageText.setText(ageText)
-//
-//        val weightText = "Weight - " + pet.weight.toString()
-//        binding.weightText.setText(weightText)
-
-        //name
     }
 
     override fun onResume() {
