@@ -112,6 +112,10 @@ class PetInfoActivity : AppCompatActivity(), FeedListener{
 
     override fun onFeedClick(feed: FeedModel) {
         i("Click on feeds")
-        TODO("Not yet implemented")
+        val launcherIntent = Intent(this, FeedActivity::class.java)
+//        launcherIntent.putExtra("feed_edit", feed)
+        launcherIntent.putExtra("feed_edit", feed)
+        refreshIntentLauncher.launch(launcherIntent)
     }
 }
+

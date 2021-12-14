@@ -23,13 +23,20 @@ class FeedActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         binding = ActivityFeedBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val edit = false
+        var edit = false
 
         binding.toolbarAdd.title = title
         setSupportActionBar(binding.toolbarAdd)
         app = application as MainApp
         i("Feed Activity started....")
 
+        if(intent.hasExtra("feed_edit")){
+            i("Editing feed")
+            edit = true
+            feed =  intent.extras?.getParcelable("feed_edit")!!
+            binding.feedTime.setText(feed.time)
+            binding.feedWeight.setText(feed.weigth.toString())
+        }
 
         binding.btnAdd.setOnClickListener(){
             pet  = intent.extras?.getParcelable("pet")!!
