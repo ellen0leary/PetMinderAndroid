@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.PetActivity">
+    tools:context=".activities.PetInfoActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -78,7 +78,7 @@
                         <EditText
                             android:id="@+id/weightText"
                             android:layout_width="175dp"
-                            android:layout_height="50dp"
+                            android:layout_height="25dp"
                             android:layout_margin="8dp"
                             android:layout_weight="1"
                             android:background="@color/colorPrimaryAccent"
@@ -91,6 +91,14 @@
                             android:text="Weight"
                             android:textColor="#FFFFFF"
                             android:textSize="25sp" />
+
+                        <Button
+                            android:id="@+id/newFeedBtn"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:onClick="addNewFeed"
+                            android:text="New Feed" />
                     </LinearLayout>
 
                 </LinearLayout>

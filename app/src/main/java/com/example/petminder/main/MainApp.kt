@@ -16,8 +16,8 @@ class MainApp: Application() {
     override fun onCreate(){
         super.onCreate()
         Timber.plant(Timber.DebugTree())
-//        pets  = PetJSONStore(applicationContext)
-        pets = PetMemStore()
+        pets  = PetJSONStore(applicationContext)
+//        pets = PetMemStore()
         i("Pet started")
     }
 }

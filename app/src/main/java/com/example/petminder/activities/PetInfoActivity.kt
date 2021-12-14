@@ -4,10 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.petminder.R
 import com.example.petminder.databinding.ActivityInfoPetBinding
-import com.example.petminder.databinding.ActivityPetBinding
 import com.example.petminder.main.MainApp
 import com.example.petminder.models.PetModel
 import com.squareup.picasso.Picasso
@@ -31,6 +31,20 @@ class PetInfoActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbarAdd)
 
         app = application as MainApp
+
+//        binding.newFeedBtn.setOnClickListener()
+    }
+
+    public fun addNewFeed(view: View) {
+        i("adding new Feed")
+
+        openFeed()
+    }
+
+    fun openFeed() {
+        val launcherIntent = Intent(this, FeedActivity::class.java)
+        startActivity(launcherIntent)
+
     }
 
     override fun onResume() {

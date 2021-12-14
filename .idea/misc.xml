@@ -3,9 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Ellen/AndroidStudioProjects/PetMinder/app/src/main/res/layout/activity_feed.xml" value="0.16077898550724637" />
         <entry key="..\:/Users/Ellen/AndroidStudioProjects/PetMinder/app/src/main/res/layout/activity_info_pet.xml" value="0.23007246376811594" />
         <entry key="..\:/Users/Ellen/AndroidStudioProjects/PetMinder/app/src/main/res/layout/activity_pet.xml" value="0.2" />
         <entry key="..\:/Users/Ellen/AndroidStudioProjects/PetMinder/app/src/main/res/layout/activity_pet_list.xml" value="0.4" />
+        <entry key="..\:/Users/Ellen/AndroidStudioProjects/PetMinder/app/src/main/res/layout/card_feed.xml" value="0.2916666666666667" />
         <entry key="..\:/Users/Ellen/AndroidStudioProjects/PetMinder/app/src/main/res/layout/card_pet.xml" value="0.4" />
         <entry key="..\:/Users/Ellen/AndroidStudioProjects/PetMinder/app/src/main/res/menu/menu_edit.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Ellen/AndroidStudioProjects/PetMinder/app/src/main/res/menu/menu_main.xml" value="0.1" />

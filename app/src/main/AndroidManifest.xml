@@ -26,6 +26,9 @@
         <activity android:name=".activities.PetInfoActivity">
 
         </activity>
+        <activity android:name=".activities.FeedActivity">
+
+        </activity>
     </application>
 
 </manifest>

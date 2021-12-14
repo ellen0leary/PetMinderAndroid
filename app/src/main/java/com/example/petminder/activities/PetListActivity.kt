@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.Button
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -14,6 +16,7 @@ import com.example.petminder.adapters.PetListener
 import com.example.petminder.databinding.ActivityPetListBinding
 import com.example.petminder.main.MainApp
 import com.example.petminder.models.PetModel
+import timber.log.Timber.i
 
 class PetListActivity :  PetListener,AppCompatActivity() {
 
