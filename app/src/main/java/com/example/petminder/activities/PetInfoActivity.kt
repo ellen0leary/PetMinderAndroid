@@ -43,6 +43,7 @@ class PetInfoActivity : AppCompatActivity() {
 
     fun openFeed() {
         val launcherIntent = Intent(this, FeedActivity::class.java)
+        launcherIntent.putExtra("pet", pet)
         startActivity(launcherIntent)
 
     }
