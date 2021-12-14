@@ -65,7 +65,7 @@ class PetInfoActivity : AppCompatActivity(), FeedListener{
         val ageText = "Age - " + pet.age.toString()
         binding.ageText.setText(ageText)
 
-        val weightText = "Weight - " + pet.weight.toString()
+        val weightText = "Weight - " + pet.weight.toString() + " Kg"
         binding.weightText.setText(weightText)
 
         super.onResume()
@@ -101,7 +101,7 @@ class PetInfoActivity : AppCompatActivity(), FeedListener{
 
 
     private fun loadFeeds(){
-        showFeeds(app.feeds.findAll())
+        showFeeds(app.feeds.findByPet(pet.id))
     }
 
     fun showFeeds(feeds: List<FeedModel>){

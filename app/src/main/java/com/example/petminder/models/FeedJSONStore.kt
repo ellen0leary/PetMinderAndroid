@@ -43,6 +43,16 @@ class FeedJSONStore(private val context: Context) : FeedStore{
         serialize()
     }
 
+    override fun findByPet(petId: Long): List<FeedModel> {
+        val list = java.util.ArrayList<FeedModel>()
+        for(i in feeds){
+            if(i.petId == petId){
+                list.add(i)
+            }
+        }
+        return list
+    }
+
 
     override fun update(feed: FeedModel) {
         var foundFeed: FeedModel? = feeds.find {p-> p.id == feed.id}

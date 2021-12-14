@@ -5,14 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.petminder.databinding.CardFeedBinding
 import com.example.petminder.models.FeedModel
-import com.example.petminder.models.PetModel
-import com.squareup.picasso.Picasso
 
 interface FeedListener {
     fun onFeedClick(feed: FeedModel)
 }
 
-class FeedAdapter constructor(private var Feeds: List<FeedModel>, private val listener: FeedListener) :
+class FeedAdapter constructor(private var feeds: List<FeedModel>, private val listener: FeedListener) :
     RecyclerView.Adapter<FeedAdapter.MainHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
@@ -23,23 +21,16 @@ class FeedAdapter constructor(private var Feeds: List<FeedModel>, private val li
     }
 
     override fun onBindViewHolder(holder: MainHolder, position: Int) {
-        val Feed = Feeds[holder.adapterPosition]
-        holder.bind(Feed, listener)
+        val feed = feeds[holder.adapterPosition]
+        holder.bind(feed, listener)
     }
 
-    override fun getItemCount(): Int = Feeds.size
+    override fun getItemCount(): Int = feeds.size
 
     class MainHolder(private val binding : CardFeedBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(feed: FeedModel, listener: FeedListener) {
-//            binding.PetName.text = pet.name
-//            Picasso.get()
-//                .load(pet.image)
-//                .centerCrop()
-//                .resize(360,360) //resize image
-//                .into(binding.imageView)
-
             binding.feedTime.text = feed.time
             binding.feedWeight.text = feed.weigth.toString()
             binding.root.setOnClickListener{listener.onFeedClick(feed)}
