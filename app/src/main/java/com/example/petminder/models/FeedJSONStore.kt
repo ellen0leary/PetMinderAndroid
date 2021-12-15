@@ -53,6 +53,19 @@ class FeedJSONStore(private val context: Context) : FeedStore{
         return list
     }
 
+    fun findOne(id: Long): FeedModel? {
+        var foundFeed : FeedModel? = feeds.find{p -> p.id == id}
+        return foundFeed
+    }
+
+    override fun deleteOne(feedId: Long) {
+        val foundFeed = findOne(feedId)
+        if(foundFeed!= null){
+            feeds.remove(foundFeed)
+        }
+        serialize()
+    }
+
 
     override fun update(feed: FeedModel) {
         var foundFeed: FeedModel? = feeds.find {p-> p.id == feed.id}

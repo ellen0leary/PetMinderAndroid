@@ -62,11 +62,12 @@ class PetInfoActivity : AppCompatActivity(), FeedListener{
         pet = app.pets.findOne(pet.id)!!
         i(pet.toString())
         Picasso.get().load(pet.image).into(binding.petImage)
-        val ageText = "Age - " + pet.age.toString()
+        val ageText = "Age - " + pet.age.toString() + " years"
         binding.ageText.setText(ageText)
 
-        val weightText = "Weight - " + pet.weight.toString() + " Kg"
+        val weightText = "Weight- " + pet.weight.toString() + "Kg"
         binding.weightText.setText(weightText)
+        i(binding.weightText.text.toString())
 
         super.onResume()
     }

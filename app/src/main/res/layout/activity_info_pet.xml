@@ -73,24 +73,25 @@
                             android:padding="4dp"
                             android:text="Age"
                             android:textColor="#FFFFFF"
-                            android:textSize="25sp" />
+                            android:textSize="20sp" />
 
                         <EditText
                             android:id="@+id/weightText"
-                            android:layout_width="153dp"
+                            android:layout_width="199dp"
                             android:layout_height="25dp"
                             android:layout_margin="8dp"
                             android:layout_weight="1"
                             android:background="@color/colorPrimaryAccent"
                             android:editable="false"
+                            android:ellipsize="end"
                             android:ems="10"
                             android:inputType="none"
                             android:maxLength="10"
                             android:maxLines="1"
                             android:padding="4dp"
-                            android:text="Weight"
+                            android:text="Weight - 7.7 Kg"
                             android:textColor="#FFFFFF"
-                            android:textSize="25sp" />
+                            android:textSize="20sp" />
 
                         <Button
                             android:id="@+id/newFeedBtn"
