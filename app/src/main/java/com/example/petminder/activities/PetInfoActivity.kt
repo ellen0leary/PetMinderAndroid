@@ -10,16 +10,19 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.petminder.R
+import com.example.petminder.adapters.ExerciseAdapter
+import com.example.petminder.adapters.ExercsieListener
 import com.example.petminder.adapters.FeedAdapter
 import com.example.petminder.adapters.FeedListener
 import com.example.petminder.databinding.ActivityInfoPetBinding
 import com.example.petminder.main.MainApp
+import com.example.petminder.models.ExerciseModel
 import com.example.petminder.models.FeedModel
 import com.example.petminder.models.PetModel
 import com.squareup.picasso.Picasso
 import timber.log.Timber.i
 
-class PetInfoActivity : AppCompatActivity(), FeedListener{
+class PetInfoActivity : AppCompatActivity(), FeedListener, ExercsieListener{
 
     lateinit var app: MainApp
     private lateinit var binding: ActivityInfoPetBinding
@@ -42,16 +45,16 @@ class PetInfoActivity : AppCompatActivity(), FeedListener{
         val layoutManager = LinearLayoutManager(this)
         binding.feedRecycler.layoutManager = layoutManager
         loadFeeds()
+
+        val exerLayoutManager = LinearLayoutManager(this)
+        binding.exerciseRecycler.layoutManager = exerLayoutManager
+
+        loadExercises()
         registerRefreshCallback()
     }
 
     public fun addNewFeed(view: View) {
         i("adding new Feed")
-
-        openFeed()
-    }
-
-    fun openFeed() {
         val launcherIntent = Intent(this, FeedActivity::class.java)
         launcherIntent.putExtra("pet", pet)
         startActivity(launcherIntent)
@@ -115,12 +118,27 @@ class PetInfoActivity : AppCompatActivity(), FeedListener{
         binding.feedRecycler.adapter?.notifyDataSetChanged()
     }
 
+    private fun loadExercises(){
+        showExercises(app.exercises.findByPet(pet.id))
+    }
+
+    fun showExercises(exercise: List<ExerciseModel>){
+        i(exercise.size.toString())
+        binding.feedRecycler.adapter = ExerciseAdapter(exercise,this)
+        binding.feedRecycler.adapter?.notifyDataSetChanged()
+    }
+
     override fun onFeedClick(feed: FeedModel) {
         i("Click on feeds")
         val launcherIntent = Intent(this, FeedActivity::class.java)
         launcherIntent.putExtra("pet", pet)
         launcherIntent.putExtra("feed_edit", feed)
         refreshIntentLauncher.launch(launcherIntent)
+    }
+
+    override fun onExerciseClick(exercise: ExerciseModel) {
+        TODO("Not yet implemented")
+        i("Click on exercise")
     }
 
 
