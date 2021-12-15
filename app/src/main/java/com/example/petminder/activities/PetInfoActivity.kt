@@ -67,7 +67,6 @@ class PetInfoActivity : AppCompatActivity(), FeedListener{
 
         val weightText = "Weight- " + pet.weight.toString() + "Kg"
         binding.weightText.setText(weightText)
-        i(binding.weightText.text.toString())
 
         super.onResume()
     }
