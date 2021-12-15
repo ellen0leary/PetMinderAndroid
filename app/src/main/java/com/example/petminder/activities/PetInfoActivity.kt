@@ -55,7 +55,12 @@ class PetInfoActivity : AppCompatActivity(), FeedListener{
         val launcherIntent = Intent(this, FeedActivity::class.java)
         launcherIntent.putExtra("pet", pet)
         startActivity(launcherIntent)
+    }
 
+    public fun addNewExercise(view: View) {
+        val launcherIntent = Intent(this, ExerciseActivity::class.java)
+        launcherIntent.putExtra("pet", pet)
+        startActivity(launcherIntent)
     }
 
     override fun onResume() {
@@ -117,5 +122,7 @@ class PetInfoActivity : AppCompatActivity(), FeedListener{
         launcherIntent.putExtra("feed_edit", feed)
         refreshIntentLauncher.launch(launcherIntent)
     }
+
+
 }
 

@@ -58,48 +58,80 @@
                         android:layout_height="match_parent"
                         android:orientation="vertical">
 
-                        <EditText
-                            android:id="@+id/ageText"
-                            android:layout_width="154dp"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="8dp"
-                            android:layout_weight="1"
-                            android:background="@color/colorPrimaryAccent"
-                            android:editable="false"
-                            android:ems="10"
-                            android:inputType="none"
-                            android:maxLength="25"
-                            android:maxLines="1"
-                            android:padding="4dp"
-                            android:text="Age"
-                            android:textColor="#FFFFFF"
-                            android:textSize="20sp" />
-
-                        <EditText
-                            android:id="@+id/weightText"
-                            android:layout_width="199dp"
-                            android:layout_height="25dp"
-                            android:layout_margin="8dp"
-                            android:layout_weight="1"
-                            android:background="@color/colorPrimaryAccent"
-                            android:editable="false"
-                            android:ellipsize="end"
-                            android:ems="10"
-                            android:inputType="none"
-                            android:maxLength="20"
-                            android:maxLines="1"
-                            android:padding="4dp"
-                            android:text="Weight - 7.7 Kg"
-                            android:textColor="#FFFFFF"
-                            android:textSize="20sp" />
-
-                        <Button
-                            android:id="@+id/newFeedBtn"
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:onClick="addNewFeed"
-                            android:text="New Feed" />
+                            android:orientation="horizontal">
+
+                            <EditText
+                                android:id="@+id/ageText"
+                                android:layout_width="154dp"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="8dp"
+                                android:layout_weight="1"
+                                android:background="@color/colorPrimaryAccent"
+                                android:editable="false"
+                                android:ems="10"
+                                android:inputType="none"
+                                android:maxLength="25"
+                                android:maxLines="1"
+                                android:padding="4dp"
+                                android:text="Age"
+                                android:textColor="#FFFFFF"
+                                android:textSize="20sp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <EditText
+                                android:id="@+id/weightText"
+                                android:layout_width="199dp"
+                                android:layout_height="40dp"
+                                android:layout_margin="8dp"
+                                android:layout_weight="1"
+                                android:background="@color/colorPrimaryAccent"
+                                android:editable="false"
+                                android:ellipsize="end"
+                                android:ems="10"
+                                android:inputType="none"
+                                android:maxLength="20"
+                                android:maxLines="1"
+                                android:padding="4dp"
+                                android:text="Weight - 7.7 Kg"
+                                android:textColor="#FFFFFF"
+                                android:textSize="20sp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <Button
+                                android:id="@+id/newFeedBtn"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:onClick="addNewFeed"
+                                android:text="New Feed"
+                                android:textSize="14sp" />
+
+                            <Button
+                                android:id="@+id/newExerBtn"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:onClick="addNewExercise"
+                                android:text="New Exercise" />
+                        </LinearLayout>
 
                     </LinearLayout>
 

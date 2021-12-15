@@ -29,6 +29,9 @@
         <activity android:name=".activities.FeedActivity">
 
         </activity>
+        <activity android:name=".activities.ExerciseActivity">
+
+        </activity>
 
     </application>
 
