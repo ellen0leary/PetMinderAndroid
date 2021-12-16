@@ -22,17 +22,20 @@ import com.example.petminder.models.PetModel
 import com.squareup.picasso.Picasso
 import timber.log.Timber.i
 
+
 class PetInfoActivity : AppCompatActivity(), FeedListener, ExercsieListener{
 
     lateinit var app: MainApp
     private lateinit var binding: ActivityInfoPetBinding
     private lateinit var refreshIntentLauncher: ActivityResultLauncher<Intent>
     var pet = PetModel()
+    var tab = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityInfoPetBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        tab="feed"
 
         //the pet
         pet  = intent.extras?.getParcelable("pet_info")!!
@@ -43,13 +46,17 @@ class PetInfoActivity : AppCompatActivity(), FeedListener, ExercsieListener{
         app = application as MainApp
 
         val layoutManager = LinearLayoutManager(this)
-        binding.feedRecycler.layoutManager = layoutManager
+        binding.recycler.layoutManager = layoutManager
         loadFeeds()
 
-        val exerLayoutManager = LinearLayoutManager(this)
-        binding.exerciseRecycler.layoutManager = exerLayoutManager
+//        val exerLayoutManager = LinearLayoutManager(this)
+//        binding.exerciseRecycler.layoutManager = exerLayoutManager
 
-        loadExercises()
+//        loadExercises()
+
+//        binding.recycler
+//        binding.tabs.
+//        binding.tabLayout.setOnTabChangedListener(OnTabChangeListene
         registerRefreshCallback()
     }
 
@@ -64,6 +71,28 @@ class PetInfoActivity : AppCompatActivity(), FeedListener, ExercsieListener{
         val launcherIntent = Intent(this, ExerciseActivity::class.java)
         launcherIntent.putExtra("pet", pet)
         startActivity(launcherIntent)
+    }
+
+    public fun setFeedTab(view: View){
+        i("loading Feeds")
+        loadFeeds()
+    }
+
+    public fun setExerciseTab(view: View){
+        i("loading Exercises")
+        loadExercises()
+    }
+
+    public fun setTab(view: View){
+        if(tab=="feed") {
+            i("loading Exercises")
+            loadExercises()
+            tab="exer"
+        }else if(tab=="exer"){
+            i("loading Feeds")
+            loadFeeds()
+            tab="feed"
+        }
     }
 
     override fun onResume() {
@@ -103,7 +132,7 @@ class PetInfoActivity : AppCompatActivity(), FeedListener, ExercsieListener{
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?){
-        binding.feedRecycler.adapter?.notifyDataSetChanged()
+        binding.recycler.adapter?.notifyDataSetChanged()
         super.onActivityResult(requestCode, resultCode, data)
     }
 
@@ -114,8 +143,8 @@ class PetInfoActivity : AppCompatActivity(), FeedListener, ExercsieListener{
 
     fun showFeeds(feeds: List<FeedModel>){
         i(feeds.size.toString())
-        binding.feedRecycler.adapter = FeedAdapter(feeds,this)
-        binding.feedRecycler.adapter?.notifyDataSetChanged()
+        binding.recycler.adapter = FeedAdapter(feeds,this)
+        binding.recycler.adapter?.notifyDataSetChanged()
     }
 
     private fun loadExercises(){
@@ -124,8 +153,8 @@ class PetInfoActivity : AppCompatActivity(), FeedListener, ExercsieListener{
 
     fun showExercises(exercise: List<ExerciseModel>){
         i(exercise.size.toString())
-        binding.feedRecycler.adapter = ExerciseAdapter(exercise,this)
-        binding.feedRecycler.adapter?.notifyDataSetChanged()
+        binding.recycler.adapter = ExerciseAdapter(exercise,this)
+        binding.recycler.adapter?.notifyDataSetChanged()
     }
 
     override fun onFeedClick(feed: FeedModel) {
@@ -137,9 +166,10 @@ class PetInfoActivity : AppCompatActivity(), FeedListener, ExercsieListener{
     }
 
     override fun onExerciseClick(exercise: ExerciseModel) {
-        TODO("Not yet implemented")
         i("Click on exercise")
     }
+
+
 
 
 }

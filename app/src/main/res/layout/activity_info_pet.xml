@@ -140,76 +140,99 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
-                    <TabHost
+                    <!--                <TabHost-->
+                    <!--                    android:id="@+id/tabs"-->
+                    <!--                    android:layout_width="match_parent"-->
+                    <!--                    android:layout_height="match_parent">-->
+
+                    <!--                    <LinearLayout-->
+                    <!--                        android:layout_width="match_parent"-->
+                    <!--                        android:layout_height="match_parent"-->
+                    <!--                        android:orientation="vertical">-->
+
+                    <!--                        <TabWidget-->
+                    <!--                            android:id="@android:id/tabs"-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:onClick="setTab">-->
+
+                    <!--                            <com.google.android.material.tabs.TabLayout-->
+                    <!--                                android:id="@+id/tabLayout"-->
+                    <!--                                android:layout_width="match_parent"-->
+                    <!--                                android:layout_height="match_parent"-->
+                    <!--                                android:background="@color/colorPrimary"-->
+                    <!--                                android:onClick="setTab"-->
+                    <!--                                app:tabIconTint="@color/colorPrimaryAccent"-->
+                    <!--                                app:tabTextColor="@color/colorAccent">-->
+
+                    <!--                                <com.google.android.material.tabs.TabItem-->
+                    <!--                                    android:layout_width="wrap_content"-->
+                    <!--                                    android:layout_height="wrap_content"-->
+                    <!--                                    android:onClick="setTab"-->
+                    <!--                                    android:text="Food" />-->
+
+                    <!--                                <com.google.android.material.tabs.TabItem-->
+                    <!--                                    android:layout_width="wrap_content"-->
+                    <!--                                    android:layout_height="wrap_content"-->
+                    <!--                                    android:onClick="setExerciseTab"-->
+                    <!--                                    android:text="Exercise" />-->
+
+                    <!--                            </com.google.android.material.tabs.TabLayout>-->
+                    <!--                        </TabWidget>-->
+
+                    <!--                        <FrameLayout-->
+                    <!--                            android:id="@android:id/tabcontent"-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="match_parent"-->
+                    <!--                            android:onClick="setTab">-->
+
+                    <!--                            <LinearLayout-->
+                    <!--                                android:id="@+id/tab1"-->
+                    <!--                                android:layout_width="match_parent"-->
+                    <!--                                android:layout_height="match_parent"-->
+                    <!--                                android:orientation="vertical">-->
+
+                    <!--                                <androidx.recyclerview.widget.RecyclerView-->
+                    <!--                                    android:id="@+id/recycler"-->
+                    <!--                                    android:layout_width="match_parent"-->
+                    <!--                                    android:layout_height="match_parent" />-->
+                    <!--                            </LinearLayout>-->
+
+                    <!--                            <LinearLayout-->
+                    <!--                                android:id="@+id/tab2"-->
+                    <!--                                android:layout_width="match_parent"-->
+                    <!--                                android:layout_height="match_parent"-->
+                    <!--                                android:orientation="vertical">-->
+
+                    <!--                                <androidx.recyclerview.widget.RecyclerView-->
+                    <!--                                    android:id="@+id/exerciseRecycler"-->
+                    <!--                                    android:layout_width="match_parent"-->
+                    <!--                                    android:layout_height="match_parent" />-->
+                    <!--                            </LinearLayout>-->
+
+                    <!--                        </FrameLayout>-->
+                    <!--                    </LinearLayout>-->
+                    <!--                </TabHost>-->
+
+                    <ToggleButton
+                        android:id="@+id/toggleButton"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="100dp"
+                        android:layout_weight="1"
+                        android:background="@color/colorPrimaryAccent"
+                        android:onClick="setTab"
+                        android:text="ToggleButton"
+                        android:textColor="@color/colorAccent"
+                        android:textOff="Feeds"
+                        android:textOn="Exercise" />
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            >
-
-                            <TabWidget
-                                android:id="@android:id/tabs"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                >
-
-                                <com.google.android.material.tabs.TabLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:background="@color/colorPrimary"
-                                    app:tabIconTint="@color/colorPrimaryAccent"
-                                    app:tabTextColor="@color/colorAccent">
-
-                                    <com.google.android.material.tabs.TabItem
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Food" />
-
-                                    <com.google.android.material.tabs.TabItem
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Exercise" />
-
-                                </com.google.android.material.tabs.TabLayout>
-                            </TabWidget>
-
-                            <FrameLayout
-                                android:id="@android:id/tabcontent"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-
-                                <LinearLayout
-                                    android:id="@+id/tab1"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:orientation="vertical">
-
-                                    <androidx.recyclerview.widget.RecyclerView
-                                        android:id="@+id/feedRecycler"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent" />
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:id="@+id/tab2"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:orientation="vertical">
-
-                                    <androidx.recyclerview.widget.RecyclerView
-                                        android:id="@+id/exerciseRecycler"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent" />
-                                </LinearLayout>
-
-                            </FrameLayout>
-                        </LinearLayout>
-                    </TabHost>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
                 </LinearLayout>
 
 
