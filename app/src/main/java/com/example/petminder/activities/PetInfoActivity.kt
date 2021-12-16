@@ -23,7 +23,7 @@ import com.squareup.picasso.Picasso
 import timber.log.Timber.i
 
 
-class PetInfoActivity : AppCompatActivity(), FeedListener, ExercsieListener{
+class PetInfoActivity : AppCompatActivity(), ExercsieListener, FeedListener{
 
     lateinit var app: MainApp
     private lateinit var binding: ActivityInfoPetBinding
@@ -47,16 +47,10 @@ class PetInfoActivity : AppCompatActivity(), FeedListener, ExercsieListener{
 
         val layoutManager = LinearLayoutManager(this)
         binding.recycler.layoutManager = layoutManager
-        loadFeeds()
+//        loadFeeds()
 
-//        val exerLayoutManager = LinearLayoutManager(this)
-//        binding.exerciseRecycler.layoutManager = exerLayoutManager
 
-//        loadExercises()
-
-//        binding.recycler
-//        binding.tabs.
-//        binding.tabLayout.setOnTabChangedListener(OnTabChangeListene
+        loadExercises()
         registerRefreshCallback()
     }
 
@@ -73,15 +67,6 @@ class PetInfoActivity : AppCompatActivity(), FeedListener, ExercsieListener{
         startActivity(launcherIntent)
     }
 
-    public fun setFeedTab(view: View){
-        i("loading Feeds")
-        loadFeeds()
-    }
-
-    public fun setExerciseTab(view: View){
-        i("loading Exercises")
-        loadExercises()
-    }
 
     public fun setTab(view: View){
         if(tab=="feed") {
@@ -128,6 +113,7 @@ class PetInfoActivity : AppCompatActivity(), FeedListener, ExercsieListener{
         refreshIntentLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
                 loadFeeds()
+                loadExercises()
             }
     }
 
@@ -167,10 +153,10 @@ class PetInfoActivity : AppCompatActivity(), FeedListener, ExercsieListener{
 
     override fun onExerciseClick(exercise: ExerciseModel) {
         i("Click on exercise")
+        val launcherIntent = Intent(this, ExerciseActivity::class.java)
+        launcherIntent.putExtra("pet", pet)
+        launcherIntent.putExtra("exercise_edit", exercise)
+        startActivity(launcherIntent)
     }
-
-
-
-
 }
 

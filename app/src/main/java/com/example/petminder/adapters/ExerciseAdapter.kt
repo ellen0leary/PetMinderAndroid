@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.petminder.databinding.CardFeedBinding
 import com.example.petminder.models.ExerciseModel
-import com.example.petminder.models.FeedModel
 
 
 interface ExercsieListener{
@@ -35,6 +34,7 @@ class ExerciseAdapter constructor(private var exercises: List<ExerciseModel>, pr
                 fun bind(exercise: ExerciseModel, listener: ExercsieListener){
                     binding.feedTime.text = exercise.name
                     binding.feedWeight.text = exercise.length.toString()
+                    binding.root.setOnClickListener{listener.onExerciseClick(exercise)}
                 }
             }
 

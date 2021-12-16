@@ -31,10 +31,10 @@ class ExerciseActivity : AppCompatActivity(){
         app = application as MainApp
         Timber.i("Feed Activity started....")
 
-        if(intent.hasExtra("feed_edit")){
-            Timber.i("Editing feed")
+        if(intent.hasExtra("exercise_edit")){
+            Timber.i("Editing exercise")
             edit = true
-            exercise =  intent.extras?.getParcelable("feed_edit")!!
+            exercise =  intent.extras?.getParcelable("exercise_edit")!!
             binding.exerciseType.setText(exercise.name)
             binding.exerciseLength.setText(exercise.length.toString())
         }
