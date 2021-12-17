@@ -18,7 +18,6 @@ import timber.log.Timber.i
 class FeedActivity : AppCompatActivity(){
 
     private lateinit var binding: ActivityFeedBinding
-    private lateinit var imageIntentLauncher : ActivityResultLauncher<Intent>
     var pet = PetModel()
     var feed = FeedModel()
     lateinit var app: MainApp
