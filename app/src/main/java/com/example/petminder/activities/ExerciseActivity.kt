@@ -49,6 +49,9 @@ class ExerciseActivity : AppCompatActivity(){
             exercise.petId = pet.id
             exercise.name = binding.exerciseType.text.toString()
             exercise.length = binding.exerciseLength.text.toString().toInt()
+            exercise.lat = location.lat
+            exercise.lng = location.lng
+            exercise.zoom = location.zoom
 //            if (pet.name.isEmpty()) {
 //                Snackbar.make(it, R.string.enter_pet_title, Snackbar.LENGTH_SHORT).show()
 //            } else{
