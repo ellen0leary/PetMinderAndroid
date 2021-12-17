@@ -14,7 +14,6 @@ import com.example.petminder.models.ExerciseModel
 import com.example.petminder.models.Location
 import com.example.petminder.models.PetModel
 import com.google.android.material.snackbar.Snackbar
-import timber.log.Timber
 import timber.log.Timber.i
 
 class ExerciseActivity : AppCompatActivity(){
