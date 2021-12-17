@@ -49,8 +49,6 @@ class PetInfoActivity : AppCompatActivity(), ExercsieListener, FeedListener{
         binding.recycler.layoutManager = layoutManager
         loadFeeds()
 
-
-//        loadExercises()
         registerRefreshCallback()
     }
 

@@ -45,7 +45,7 @@
                     android:layout_height="50dp"
                     android:layout_margin="8dp"
                     android:autofillHints="hint"
-                    android:hint="time of feed"
+                    android:hint="@string/feed_time_hint"
                     android:inputType="text"
                     android:maxLength="25"
                     android:maxLines="1"
@@ -60,7 +60,7 @@
                     android:layout_height="50dp"
                     android:layout_margin="8dp"
                     android:autofillHints="hint"
-                    android:hint="Food weigth"
+                    android:hint="@string/feed_weight_hint"
                     android:ems="10"
                     android:maxLength="25"
                     android:maxLines="1"
@@ -79,7 +79,7 @@
                     android:paddingTop="8dp"
                     android:paddingBottom="8dp"
                     android:stateListAnimator="@null"
-                    android:text="add feeding"
+                    android:text="@string/feed_add_btn"
                     android:textColor="@color/colorPrimary"
                     android:textSize="16sp" />
 

@@ -13,6 +13,7 @@ import com.example.petminder.main.MainApp
 import com.example.petminder.models.ExerciseModel
 import com.example.petminder.models.Location
 import com.example.petminder.models.PetModel
+import com.google.android.material.snackbar.Snackbar
 import timber.log.Timber
 import timber.log.Timber.i
 
@@ -34,10 +35,8 @@ class ExerciseActivity : AppCompatActivity(){
         binding.toolbarAdd.title = title
         setSupportActionBar(binding.toolbarAdd)
         app = application as MainApp
-        Timber.i("Feed Activity started....")
 
         if(intent.hasExtra("exercise_edit")){
-            Timber.i("Editing exercise")
             edit = true
             exercise =  intent.extras?.getParcelable("exercise_edit")!!
             binding.exerciseType.setText(exercise.name)
@@ -52,15 +51,15 @@ class ExerciseActivity : AppCompatActivity(){
             exercise.lat = location.lat
             exercise.lng = location.lng
             exercise.zoom = location.zoom
-//            if (pet.name.isEmpty()) {
-//                Snackbar.make(it, R.string.enter_pet_title, Snackbar.LENGTH_SHORT).show()
-//            } else{
-            if (edit) {
-                app.exercises.update(exercise.copy())
-            } else {
-                app.exercises.create(exercise.copy())
+            if (exercise.name.isEmpty()) {
+                Snackbar.make(it, R.string.enter_exercise_name, Snackbar.LENGTH_SHORT).show()
+            } else{
+                if (edit) {
+                    app.exercises.update(exercise.copy())
+                } else {
+                    app.exercises.create(exercise.copy())
+                }
             }
-//            }
             setResult(RESULT_OK)
             finish()
         }

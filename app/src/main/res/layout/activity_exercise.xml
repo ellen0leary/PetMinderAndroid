@@ -45,7 +45,7 @@
                     android:layout_height="50dp"
                     android:layout_margin="8dp"
                     android:autofillHints="hint"
-                    android:hint="name of exercise"
+                    android:hint="@string/exercise_name_hint"
                     android:inputType="text"
                     android:maxLength="25"
                     android:maxLines="1"
@@ -60,7 +60,7 @@
                     android:layout_height="50dp"
                     android:layout_margin="8dp"
                     android:autofillHints="hint"
-                    android:hint="Length of exercise"
+                    android:hint="@string/exercise_length_hint"
                     android:ems="10"
                     android:maxLength="25"
                     android:maxLines="1"
@@ -91,7 +91,7 @@
                     android:paddingTop="8dp"
                     android:paddingBottom="8dp"
                     android:stateListAnimator="@null"
-                    android:text="add Exercise"
+                    android:text="@string/exercise_add_btn"
                     android:textColor="@color/colorPrimary"
                     android:textSize="16sp" />
 
