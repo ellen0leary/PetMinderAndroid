@@ -60,14 +60,14 @@
                     android:layout_height="50dp"
                     android:layout_margin="8dp"
                     android:autofillHints="hint"
-                    android:hint="@string/feed_weight_hint"
+                    android:background="@color/colorPrimaryAccent"
                     android:ems="10"
+                    android:hint="@string/feed_weight_hint"
+                    android:inputType="number|numberDecimal"
                     android:maxLength="25"
                     android:maxLines="1"
                     android:padding="8dp"
-                    android:background="@color/colorPrimaryAccent"
-                    android:textColor="@color/white"
-                    android:inputType="number" />
+                    android:textColor="@color/white" />
 
 
                 <Button
