@@ -39,12 +39,20 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <Spinner
-                    android:id="@+id/spinner"
+                <EditText
+                    android:id="@+id/feedTime"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
+                    android:layout_margin="8dp"
+                    android:autofillHints="hint"
+                    android:hint="time of feed"
+                    android:inputType="text"
+                    android:maxLength="25"
+                    android:maxLines="1"
+                    android:padding="8dp"
                     android:background="@color/colorPrimaryAccent"
-                    android:spinnerMode="dropdown" />
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
 
                 <EditText
                     android:id="@+id/feedWeight"

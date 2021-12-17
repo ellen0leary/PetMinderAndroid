@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.ArrayAdapter
 import androidx.activity.result.ActivityResultLauncher
 import androidx.appcompat.app.AppCompatActivity
 import com.example.petminder.R
@@ -34,34 +33,18 @@ class FeedActivity : AppCompatActivity(){
         app = application as MainApp
         i("Feed Activity started....")
 
-
-        ArrayAdapter.createFromResource(
-            this,
-            R.array.timeOfDay,
-            android.R.layout.simple_spinner_item
-        ).also { adapter ->
-            // Specify the layout to use when the list of choices appears
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            // Apply the adapter to the spinner
-            binding.spinner.adapter = adapter
-        }
-
         if(intent.hasExtra("feed_edit")){
             i("Editing feed")
             edit = true
             feed =  intent.extras?.getParcelable("feed_edit")!!
-            binding.spinner.setSelection(
-                (binding.spinner.getAdapter() as ArrayAdapter<String?>).getPosition(
-                    feed.time
-                )
-            )
+            binding.feedTime.setText(feed.time)
             binding.feedWeight.setText(feed.weigth.toString())
         }
 
         binding.btnAdd.setOnClickListener(){
             pet  = intent.extras?.getParcelable("pet")!!
             feed.petId = pet.id
-            feed.time = binding.spinner.selectedItem.toString()
+            feed.time = binding.feedTime.text.toString()
             feed.weigth = binding.feedWeight.text.toString().toFloat()
 //            if (pet.name.isEmpty()) {
 //                Snackbar.make(it, R.string.enter_pet_title, Snackbar.LENGTH_SHORT).show()
