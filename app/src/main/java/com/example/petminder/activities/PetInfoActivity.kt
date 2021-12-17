@@ -47,10 +47,10 @@ class PetInfoActivity : AppCompatActivity(), ExercsieListener, FeedListener{
 
         val layoutManager = LinearLayoutManager(this)
         binding.recycler.layoutManager = layoutManager
-//        loadFeeds()
+        loadFeeds()
 
 
-        loadExercises()
+//        loadExercises()
         registerRefreshCallback()
     }
 

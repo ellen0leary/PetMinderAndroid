@@ -5,20 +5,25 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.example.petminder.R
 import com.example.petminder.databinding.ActivityExerciseBinding
 import com.example.petminder.main.MainApp
 import com.example.petminder.models.ExerciseModel
+import com.example.petminder.models.Location
 import com.example.petminder.models.PetModel
 import timber.log.Timber
+import timber.log.Timber.i
 
 class ExerciseActivity : AppCompatActivity(){
 
     private lateinit var binding: ActivityExerciseBinding
+    private lateinit var mapIntentLauncher: ActivityResultLauncher<Intent>
     var pet = PetModel()
     var exercise = ExerciseModel()
     lateinit var app: MainApp
+    var location = Location(52.245696, -7.139102, 15f)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,6 +62,12 @@ class ExerciseActivity : AppCompatActivity(){
             finish()
         }
 
+        binding.placemarkLocation.setOnClickListener {
+            val launcherIntent = Intent(this, MapsActivity::class.java).putExtra("location", location)
+            mapIntentLauncher.launch(launcherIntent)
+        }
+
+        registerMapCallback()
     }
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_delete, menu)
@@ -71,5 +82,22 @@ class ExerciseActivity : AppCompatActivity(){
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun registerMapCallback() {
+        mapIntentLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult())
+            { result ->
+                when (result.resultCode) {
+                    RESULT_OK -> {
+                        if (result.data != null) {
+                            i("Got Location ${result.data.toString()}")
+                            location = result.data!!.extras?.getParcelable("location")!!
+                            i("Location == $location")
+                        } // end of if
+                    }
+                    RESULT_CANCELED -> { } else -> { }
+                }
+            }
     }
 }
