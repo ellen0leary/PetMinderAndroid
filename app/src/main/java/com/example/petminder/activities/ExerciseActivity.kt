@@ -41,6 +41,8 @@ class ExerciseActivity : AppCompatActivity(){
             exercise =  intent.extras?.getParcelable("exercise_edit")!!
             binding.exerciseType.setText(exercise.name)
             binding.exerciseLength.setText(exercise.length.toString())
+            binding.placemarkLocation.setText(R.string.update_location_btn)
+            binding.btnAdd.setText(R.string.update_exercise_btn)
         }
 
         binding.btnAdd.setOnClickListener(){

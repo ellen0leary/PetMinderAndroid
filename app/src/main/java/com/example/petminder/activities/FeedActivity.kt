@@ -11,6 +11,7 @@ import com.example.petminder.databinding.ActivityFeedBinding
 import com.example.petminder.main.MainApp
 import com.example.petminder.models.FeedModel
 import com.example.petminder.models.PetModel
+import com.google.android.material.snackbar.Snackbar
 import timber.log.Timber
 import timber.log.Timber.i
 
@@ -39,6 +40,7 @@ class FeedActivity : AppCompatActivity(){
             feed =  intent.extras?.getParcelable("feed_edit")!!
             binding.feedTime.setText(feed.time)
             binding.feedWeight.setText(feed.weigth.toString())
+            binding.btnAdd.setText(R.string.update_feed_btn)
         }
 
         binding.btnAdd.setOnClickListener(){
@@ -46,15 +48,15 @@ class FeedActivity : AppCompatActivity(){
             feed.petId = pet.id
             feed.time = binding.feedTime.text.toString()
             feed.weigth = binding.feedWeight.text.toString().toFloat()
-//            if (pet.name.isEmpty()) {
-//                Snackbar.make(it, R.string.enter_pet_title, Snackbar.LENGTH_SHORT).show()
-//            } else{
-            if (edit) {
-                app.feeds.update(feed.copy())
-            } else {
-                app.feeds.create(feed.copy())
+            if (feed.time.isEmpty()) {
+                Snackbar.make(it, R.string.enter_pet_title, Snackbar.LENGTH_SHORT).show()
+            } else{
+                if (edit) {
+                    app.feeds.update(feed.copy())
+                } else {
+                    app.feeds.create(feed.copy())
+                }
             }
-//            }
             setResult(RESULT_OK)
             finish()
         }

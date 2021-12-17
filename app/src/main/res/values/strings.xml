@@ -16,11 +16,14 @@
     <string name="exercise_name_hint">Name of exercise</string>
     <string name="exercise_length_hint">Length of exercise</string>
     <string name="exercise_add_btn">Add Exercise</string>
+    <string name="update_location_btn">Update Location</string>
+    <string name="update_exercise_btn">Update Exercise</string>
 
 <!--    feed Activity-->
     <string name="feed_time_hint">Time of feed</string>
     <string name="feed_weight_hint">Weight of Food</string>
     <string name="feed_add_btn">Add Feeding</string>
+    <string name="update_feed_btn">Update Feed</string>
 <!--    Pet info-->
     <string name="Pet_info_age">Age</string>
     <string name="Pet_info_weoght">"Weight - "</string>

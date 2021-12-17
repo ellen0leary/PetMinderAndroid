@@ -1,0 +1,23 @@
+<resources>
+    <!--
+
+    To get one, follow this link, follow the directions and press "Create" at the end:
+
+    https://console.developers.google.com/flows/enableapi?apiid=maps_android_backend&keyType=CLIENT_SIDE_ANDROID&r=C3:B9:7B:DA:01:E8:72:8C:EF:5E:B2:39:49:21:C4:B3:7D:7D:00:A8%3Bcom.example.petminder.activities
+
+    You can also add your credentials to an existing key, using these values:
+
+    Package name:
+    com.example.petminder.activities
+
+    SHA-1 certificate fingerprint:
+    C3:B9:7B:DA:01:E8:72:8C:EF:5E:B2:39:49:21:C4:B3:7D:7D:00:A8
+
+    Alternatively, follow the directions here:
+    https://developers.google.com/maps/documentation/android/start#get-key
+
+    Once you have your key (it starts with "AIza"), replace the "google_maps_key"
+    string in this file.
+    -->
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyCCIZHdigYlOGjSNXySf3cf_AyoOxFC4w0</string>
+</resources>
