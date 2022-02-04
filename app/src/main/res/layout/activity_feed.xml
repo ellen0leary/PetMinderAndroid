@@ -39,20 +39,14 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <EditText
-                    android:id="@+id/feedTime"
+                <Spinner
+                    android:id="@+id/spinner"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:layout_margin="8dp"
-                    android:autofillHints="hint"
-                    android:hint="@string/feed_time_hint"
-                    android:inputType="text"
-                    android:maxLength="25"
-                    android:maxLines="1"
-                    android:padding="8dp"
                     android:background="@color/colorPrimaryAccent"
-                    android:textColor="@color/white"
-                    android:textSize="14sp" />
+                    android:dropDownSelector="@color/colorPrimaryAccent"
+                    android:padding="10dp"
+                    android:textColor="@color/white" />
 
                 <EditText
                     android:id="@+id/feedWeight"
@@ -60,14 +54,14 @@
                     android:layout_height="50dp"
                     android:layout_margin="8dp"
                     android:autofillHints="hint"
-                    android:hint="@string/feed_weight_hint"
+                    android:background="@color/colorPrimaryAccent"
                     android:ems="10"
+                    android:hint="@string/feed_weight_hint"
+                    android:inputType="number|numberDecimal"
                     android:maxLength="25"
                     android:maxLines="1"
                     android:padding="8dp"
-                    android:background="@color/colorPrimaryAccent"
-                    android:textColor="@color/white"
-                    android:inputType="number" />
+                    android:textColor="@color/white" />
 
 
                 <Button

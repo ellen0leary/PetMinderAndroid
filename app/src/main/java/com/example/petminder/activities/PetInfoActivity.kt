@@ -67,6 +67,10 @@ class PetInfoActivity : AppCompatActivity(), ExercsieListener, FeedListener{
 
 
     public fun setTab(view: View){
+        changeTab()
+    }
+
+    private fun changeTab(){
         if(tab=="feed") {
             i("loading Exercises")
             loadExercises()
@@ -77,7 +81,6 @@ class PetInfoActivity : AppCompatActivity(), ExercsieListener, FeedListener{
             tab="feed"
         }
     }
-
     override fun onResume() {
         pet = app.pets.findOne(pet.id)!!
         i(pet.toString())
@@ -110,8 +113,7 @@ class PetInfoActivity : AppCompatActivity(), ExercsieListener, FeedListener{
     private fun registerRefreshCallback(){
         refreshIntentLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
-                loadFeeds()
-                loadExercises()
+                changeTab()
             }
     }
 

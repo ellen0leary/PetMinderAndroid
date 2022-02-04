@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="208dp"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_gravity="center|center_horizontal"
     android:layout_marginBottom="8dp"
     android:elevation="24dp">
 
     <RelativeLayout
-        android:layout_width="208dp"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorPrimary"
+        android:gravity="center_horizontal"
         android:padding="16dp">
 
         <ImageView
@@ -24,7 +25,11 @@
             android:id="@+id/PetName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
+            android:layout_below="@id/imageView"
+            android:layout_alignParentTop="false"
+            android:layout_centerHorizontal="false"
+            android:layout_marginTop="0dp"
+            android:textColor="@color/colorAccent"
             android:textSize="30sp"
             tools:text="A Title" />
 
