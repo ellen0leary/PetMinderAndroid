@@ -8,7 +8,6 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.petminder.R
 import com.example.petminder.adapters.PetAdapter
 import com.example.petminder.adapters.PetListener

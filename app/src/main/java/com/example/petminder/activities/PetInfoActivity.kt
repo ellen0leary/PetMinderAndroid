@@ -19,7 +19,6 @@ import com.example.petminder.main.MainApp
 import com.example.petminder.models.ExerciseModel
 import com.example.petminder.models.FeedModel
 import com.example.petminder.models.PetModel
-import com.squareup.picasso.Picasso
 import timber.log.Timber.i
 
 

@@ -3,14 +3,10 @@ package com.example.petminder.fragments
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.petminder.R
 import com.example.petminder.databinding.FragmentPetInfoBinding
-import com.example.petminder.databinding.FragmentPetListBinding
 import com.example.petminder.main.MainApp
 import com.example.petminder.models.PetModel
-import com.squareup.picasso.Picasso
 
 private const val  ARG_PET = "pet"
 class PetInfoFragment : Fragment() {

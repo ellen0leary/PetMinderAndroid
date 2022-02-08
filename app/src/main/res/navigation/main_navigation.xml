@@ -39,5 +39,21 @@
         <argument
             android:name="pet"
             app:argType="com.example.petminder.models.PetModel" />
+        <action
+            android:id="@+id/action_petInfoFragment_to_feedFragment"
+            app:destination="@id/feedFragment" />
+        <action
+            android:id="@+id/action_petInfoFragment_to_feedActivity"
+            app:destination="@id/feedActivity" />
     </fragment>
+    <fragment
+        android:id="@+id/feedFragment"
+        android:name="com.example.petminder.fragments.FeedFragment"
+        android:label="fragment_feed"
+        tools:layout="@layout/fragment_feed" />
+    <activity
+        android:id="@+id/feedActivity"
+        android:name="com.example.petminder.activities.FeedActivity"
+        android:label="fragment_exercise"
+        tools:layout="@layout/fragment_exercise" />
 </navigation>
