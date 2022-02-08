@@ -3,7 +3,9 @@ package com.example.petminder.fragments
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.petminder.databinding.FragmentPetAddBinding
 import com.example.petminder.databinding.FragmentPetInfoBinding
 import com.example.petminder.main.MainApp
 import com.example.petminder.models.PetModel
@@ -39,10 +41,21 @@ class PetInfoFragment : Fragment() {
 
         val weightText = "Weight- " + pet?.weight.toString() + "Kg"
         fragBinding.weightText.setText(weightText)
-        return root
 
+        setButtonListener(fragBinding)
+        return root
     }
 
+    fun setButtonListener(layout: FragmentPetInfoBinding) {
+        layout.newExerBtn.setOnClickListener{
+            val directions = PetInfoFragmentDirections.actionPetInfoFragmentToExerciseFragment()
+            findNavController().navigate(directions)
+        }
+        layout.newFeedBtn.setOnClickListener{
+            val directions = PetInfoFragmentDirections.actionPetInfoFragmentToFeedFragment()
+            findNavController().navigate(directions)
+        }
+    }
     companion object {
         @JvmStatic
         fun newInstance(pet: PetModel) =

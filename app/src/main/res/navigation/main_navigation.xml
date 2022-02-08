@@ -43,17 +43,17 @@
             android:id="@+id/action_petInfoFragment_to_feedFragment"
             app:destination="@id/feedFragment" />
         <action
-            android:id="@+id/action_petInfoFragment_to_feedActivity"
-            app:destination="@id/feedActivity" />
+            android:id="@+id/action_petInfoFragment_to_exerciseFragment"
+            app:destination="@id/exerciseFragment" />
     </fragment>
     <fragment
         android:id="@+id/feedFragment"
         android:name="com.example.petminder.fragments.FeedFragment"
         android:label="fragment_feed"
         tools:layout="@layout/fragment_feed" />
-    <activity
-        android:id="@+id/feedActivity"
-        android:name="com.example.petminder.activities.FeedActivity"
+    <fragment
+        android:id="@+id/exerciseFragment"
+        android:name="com.example.petminder.fragments.ExerciseFragment"
         android:label="fragment_exercise"
         tools:layout="@layout/fragment_exercise" />
 </navigation>
