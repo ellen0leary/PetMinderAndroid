@@ -10,7 +10,7 @@
     <string name="select_pet_image">Select Pet image</string>
     <string name="update_image">Choose new image</string>
 
-<!--    Exercise Activity-->
+    <!--    Exercise Activity-->
     <string name="enter_exercise_name">Please enter a exercise name</string>
 
     <string name="exercise_name_hint">Name of exercise</string>
@@ -19,21 +19,30 @@
     <string name="update_location_btn">Update Location</string>
     <string name="update_exercise_btn">Update Exercise</string>
 
-<!--    feed Activity-->
+    <!--    feed Activity-->
     <string name="feed_time_hint">Time of feed</string>
     <string name="feed_weight_hint">Weight of Food</string>
     <string name="feed_add_btn">Add Feeding</string>
     <string name="update_feed_btn">Update Feed</string>
-<!--    Pet info-->
+    <!--    Pet info-->
     <string name="Pet_info_age">Age</string>
     <string name="Pet_info_weoght">"Weight - "</string>
     <string name="new_feed_btn">New Feed</string>
     <string name="new_exercise_btn">New Exercise</string>
-<!--    add location text-->
+    <!--    add location text-->
     <string name="button_location">Add Location</string>
     <string name="title_activity_maps">Map</string>
     <string name="toggleBtn">Feeds</string>
     <string name="toggleBtnOn">Exercise</string>
 
 
+    <!-- Nav Drawer -->
+    <string name="action_share">Share</string>
+    <string name="action_send">Send</string>
+    <string name="group_communicate">Communicate</string>
+    <string name="add_pet_txt">Add Pet</string>
+    <string name="list_pets_txt">List Pets</string>
+    <string name="u_lik_gma">u lik gma</string>
+    <string name="petminder">PetMinder</string>
+    <string name="navigation_header">Navigation Header</string>
 </resources>

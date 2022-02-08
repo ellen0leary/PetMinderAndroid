@@ -7,6 +7,7 @@ import android.view.MenuItem
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.petminder.R
 import com.example.petminder.adapters.PetAdapter
@@ -30,7 +31,7 @@ class PetListActivity :  PetListener,AppCompatActivity() {
 
         app = application as MainApp
 
-        val layoutManager = LinearLayoutManager(this)
+        val layoutManager = GridLayoutManager(this,3)
         binding.recyclerView.layoutManager = layoutManager
         loadPets()
         registerRefreshCallback()

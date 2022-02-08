@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/petAddFragment">
+    <fragment
+        android:id="@+id/petAddFragment"
+        android:name="com.example.petminder.fragments.PetAddFragment"
+        android:label="fragment_pet_add"
+        tools:layout="@layout/fragment_pet_add" >
+        <action
+            android:id="@+id/action_petAddFragment_to_petListFragment"
+            app:destination="@id/petListFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/petListFragment"
+        android:name="com.example.petminder.fragments.PetListFragment"
+        android:label="fragment_pet_list"
+        tools:layout="@layout/fragment_pet_list" >
+        <action
+            android:id="@+id/action_petListFragment_to_petAddFragment"
+            app:destination="@id/petAddFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+    </fragment>
+</navigation>
