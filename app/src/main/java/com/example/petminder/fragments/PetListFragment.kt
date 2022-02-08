@@ -3,7 +3,9 @@ package com.example.petminder.fragments
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.petminder.R
@@ -35,6 +37,7 @@ class PetListFragment : PetListener, Fragment() {
         fragBinding.recyclerView.setLayoutManager(LinearLayoutManager(activity))
         fragBinding.recyclerView.adapter = PetAdapter(app.pets.findAll(), this)
 
+
         return root
     }
     companion object {
@@ -52,9 +55,12 @@ class PetListFragment : PetListener, Fragment() {
 
     override fun onPetClick(pet: PetModel) {
         Timber.i("Clicked on pet")
-        TODO("Add Pet click")
+//        TODO("Add Pet click")
+        val direction = PetListFragmentDirections.actionPetListFragmentToPetAddFragment()
+        findNavController().navigate(direction)
 
     }
+
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_add, menu)
@@ -65,4 +71,6 @@ class PetListFragment : PetListener, Fragment() {
         return NavigationUI.onNavDestinationSelected(item,
             requireView().findNavController()) || super.onOptionsItemSelected(item)
     }
+
+
 }

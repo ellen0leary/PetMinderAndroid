@@ -34,8 +34,6 @@
     <string name="title_activity_maps">Map</string>
     <string name="toggleBtn">Feeds</string>
     <string name="toggleBtnOn">Exercise</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
     <!-- Nav Drawer -->

@@ -42,7 +42,6 @@ class PetJSONStore(private val context: Context) : PetStore{
 
 
     override fun update(pet: PetModel) {
-        // todo
         var foundPet: PetModel? = pets.find {p-> p.id == pet.id}
         if(foundPet!= null){
             foundPet.name = pet.name
