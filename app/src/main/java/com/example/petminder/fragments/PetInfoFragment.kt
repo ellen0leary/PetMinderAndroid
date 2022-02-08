@@ -9,10 +9,13 @@ import com.example.petminder.R
 import com.example.petminder.databinding.FragmentPetInfoBinding
 import com.example.petminder.databinding.FragmentPetListBinding
 import com.example.petminder.main.MainApp
+import com.example.petminder.models.PetModel
+import com.squareup.picasso.Picasso
 
-
+private const val  ARG_PET = "pet"
 class PetInfoFragment : Fragment() {
 
+    var pet: PetModel? = null
     lateinit var app : MainApp
     private var _fragBinding: FragmentPetInfoBinding? = null
     private val fragBinding get() = _fragBinding!!
@@ -21,6 +24,9 @@ class PetInfoFragment : Fragment() {
         super.onCreate(savedInstanceState)
         app = activity?.application as MainApp
         setHasOptionsMenu(true)
+        arguments?.let {
+            pet = it.getParcelable(ARG_PET)
+        }
     }
 
     override fun onCreateView(
@@ -29,19 +35,24 @@ class PetInfoFragment : Fragment() {
     ): View? {
         _fragBinding = FragmentPetInfoBinding.inflate(inflater, container, false)
         val root = fragBinding.root
-//        val layoutManager = LinearLayoutManager(this)
         fragBinding.recycler.setLayoutManager(LinearLayoutManager(activity))
 
+//        Picasso.get().load(pet.image).into(binding.petImage)
+        val ageText = "Age - " + pet?.age.toString() + " years"
+        fragBinding.ageText.setText(ageText)
+
+        val weightText = "Weight- " + pet?.weight.toString() + "Kg"
+        fragBinding.weightText.setText(weightText)
         return root
 
     }
 
     companion object {
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance(pet: PetModel) =
             PetListFragment().apply {
                 arguments = Bundle().apply {
-
+                    putParcelable(ARG_PET, pet)
                 }
             }
     }

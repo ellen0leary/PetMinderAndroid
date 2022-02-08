@@ -27,11 +27,17 @@
             app:exitAnim="@anim/nav_default_exit_anim" />
         <action
             android:id="@+id/action_petListFragment_to_petInfoFragment"
-            app:destination="@id/petInfoFragment" />
+            app:destination="@id/petInfoFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/petInfoFragment"
         android:name="com.example.petminder.fragments.PetInfoFragment"
         android:label="fragment_pet_info"
-        tools:layout="@layout/fragment_pet_info" />
+        tools:layout="@layout/fragment_pet_info" >
+        <argument
+            android:name="pet"
+            app:argType="com.example.petminder.models.PetModel" />
+    </fragment>
 </navigation>

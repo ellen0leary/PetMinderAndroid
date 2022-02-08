@@ -84,7 +84,7 @@ class PetInfoActivity : AppCompatActivity(), ExercsieListener, FeedListener{
     override fun onResume() {
         pet = app.pets.findOne(pet.id)!!
         i(pet.toString())
-        Picasso.get().load(pet.image).into(binding.petImage)
+        //Picasso.get().load(pet.image).into(binding.petImage)
         val ageText = "Age - " + pet.age.toString() + " years"
         binding.ageText.setText(ageText)
 
