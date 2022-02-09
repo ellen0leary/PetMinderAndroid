@@ -50,10 +50,24 @@
         android:id="@+id/feedFragment"
         android:name="com.example.petminder.fragments.FeedFragment"
         android:label="fragment_feed"
-        tools:layout="@layout/fragment_feed" />
+        tools:layout="@layout/fragment_feed" >
+        <argument
+            android:name="pet"
+            app:argType="com.example.petminder.models.PetModel" />
+        <action
+            android:id="@+id/action_feedFragment_to_petInfoFragment"
+            app:destination="@id/petInfoFragment" />
+    </fragment>
     <fragment
         android:id="@+id/exerciseFragment"
         android:name="com.example.petminder.fragments.ExerciseFragment"
         android:label="fragment_exercise"
-        tools:layout="@layout/fragment_exercise" />
+        tools:layout="@layout/fragment_exercise" >
+        <argument
+            android:name="pet"
+            app:argType="com.example.petminder.models.PetModel" />
+        <action
+            android:id="@+id/action_exerciseFragment_to_petInfoFragment"
+            app:destination="@id/petInfoFragment" />
+    </fragment>
 </navigation>

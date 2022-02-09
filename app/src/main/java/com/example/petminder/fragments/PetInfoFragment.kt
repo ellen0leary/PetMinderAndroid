@@ -48,11 +48,11 @@ class PetInfoFragment : Fragment() {
 
     fun setButtonListener(layout: FragmentPetInfoBinding) {
         layout.newExerBtn.setOnClickListener{
-            val directions = PetInfoFragmentDirections.actionPetInfoFragmentToExerciseFragment()
+            val directions = PetInfoFragmentDirections.actionPetInfoFragmentToExerciseFragment(pet!!)
             findNavController().navigate(directions)
         }
         layout.newFeedBtn.setOnClickListener{
-            val directions = PetInfoFragmentDirections.actionPetInfoFragmentToFeedFragment()
+            val directions = PetInfoFragmentDirections.actionPetInfoFragmentToFeedFragment(pet!!)
             findNavController().navigate(directions)
         }
     }
