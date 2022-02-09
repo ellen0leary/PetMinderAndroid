@@ -15,20 +15,26 @@ import com.google.android.material.snackbar.Snackbar
 
 private const val  ARG_PET = "pet"
 private const val ARG_EXERCISE = "exercise"
+private const val ARG_EDIT = "edit"
 class ExerciseFragment : Fragment() {
 
     lateinit var app: MainApp
     private var _fragBinding: FragmentExerciseBinding? = null
     private val fragBinding get() = _fragBinding!!
-    var pet : PetModel? = null
-    var exercise = ExerciseModel()
+    var pet = PetModel()
+    var exercise=  ExerciseModel()
+    var edit =false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         app = activity?.application as MainApp
         setHasOptionsMenu(true)
         arguments?.let {
-            pet = it.getParcelable(ARG_PET)
+            pet = it.getParcelable(ARG_PET)!!
+            edit = it.getBoolean(ARG_EDIT)
+            if(edit) {
+                exercise = it.getParcelable(ARG_EXERCISE)!!
+            }
         }
     }
 
@@ -40,6 +46,12 @@ class ExerciseFragment : Fragment() {
         _fragBinding = FragmentExerciseBinding.inflate(inflater,container,false)
         val root = fragBinding.root
 
+        if(edit) {
+            fragBinding.exerciseType.setText(exercise.name)
+            fragBinding.exerciseLength.setText(exercise.length.toString())
+            fragBinding.placemarkLocation.setText(R.string.update_location_btn)
+            fragBinding.btnAdd.setText(R.string.update_exercise_btn)
+        }
 
         setButtonListener(fragBinding)
         return root
@@ -47,7 +59,7 @@ class ExerciseFragment : Fragment() {
 
     fun setButtonListener(layout: FragmentExerciseBinding){
         layout.btnAdd.setOnClickListener(){
-            exercise.petId = pet!!.id
+            exercise.petId = pet.id
             exercise.name = layout.exerciseType.text.toString()
             exercise.length = layout.exerciseLength.text.toString().toInt()
 //            exercise.lat = location.lat
@@ -56,11 +68,11 @@ class ExerciseFragment : Fragment() {
             if (exercise.name.isEmpty()) {
                 Snackbar.make(it, R.string.enter_exercise_name, Snackbar.LENGTH_SHORT).show()
             } else{
-//                if (edit) {
-//                    app.exercises.update(exercise.copy())
-//                } else {
+                if (edit) {
+                    app.exercises.update(exercise.copy())
+                } else {
                     app.exercises.create(exercise.copy())
-//                }
+                }
                 requireActivity().supportFragmentManager.popBackStack()
             }
 
@@ -68,7 +80,7 @@ class ExerciseFragment : Fragment() {
     }
     companion object {
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance(pet: PetModel, exercise: ExerciseModel) =
             ExerciseFragment().apply {
                 arguments = Bundle().apply {
 

@@ -72,7 +72,7 @@ class PetInfoFragment : Fragment(), ExercsieListener, FeedListener {
 
     fun setButtonListener(layout: FragmentPetInfoBinding) {
         layout.newExerBtn.setOnClickListener{
-            val directions = PetInfoFragmentDirections.actionPetInfoFragmentToExerciseFragment(pet!!)
+            val directions = PetInfoFragmentDirections.actionPetInfoFragmentToExerciseFragment(pet!!, ExerciseModel(), false)
             findNavController().navigate(directions)
         }
         layout.newFeedBtn.setOnClickListener{
@@ -122,7 +122,8 @@ class PetInfoFragment : Fragment(), ExercsieListener, FeedListener {
     }
 
     override fun onExerciseClick(exercise: ExerciseModel) {
-        TODO("Not yet implemented")
+        val directions = PetInfoFragmentDirections.actionPetInfoFragmentToExerciseFragment(pet!!, exercise, true)
+        findNavController().navigate(directions)
     }
 
     override fun onFeedClick(feed: FeedModel) {
