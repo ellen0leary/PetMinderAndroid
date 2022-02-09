@@ -3,8 +3,11 @@ package com.example.petminder.fragments
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.petminder.R
 import com.example.petminder.adapters.ExerciseAdapter
 import com.example.petminder.adapters.ExercsieListener
 import com.example.petminder.adapters.FeedAdapter
@@ -131,4 +134,12 @@ class PetInfoFragment : Fragment(), ExercsieListener, FeedListener {
         findNavController().navigate(directions)
     }
 
-}
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_update, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        findNavController().navigate(PetInfoFragmentDirections.actionPetInfoFragmentToPetAddFragment(true, pet!!))
+        return true
+    }}

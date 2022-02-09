@@ -54,7 +54,6 @@ class PetListFragment : PetListener, Fragment() {
 
     override fun onPetClick(pet: PetModel) {
         Timber.i("Clicked on pet")
-//        TODO("Add Pet click")
         val direction = PetListFragmentDirections.actionPetListFragmentToPetInfoFragment(pet)
         findNavController().navigate(direction)
 

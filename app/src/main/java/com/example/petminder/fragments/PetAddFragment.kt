@@ -13,20 +13,30 @@ import com.example.petminder.helpers.showImagePicker
 import com.example.petminder.main.MainApp
 import com.example.petminder.models.PetModel
 import com.google.android.material.snackbar.Snackbar
+import com.squareup.picasso.Picasso
 import timber.log.Timber
 
+private const val ARG_PET = "pet"
+private const val ARG_EDIT = "edit"
 class PetAddFragment : Fragment() {
 
     lateinit var app: MainApp
     private var _fragBinding: FragmentPetAddBinding? = null
     private val fragBinding get() = _fragBinding!!
     private lateinit var imageIntentLauncher : ActivityResultLauncher<Intent>
-    private val pet = PetModel()
+    private var pet = PetModel()
+    var edit = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         app = activity?.application as MainApp
         setHasOptionsMenu(true)
+        arguments?.let {
+            edit = it.getBoolean(ARG_EDIT)
+            if(edit) {
+                pet = it.getParcelable(ARG_PET)!!
+            }
+        }
     }
 
     override fun onCreateView(
@@ -36,7 +46,14 @@ class PetAddFragment : Fragment() {
         _fragBinding = FragmentPetAddBinding.inflate(inflater, container, false)
         val root = fragBinding.root
 //        activity?.title = getString(R.string.app_name)
-
+        if(edit){
+            fragBinding.petName.setText(pet.name)
+            fragBinding.petWeight.setText(pet.weight.toString())
+            fragBinding.petAge.setText(pet.age.toString())
+            fragBinding.btnAdd.setText(R.string.save_pet)
+            fragBinding.chooseImage.setText(R.string.update_image)
+//            Picasso.get().load(pet.image).into(binding.petImage)
+        }
         setButtonListener(fragBinding)
         return root
     }

@@ -14,6 +14,12 @@
             app:destination="@id/petListFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
+        <argument
+            android:name="edit"
+            app:argType="boolean" />
+        <argument
+            android:name="pet"
+            app:argType="com.example.petminder.models.PetModel" />
     </fragment>
     <fragment
         android:id="@+id/petListFragment"
@@ -45,6 +51,9 @@
         <action
             android:id="@+id/action_petInfoFragment_to_exerciseFragment"
             app:destination="@id/exerciseFragment" />
+        <action
+            android:id="@+id/action_petInfoFragment_to_petAddFragment"
+            app:destination="@id/petAddFragment" />
     </fragment>
     <fragment
         android:id="@+id/feedFragment"
