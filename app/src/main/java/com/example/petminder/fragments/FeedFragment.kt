@@ -71,7 +71,7 @@ class FeedFragment : Fragment() {
 //                    app.feeds.update(feed.copy())
 //                } else {
                     app.feeds.create(feed.copy())
-                backToPetInfo()
+                requireActivity().supportFragmentManager.popBackStack()
 //                }
             }
         }
