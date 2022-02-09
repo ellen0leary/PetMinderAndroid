@@ -76,7 +76,7 @@ class PetInfoFragment : Fragment(), ExercsieListener, FeedListener {
             findNavController().navigate(directions)
         }
         layout.newFeedBtn.setOnClickListener{
-            val directions = PetInfoFragmentDirections.actionPetInfoFragmentToFeedFragment(pet!!)
+            val directions = PetInfoFragmentDirections.actionPetInfoFragmentToFeedFragment(pet!!, FeedModel(), false)
             findNavController().navigate(directions)
         }
         layout.toggleButton.setOnClickListener{
@@ -127,7 +127,8 @@ class PetInfoFragment : Fragment(), ExercsieListener, FeedListener {
     }
 
     override fun onFeedClick(feed: FeedModel) {
-        TODO("Not yet implemented")
+        val directions = PetInfoFragmentDirections.actionPetInfoFragmentToFeedFragment(pet!!, feed, true)
+        findNavController().navigate(directions)
     }
 
 }

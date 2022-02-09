@@ -19,20 +19,26 @@ import timber.log.Timber
 
 private const val ARG_PET = "pet"
 private const val ARG_FEED = "feed"
+private const val ARG_EDIT = "edit"
 class FeedFragment : Fragment() {
 
     lateinit var app: MainApp
     private var _fragBinding: FragmentFeedBinding? = null
     private val fragBinding get() = _fragBinding!!
-    var pet: PetModel? = null
+    var pet= PetModel()
     var feed = FeedModel()
+    var edit = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         app = activity?.application as MainApp
         setHasOptionsMenu(true)
         arguments?.let {
-            pet = it.getParcelable(ARG_PET)
+            pet = it.getParcelable(ARG_PET)!!
+            edit = it.getBoolean(ARG_EDIT)
+            if(edit){
+                feed = it.getParcelable(ARG_FEED)!!
+            }
         }
     }
 
@@ -55,6 +61,18 @@ class FeedFragment : Fragment() {
         }
         spinner.adapter = adapter
         setButtonListener(fragBinding)
+
+        if(edit){
+            fragBinding.spinner.setSelection(
+                (fragBinding.spinner.getAdapter() as ArrayAdapter<String?>).getPosition(
+                    feed.time
+                )
+            )
+
+            fragBinding.spinner.selectedItem.toString()
+            fragBinding.feedWeight.setText(feed.weigth.toString())
+            fragBinding.btnAdd.setText(R.string.update_feed_btn)
+        }
         return  root
     }
 
@@ -67,12 +85,12 @@ class FeedFragment : Fragment() {
             if (feed.time.isEmpty()) {
                 Snackbar.make(it, R.string.enter_pet_title, Snackbar.LENGTH_SHORT).show()
             } else{
-//                if (edit) {
-//                    app.feeds.update(feed.copy())
-//                } else {
+                if (edit) {
+                    app.feeds.update(feed.copy())
+                } else {
                     app.feeds.create(feed.copy())
+                }
                 requireActivity().supportFragmentManager.popBackStack()
-//                }
             }
         }
     }
