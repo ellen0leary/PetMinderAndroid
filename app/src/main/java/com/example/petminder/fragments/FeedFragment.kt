@@ -90,7 +90,7 @@ class FeedFragment : Fragment() {
                 } else {
                     app.feeds.create(feed.copy())
                 }
-                requireActivity().supportFragmentManager.popBackStack()
+                findNavController().navigateUp()
             }
         }
     }

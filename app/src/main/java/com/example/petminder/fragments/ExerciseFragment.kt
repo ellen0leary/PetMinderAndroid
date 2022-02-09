@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.findNavController
 import com.example.petminder.R
 import com.example.petminder.databinding.FragmentExerciseBinding
 import com.example.petminder.main.MainApp
@@ -73,7 +74,7 @@ class ExerciseFragment : Fragment() {
                 } else {
                     app.exercises.create(exercise.copy())
                 }
-                requireActivity().supportFragmentManager.popBackStack()
+                findNavController().navigateUp()
             }
 
         }
