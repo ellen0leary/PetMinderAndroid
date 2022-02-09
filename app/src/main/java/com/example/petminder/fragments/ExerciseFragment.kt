@@ -1,10 +1,8 @@
 package com.example.petminder.fragments
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import com.example.petminder.R
@@ -96,5 +94,18 @@ class ExerciseFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _fragBinding = null
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        if(edit) {
+            inflater.inflate(R.menu.menu_remove, menu)
+        }
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        app.exercises.deleteOne(exercise.id)
+        findNavController().navigateUp()
+        return true
     }
 }

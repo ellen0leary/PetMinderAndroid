@@ -1,13 +1,13 @@
 package com.example.petminder.fragments
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
 import com.example.petminder.R
 import com.example.petminder.databinding.FragmentFeedBinding
 import com.example.petminder.databinding.FragmentPetAddBinding
@@ -117,5 +117,18 @@ class FeedFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _fragBinding = null
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        if(edit) {
+            inflater.inflate(R.menu.menu_remove, menu)
+        }
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        app.feeds.deleteOne(feed.id)
+        findNavController().navigateUp()
+        return true
     }
 }
