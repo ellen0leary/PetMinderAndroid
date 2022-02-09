@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/petListFragment"
+        android:orderInCategory="100"
+        android:title="@string/update_this_pet"
+        app:showAsAction="never" />
+</menu>
