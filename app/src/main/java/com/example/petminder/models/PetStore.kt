@@ -5,4 +5,5 @@ interface PetStore {
     fun create(pet: PetModel)
     fun update(pet: PetModel)
     fun findOne(id: Long) : PetModel?
+    fun deleteOne(id: Long)
 }

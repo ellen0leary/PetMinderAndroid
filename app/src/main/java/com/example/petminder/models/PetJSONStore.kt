@@ -68,6 +68,13 @@ class PetJSONStore(private val context: Context) : PetStore{
         pets = petGsonBuilder.fromJson(jsonString, PetlistType)
     }
 
+    override fun deleteOne(id: Long) {
+        val foundPet = findOne(id)
+        if(foundPet!= null){
+            pets.remove(foundPet)
+        }
+        serialize()
+    }
     private fun logAll() {
         pets.forEach { Timber.i("$it") }
     }

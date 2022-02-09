@@ -140,6 +140,20 @@ class PetInfoFragment : Fragment(), ExercsieListener, FeedListener {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        findNavController().navigate(PetInfoFragmentDirections.actionPetInfoFragmentToPetAddFragment(true, pet!!))
+        when(item.getItemId()){
+            R.id.udapte -> {
+                findNavController().navigate(
+                    PetInfoFragmentDirections.actionPetInfoFragmentToPetAddFragment(
+                        true,
+                        pet!!
+                    )
+                )
+                return true
+            }
+            R.id.delete ->{
+                app.pets.deleteOne(pet!!.id)
+                findNavController().navigateUp()
+            }
+        }
         return true
     }}
