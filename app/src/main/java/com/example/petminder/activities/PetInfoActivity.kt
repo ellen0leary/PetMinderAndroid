@@ -64,10 +64,10 @@ class PetInfoActivity : AppCompatActivity(), ExercsieListener, FeedListener{
         startActivity(launcherIntent)
     }
 
-
-    public fun setTab(view: View){
-        changeTab()
-    }
+//
+//    public fun setTab(view: View){
+//        changeTab()
+//    }
 
     private fun changeTab(){
         if(tab=="feed") {

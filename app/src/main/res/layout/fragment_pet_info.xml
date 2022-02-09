@@ -136,7 +136,7 @@
                         android:layout_height="100dp"
                         android:layout_weight="1"
                         android:background="@color/colorPrimaryAccent"
-                        android:onClick="setTab"
+
                         android:text="ToggleButton"
                         android:textColor="@color/colorAccent"
                         android:textOff="@string/toggleBtn"
