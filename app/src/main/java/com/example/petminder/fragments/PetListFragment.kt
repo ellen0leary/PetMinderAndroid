@@ -1,7 +1,10 @@
 package com.example.petminder.fragments
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.*
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -14,6 +17,7 @@ import com.example.petminder.adapters.PetListener
 import com.example.petminder.databinding.FragmentPetListBinding
 import com.example.petminder.main.MainApp
 import com.example.petminder.models.PetModel
+import com.google.android.material.internal.TextWatcherAdapter
 import timber.log.Timber
 
 class PetListFragment : PetListener, Fragment() {
@@ -36,9 +40,34 @@ class PetListFragment : PetListener, Fragment() {
         val root = fragBinding.root
         fragBinding.recyclerView.layoutManager = GridLayoutManager(activity, 2)
         fragBinding.recyclerView.adapter = PetAdapter(app.pets.findAll(), this)
+        fragBinding.searchBar.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                filter(s.toString());
+            }
+        })
 
 
         return root
+    }
+
+    fun filter(s: String){
+        if(s==""){
+            fragBinding.recyclerView.adapter = PetAdapter(app.pets.findAll(), this)
+        }else {
+            val filteredPets = ArrayList<PetModel>();
+            for (pet in app.pets.findAll()) {
+                if (pet.toString().uppercase().contains(s.uppercase())) {
+                    filteredPets.add(pet)
+                }
+            }
+            fragBinding.recyclerView.adapter = PetAdapter(filteredPets, this)
+        }
     }
     companion object {
         @JvmStatic
