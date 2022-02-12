@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.petminder.R
 import com.example.petminder.adapters.PetAdapter
@@ -33,7 +34,7 @@ class PetListFragment : PetListener, Fragment() {
     ): View? {
         _fragBinding = FragmentPetListBinding.inflate(inflater, container, false)
         val root = fragBinding.root
-        fragBinding.recyclerView.setLayoutManager(LinearLayoutManager(activity))
+        fragBinding.recyclerView.layoutManager = GridLayoutManager(activity, 2)
         fragBinding.recyclerView.adapter = PetAdapter(app.pets.findAll(), this)
 
 
