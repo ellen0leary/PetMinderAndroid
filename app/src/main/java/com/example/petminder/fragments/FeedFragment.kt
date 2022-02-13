@@ -62,6 +62,7 @@ class FeedFragment : Fragment() {
         spinner.adapter = adapter
         setButtonListener(fragBinding)
 
+
         if(edit){
             fragBinding.spinner.setSelection(
                 (fragBinding.spinner.getAdapter() as ArrayAdapter<String?>).getPosition(

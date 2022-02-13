@@ -19,6 +19,7 @@ class PetMemStore : PetStore {
             foundPet.name = pet.name
             foundPet.weight = pet.weight
             foundPet.age = pet.age
+            foundPet.type = pet.type
             foundPet.image = pet.image
             logAll()
         }
