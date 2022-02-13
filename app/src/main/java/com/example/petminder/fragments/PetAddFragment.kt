@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.petminder.R
@@ -52,9 +54,10 @@ class PetAddFragment : Fragment() {
             fragBinding.petAge.setText(pet.age.toString())
             fragBinding.btnAdd.setText(R.string.save_pet)
             fragBinding.chooseImage.setText(R.string.update_image)
-//            Picasso.get().load(pet.image).into(binding.petImage)
+            Picasso.get().load(pet.image).into(fragBinding.petImage)
         }
         setButtonListener(fragBinding)
+        registerImagePickerCallback()
         return root
     }
 
@@ -73,10 +76,8 @@ class PetAddFragment : Fragment() {
         }
         layout.chooseImage.setOnClickListener {
             showImagePicker(imageIntentLauncher)
-            Timber.i("cling button")
+            Timber.i("click button")
         }
-
-
     }
     companion object {
         @JvmStatic
@@ -86,6 +87,25 @@ class PetAddFragment : Fragment() {
             }
     }
 
+
+    private fun registerImagePickerCallback() {
+        imageIntentLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult())
+            { result ->
+                when(result.resultCode){
+                    AppCompatActivity.RESULT_OK -> {
+                        if (result.data != null) {
+                            Timber.i("Got Result ${result.data!!.data}")
+                            pet.image = result.data!!.data!!
+                            Picasso.get()
+                                .load(pet.image)
+                                .into(fragBinding.petImage)
+                        } // end of if
+                    }
+                    AppCompatActivity.RESULT_CANCELED -> { } else -> { }
+                }
+            }
+    }
 
 
     override fun onDestroyView() {
