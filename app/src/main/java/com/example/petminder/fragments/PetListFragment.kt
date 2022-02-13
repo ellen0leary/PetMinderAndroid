@@ -98,13 +98,18 @@ class PetListFragment : PetListener, Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        viewSearchBar = !viewSearchBar
-        if(viewSearchBar){
-            fragBinding.searchBar.visibility = View.VISIBLE
+        if(item.getItemId() == R.id.item_search){
+            viewSearchBar = !viewSearchBar
+            if(viewSearchBar){
+                fragBinding.searchBar.visibility = View.VISIBLE
+            } else {
+                fragBinding.searchBar.visibility = View.GONE
+            }
+            return true
         } else {
-            fragBinding.searchBar.visibility = View.GONE
+            return NavigationUI.onNavDestinationSelected(item,
+            requireView().findNavController()) || super.onOptionsItemSelected(item)
         }
-        return true
     }
 
 
