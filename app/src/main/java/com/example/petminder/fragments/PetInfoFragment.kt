@@ -56,8 +56,6 @@ class PetInfoFragment : Fragment(), ExercsieListener, FeedListener {
 
         val weightText = "Weight- " + pet?.weight.toString() + "Kg"
         fragBinding.weightText.setText(weightText)
-//        val result = URL("https://dog-api.kinduff.com/api/facts").readText()
-        Timber.i( URL("https://dog-api.kinduff.com/api/facts").readText())
         val layoutManager = LinearLayoutManager(activity)
         fragBinding.recycler.layoutManager = layoutManager
         setButtonListener(fragBinding)
