@@ -20,6 +20,7 @@ import com.example.petminder.models.FeedModel
 import com.example.petminder.models.Location
 import com.example.petminder.models.PetModel
 import timber.log.Timber
+import java.net.URL
 
 private const val  ARG_PET = "pet"
 class PetInfoFragment : Fragment(), ExercsieListener, FeedListener {
@@ -55,7 +56,8 @@ class PetInfoFragment : Fragment(), ExercsieListener, FeedListener {
 
         val weightText = "Weight- " + pet?.weight.toString() + "Kg"
         fragBinding.weightText.setText(weightText)
-
+//        val result = URL("https://dog-api.kinduff.com/api/facts").readText()
+        Timber.i( URL("https://dog-api.kinduff.com/api/facts").readText())
         val layoutManager = LinearLayoutManager(activity)
         fragBinding.recycler.layoutManager = layoutManager
         setButtonListener(fragBinding)
