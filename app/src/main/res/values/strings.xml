@@ -52,4 +52,5 @@
     <string name="pet_type">Pet type</string>
     <string name="pet_age">Pet Age</string>
     <string name="pet_weight">Pet Weight</string>
+    <string name="location">Location</string>
 </resources>

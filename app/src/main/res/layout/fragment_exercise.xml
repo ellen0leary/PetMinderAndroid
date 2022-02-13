@@ -82,6 +82,18 @@
                     android:textColor="@color/colorPrimary"
                     android:textSize="16sp"/>
 
+                <TextView
+                    android:id="@+id/startLoc"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_margin="8dp"
+                    android:autofillHints="hint"
+                    android:hint="@string/location"
+                    android:ems="10"
+                    android:maxLines="3"
+                    android:padding="8dp"
+                    android:background="@color/colorPrimaryAccent"
+                    android:textColor="@color/white" />
                 <Button
                     android:id="@+id/btnAdd"
                     android:layout_width="match_parent"

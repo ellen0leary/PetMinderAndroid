@@ -57,15 +57,17 @@ class ExerciseFragment : Fragment() {
             fragBinding.exerciseType.setText(exercise.name)
             fragBinding.exerciseLength.setText(exercise.length.toString())
             fragBinding.placemarkLocation.setText(R.string.update_location_btn)
+            fragBinding.startLoc.setText(location.toString())
             fragBinding.btnAdd.setText(R.string.update_exercise_btn)
         }
+        fragBinding.startLoc.text = location.toString()
 
         setButtonListener(fragBinding)
         return root
     }
 
     fun setButtonListener(layout: FragmentExerciseBinding){
-        layout.btnAdd.setOnClickListener(){
+        layout.btnAdd.setOnClickListener {
             exercise.petId = pet.id
             exercise.name = layout.exerciseType.text.toString()
             exercise.length = layout.exerciseLength.text.toString().toInt()
@@ -86,7 +88,7 @@ class ExerciseFragment : Fragment() {
         layout.placemarkLocation.setOnClickListener {
             Timber.i("Button Clicked "+ location.lat.toString())
 
-            val directions = ExerciseFragmentDirections.actionExerciseFragmentToMapsFragment(edit, location);
+            val directions = ExerciseFragmentDirections.actionExerciseFragmentToMapsFragment(edit, location)
             findNavController().navigate(directions)
         }
     }
@@ -98,10 +100,6 @@ class ExerciseFragment : Fragment() {
 
                 }
             }
-    }
-
-    override fun onResume() {
-        super.onResume()
     }
 
     override fun onDestroyView() {
@@ -122,7 +120,7 @@ class ExerciseFragment : Fragment() {
         return true
     }
 
-    public fun setExerciseLocation(loc: Location){
+    fun setExerciseLocation(loc: Location){
         edit = true
         location.lat = loc.lat
         location.lng = loc.lng
