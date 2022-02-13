@@ -11,6 +11,7 @@ import com.example.petminder.main.MainApp
 import com.example.petminder.models.ExerciseModel
 import com.example.petminder.models.PetModel
 import com.google.android.material.snackbar.Snackbar
+import timber.log.Timber
 
 private const val  ARG_PET = "pet"
 private const val ARG_EXERCISE = "exercise"
@@ -74,7 +75,11 @@ class ExerciseFragment : Fragment() {
                 }
                 findNavController().navigateUp()
             }
-
+        }
+        layout.placemarkLocation.setOnClickListener {
+            Timber.i("Button Clicked")
+            val directions = ExerciseFragmentDirections.actionExerciseFragmentToMapsFragment();
+            findNavController().navigate(directions)
         }
     }
     companion object {
