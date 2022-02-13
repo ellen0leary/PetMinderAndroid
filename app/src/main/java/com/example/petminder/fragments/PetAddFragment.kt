@@ -8,11 +8,14 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.petminder.R
 import com.example.petminder.databinding.FragmentPetAddBinding
 import com.example.petminder.helpers.showImagePicker
 import com.example.petminder.main.MainApp
+import com.example.petminder.models.ExerciseModel
+import com.example.petminder.models.Location
 import com.example.petminder.models.PetModel
 import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Picasso
@@ -71,7 +74,14 @@ class PetAddFragment : Fragment() {
             if (pet.name.isEmpty()) {
                 Snackbar.make(it, R.string.enter_pet_title, Snackbar.LENGTH_SHORT).show()
             } else {
-                app.pets.create(pet.copy())
+                if(edit){
+                    app.pets.update(pet.copy())
+                    findNavController().navigateUp()
+                } else {
+                    app.pets.create(pet.copy())
+                    val directions = PetAddFragmentDirections.actionPetAddFragmentToPetListFragment()
+                    findNavController().navigate(directions)
+                }
             }
         }
         layout.chooseImage.setOnClickListener {

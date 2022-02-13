@@ -69,9 +69,9 @@ class ExerciseFragment : Fragment() {
             exercise.petId = pet.id
             exercise.name = layout.exerciseType.text.toString()
             exercise.length = layout.exerciseLength.text.toString().toInt()
-//            exercise.lat = location.lat
-//            exercise.lng = location.lng
-//            exercise.zoom = location.zoom
+            exercise.lat = location.lat
+            exercise.lng = location.lng
+            exercise.zoom = location.zoom
             if (exercise.name.isEmpty()) {
                 Snackbar.make(it, R.string.enter_exercise_name, Snackbar.LENGTH_SHORT).show()
             } else{
