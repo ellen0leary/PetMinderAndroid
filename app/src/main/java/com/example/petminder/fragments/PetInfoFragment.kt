@@ -19,6 +19,7 @@ import com.example.petminder.models.ExerciseModel
 import com.example.petminder.models.FeedModel
 import com.example.petminder.models.Location
 import com.example.petminder.models.PetModel
+import com.squareup.picasso.Picasso
 import timber.log.Timber
 import java.net.URL
 
@@ -48,9 +49,10 @@ class PetInfoFragment : Fragment(), ExercsieListener, FeedListener {
         val root = fragBinding.root
         fragBinding.recycler.setLayoutManager(LinearLayoutManager(activity))
 
+        activity?.title = pet!!.name
         tab = "feed"
         loadFeeds()
-//        Picasso.get().load(pet.image).into(binding.petImage)
+        Picasso.get().load(pet!!.image).into(fragBinding.petImage)
         val ageText = "Age - " + pet?.age.toString() + " years"
         fragBinding.ageText.setText(ageText)
 

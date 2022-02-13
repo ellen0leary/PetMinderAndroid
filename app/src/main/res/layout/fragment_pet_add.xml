@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.PetActivity">
+    tools:context=".fragments.PetAddFragment">
 
     <Toolbar
         android:id="@+id/toolbar"
@@ -33,6 +33,10 @@
                     android:id="@+id/petType"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
+                    android:background="@color/colorPrimaryAccent"
+                    android:dropDownSelector="@color/colorPrimaryAccent"
+                    android:padding="10dp"
+                    android:textColor="@color/white"
                     />
 
                 <EditText
@@ -43,7 +47,6 @@
                     android:background="@color/colorPrimaryAccent"
                     android:hint="@string/pet_type"
                     android:ems="10"
-                    android:inputType="numberDecimal"
                     android:maxLength="25"
                     android:maxLines="1"
                     android:padding="8dp"

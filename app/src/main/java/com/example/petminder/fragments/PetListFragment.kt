@@ -88,7 +88,6 @@ class PetListFragment : PetListener, Fragment() {
         Timber.i("Clicked on pet")
         val direction = PetListFragmentDirections.actionPetListFragmentToPetInfoFragment(pet)
         findNavController().navigate(direction)
-
     }
 
 
