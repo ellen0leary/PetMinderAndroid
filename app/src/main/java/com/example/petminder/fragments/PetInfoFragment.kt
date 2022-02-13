@@ -17,6 +17,7 @@ import com.example.petminder.databinding.FragmentPetInfoBinding
 import com.example.petminder.main.MainApp
 import com.example.petminder.models.ExerciseModel
 import com.example.petminder.models.FeedModel
+import com.example.petminder.models.Location
 import com.example.petminder.models.PetModel
 import timber.log.Timber
 
@@ -75,7 +76,7 @@ class PetInfoFragment : Fragment(), ExercsieListener, FeedListener {
 
     fun setButtonListener(layout: FragmentPetInfoBinding) {
         layout.newExerBtn.setOnClickListener{
-            val directions = PetInfoFragmentDirections.actionPetInfoFragmentToExerciseFragment(pet!!, ExerciseModel(), false)
+            val directions = PetInfoFragmentDirections.actionPetInfoFragmentToExerciseFragment(pet!!, ExerciseModel(), false, false, Location())
             findNavController().navigate(directions)
         }
         layout.newFeedBtn.setOnClickListener{
@@ -125,7 +126,7 @@ class PetInfoFragment : Fragment(), ExercsieListener, FeedListener {
     }
 
     override fun onExerciseClick(exercise: ExerciseModel) {
-        val directions = PetInfoFragmentDirections.actionPetInfoFragmentToExerciseFragment(pet!!, exercise, true)
+        val directions = PetInfoFragmentDirections.actionPetInfoFragmentToExerciseFragment(pet!!, exercise, true, false, Location())
         findNavController().navigate(directions)
     }
 
@@ -156,4 +157,5 @@ class PetInfoFragment : Fragment(), ExercsieListener, FeedListener {
             }
         }
         return true
-    }}
+    }
+}

@@ -9,6 +9,7 @@ import com.example.petminder.R
 import com.example.petminder.databinding.FragmentExerciseBinding
 import com.example.petminder.main.MainApp
 import com.example.petminder.models.ExerciseModel
+import com.example.petminder.models.Location
 import com.example.petminder.models.PetModel
 import com.google.android.material.snackbar.Snackbar
 import timber.log.Timber
@@ -24,6 +25,7 @@ class ExerciseFragment : Fragment() {
     var pet = PetModel()
     var exercise=  ExerciseModel()
     var edit =false
+    var location=  Location()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +36,11 @@ class ExerciseFragment : Fragment() {
             edit = it.getBoolean(ARG_EDIT)
             if(edit) {
                 exercise = it.getParcelable(ARG_EXERCISE)!!
+                location.lat = exercise.lat
+                location.lng = exercise.lng
+                location.zoom = exercise.zoom
             }
+
         }
     }
 
@@ -45,6 +51,7 @@ class ExerciseFragment : Fragment() {
         // Inflate the layout for this fragment
         _fragBinding = FragmentExerciseBinding.inflate(inflater,container,false)
         val root = fragBinding.root
+
 
         if(edit) {
             fragBinding.exerciseType.setText(exercise.name)
@@ -77,8 +84,9 @@ class ExerciseFragment : Fragment() {
             }
         }
         layout.placemarkLocation.setOnClickListener {
-            Timber.i("Button Clicked")
-            val directions = ExerciseFragmentDirections.actionExerciseFragmentToMapsFragment();
+            Timber.i("Button Clicked "+ location.lat.toString())
+
+            val directions = ExerciseFragmentDirections.actionExerciseFragmentToMapsFragment(edit, location);
             findNavController().navigate(directions)
         }
     }
@@ -113,4 +121,13 @@ class ExerciseFragment : Fragment() {
         findNavController().navigateUp()
         return true
     }
+
+    public fun setExerciseLocation(loc: Location){
+        edit = true
+        location.lat = loc.lat
+        location.lng = loc.lng
+        location.zoom = loc.zoom
+        Timber.i(edit.toString())
+    }
+
 }

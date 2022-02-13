@@ -1,5 +1,7 @@
 package com.example.petminder.fragments
 
+import android.app.Activity
+import android.content.Intent
 import androidx.fragment.app.Fragment
 
 import android.os.Bundle
@@ -23,6 +25,10 @@ import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import timber.log.Timber
 
+
+private const val  ARG_EDIT = "edit"
+private const val  ARG_Loc = "location"
+
 class MapsFragment : Fragment(), OnMapReadyCallback , GoogleMap.OnMarkerDragListener {
 
     lateinit var app: MainApp
@@ -30,6 +36,7 @@ class MapsFragment : Fragment(), OnMapReadyCallback , GoogleMap.OnMarkerDragList
     private val fragBinding get() = _fragBinding!!
     private lateinit var map: GoogleMap
     var location = Location()
+    var edit = false
 
     private val callback = OnMapReadyCallback { googleMap ->
         val sydney = LatLng(-34.0, 151.0)
@@ -39,6 +46,7 @@ class MapsFragment : Fragment(), OnMapReadyCallback , GoogleMap.OnMarkerDragList
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         app = activity?.application as MainApp
+
         setHasOptionsMenu(true)
         Timber.i("Map started")
 
@@ -50,10 +58,15 @@ class MapsFragment : Fragment(), OnMapReadyCallback , GoogleMap.OnMarkerDragList
     ): View? {
         _fragBinding = FragmentMapsBinding.inflate(inflater,container,false)
         val root = fragBinding.root
+        arguments?.let {
+            edit = it.getBoolean(ARG_EDIT)
+            location = it.getParcelable(ARG_Loc)!!
+        }
         Timber.i("Map view created")
         fragBinding.map.onCreate(savedInstanceState)
         fragBinding.map.onResume()
         fragBinding.map.getMapAsync(this)
+
         return root
     }
 
@@ -73,6 +86,7 @@ class MapsFragment : Fragment(), OnMapReadyCallback , GoogleMap.OnMarkerDragList
     }
     override fun onDestroyView() {
         super.onDestroyView()
+        ExerciseFragment().setExerciseLocation(location)
         _fragBinding = null
     }
 
@@ -90,14 +104,16 @@ class MapsFragment : Fragment(), OnMapReadyCallback , GoogleMap.OnMarkerDragList
     }
 
     override fun onMarkerDrag(p0: Marker) {
-        TODO("Not yet implemented")
     }
 
-    override fun onMarkerDragEnd(p0: Marker) {
-        TODO("Not yet implemented")
+    override fun onMarkerDragEnd(marker: Marker) {
+        location.lat = marker.position.latitude
+        location.lng = marker.position.longitude
+        location.zoom = map.cameraPosition.zoom
     }
 
     override fun onMarkerDragStart(p0: Marker) {
-        TODO("Not yet implemented")
     }
+
+
 }

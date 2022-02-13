@@ -93,10 +93,23 @@
         <action
             android:id="@+id/action_exerciseFragment_to_mapsFragment"
             app:destination="@id/mapsFragment" />
+        <argument
+            android:name="ifLocation"
+            app:argType="boolean" />
+        <argument
+            android:name="location"
+            app:argType="com.example.petminder.models.Location" />
     </fragment>
     <fragment
         android:id="@+id/mapsFragment"
         android:name="com.example.petminder.fragments.MapsFragment"
         android:label="fragment_maps"
-        tools:layout="@layout/fragment_maps" />
+        tools:layout="@layout/fragment_maps" >
+        <argument
+            android:name="edit"
+            app:argType="boolean" />
+        <argument
+            android:name="location"
+            app:argType="com.example.petminder.models.Location" />
+    </fragment>
 </navigation>
