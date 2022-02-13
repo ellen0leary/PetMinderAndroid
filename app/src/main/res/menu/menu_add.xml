@@ -3,8 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/petListFragment"
-        android:orderInCategory="100"
-        android:title="@string/app_name"
-        app:showAsAction="never" />
+        android:id="@+id/item_search"
+        android:icon="@drawable/ic_search_bar"
+        android:title="@string/menu_addPet"
+        app:showAsAction="always" />
 </menu>

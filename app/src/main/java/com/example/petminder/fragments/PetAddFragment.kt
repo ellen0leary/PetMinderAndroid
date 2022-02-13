@@ -50,7 +50,6 @@ class PetAddFragment : Fragment() {
     ): View? {
         _fragBinding = FragmentPetAddBinding.inflate(inflater, container, false)
         val root = fragBinding.root
-//        activity?.title = getString(R.string.app_name)
         if(edit){
             fragBinding.petName.setText(pet.name)
             fragBinding.petWeight.setText(pet.weight.toString())

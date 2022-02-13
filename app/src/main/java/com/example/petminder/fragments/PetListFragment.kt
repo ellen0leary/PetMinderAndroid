@@ -1,5 +1,6 @@
 package com.example.petminder.fragments
 
+import android.opengl.Visibility
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -25,6 +26,7 @@ class PetListFragment : PetListener, Fragment() {
     lateinit var app : MainApp
     private var _fragBinding: FragmentPetListBinding? = null
     private val fragBinding get() = _fragBinding!!
+    var viewSearchBar = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -96,8 +98,13 @@ class PetListFragment : PetListener, Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return NavigationUI.onNavDestinationSelected(item,
-            requireView().findNavController()) || super.onOptionsItemSelected(item)
+        viewSearchBar = !viewSearchBar
+        if(viewSearchBar){
+            fragBinding.searchBar.visibility = View.VISIBLE
+        } else {
+            fragBinding.searchBar.visibility = View.GONE
+        }
+        return true
     }
 
 
