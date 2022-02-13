@@ -21,12 +21,3 @@ class MainApp: Application() {
         i("Pet started")
     }
 }
-
-// ToDo : searching
-// ToDo : add an api - https://github.com/public-apis/public-apis#animals
-// ToDo : cloud storage
-// ToDo : different ui elements - idk
-// ToDo : different Nav - tabs
-
-// ToDo [Bug] - fix adding images in fragemets- petAdd
-// ToDo [Bug] - pet Click on petList
