@@ -2,7 +2,7 @@ package com.example.petminder.models
 
 import timber.log.Timber.i
 
-class PetMemStore : PetStore {
+object PetManager : PetStore {
     val pets = ArrayList<PetModel>()
 
     override fun findAll(): List<PetModel>{

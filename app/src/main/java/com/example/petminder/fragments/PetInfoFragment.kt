@@ -3,25 +3,22 @@ package com.example.petminder.fragments
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.petminder.R
 import com.example.petminder.adapters.ExerciseAdapter
 import com.example.petminder.adapters.ExercsieListener
 import com.example.petminder.adapters.FeedAdapter
 import com.example.petminder.adapters.FeedListener
-import com.example.petminder.databinding.FragmentPetAddBinding
 import com.example.petminder.databinding.FragmentPetInfoBinding
 import com.example.petminder.main.MainApp
 import com.example.petminder.models.ExerciseModel
 import com.example.petminder.models.FeedModel
 import com.example.petminder.models.Location
 import com.example.petminder.models.PetModel
+import com.example.petminder.ui.PetList.PetListFragment
 import com.squareup.picasso.Picasso
 import timber.log.Timber
-import java.net.URL
 
 private const val  ARG_PET = "pet"
 class PetInfoFragment : Fragment(), ExercsieListener, FeedListener {

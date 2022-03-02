@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigation"
-    app:startDestination="@id/petAddFragment">
+    app:startDestination="@id/petListFragment">
     <fragment
         android:id="@+id/petAddFragment"
-        android:name="com.example.petminder.fragments.PetAddFragment"
+        android:name="com.example.petminder.ui.PetAdd.PetAddFragment"
         android:label="fragment_pet_add"
-        tools:layout="@layout/fragment_pet_add" >
+        tools:layout="@layout/fragment_pet_add">
         <action
             android:id="@+id/action_petAddFragment_to_petListFragment"
             app:destination="@id/petListFragment"
@@ -23,7 +23,7 @@
     </fragment>
     <fragment
         android:id="@+id/petListFragment"
-        android:name="com.example.petminder.fragments.PetListFragment"
+        android:name="com.example.petminder.ui.PetList.PetListFragment"
         android:label="fragment_pet_list"
         tools:layout="@layout/fragment_pet_list" >
         <action

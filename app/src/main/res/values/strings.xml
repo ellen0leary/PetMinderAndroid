@@ -53,4 +53,8 @@
     <string name="pet_age">Pet Age</string>
     <string name="pet_weight">Pet Weight</string>
     <string name="location">Location</string>
+
+
+    <string name="petsNotFound">No Pets Yet....\nAdd then</string>
+    <string name="petError">Error : Couldn\'t add a Pet…</string>
 </resources>
