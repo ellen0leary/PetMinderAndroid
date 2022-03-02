@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="exercise"
+            type="com.example.petminder.models.ExerciseModel" />
+    </data>
+    <androidx.cardview.widget.CardView
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:background="@color/colorPrimary"
+        android:elevation="24dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/relativeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:padding="16dp">
+
+
+            <TextView
+                android:id="@+id/exerciseType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textAlignment="viewStart"
+                android:textSize="30sp"
+                android:text="@{exercise.name}"
+                android:textColor="@color/white"
+                tools:text="Time" />
+
+            <TextView
+                android:id="@+id/exerciseLength"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:layout_marginLeft="10dp"
+                android:textAlignment="viewStart"
+                app:layout_constraintLeft_toRightOf="@+id/exerciseType"
+                app:layout_constraintBottom_toBottomOf="@+id/exerciseType"
+                android:text="@{Float.toString(exercise.length)}"
+                android:textColor="@color/white"
+                tools:text="Weight kg" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>
