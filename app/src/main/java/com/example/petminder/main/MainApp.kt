@@ -21,8 +21,8 @@ class MainApp: Application() {
         super.onCreate()
         Timber.plant(Timber.DebugTree())
 //        pets  = PetJSONStore(applicationContext)
-        feeds = FeedJSONStore(applicationContext)
-        exercises = ExerciseJSONStore(applicationContext)
+//        feeds = FeedJSONStore(applicationContext)
+//        exercises = ExerciseJSONStore(applicationContext)
         i("Pet started")
     }
     public fun getAppContext() : Context {

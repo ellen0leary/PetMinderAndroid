@@ -3,6 +3,7 @@ package com.example.petminder.models.feeds
 object FeedManager: FeedStore {
     var feeds = ArrayList<FeedModel>()
 
+
     override fun findAll(): MutableList<FeedModel> {
         return feeds
     }
