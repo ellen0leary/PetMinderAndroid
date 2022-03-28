@@ -3,6 +3,7 @@ package com.example.petminder.ui.exceriseAdd
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.petminder.R
 import com.example.petminder.databinding.FragmentExerciseBinding
@@ -25,6 +26,7 @@ class ExerciseFragment : Fragment() {
     var exercise=  ExerciseModel()
     var edit =false
     var location=  Location()
+    private lateinit var exerciseViewModel: ExerciseViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,7 +53,7 @@ class ExerciseFragment : Fragment() {
         _fragBinding = FragmentExerciseBinding.inflate(inflater,container,false)
         val root = fragBinding.root
 
-
+        exerciseViewModel = ViewModelProvider(this).get(ExerciseViewModel::class.java)
         if(edit) {
             fragBinding.exerciseType.setText(exercise.name)
             fragBinding.exerciseLength.setText(exercise.length.toString())
@@ -76,11 +78,11 @@ class ExerciseFragment : Fragment() {
             if (exercise.name.isEmpty()) {
                 Snackbar.make(it, R.string.enter_exercise_name, Snackbar.LENGTH_SHORT).show()
             } else{
-                if (edit) {
-                    app.exercises.update(exercise.copy())
-                } else {
-                    app.exercises.create(exercise.copy())
-                }
+//                if (edit) {
+//                    app.exercises.update(exercise.copy())
+//                } else {
+                    exerciseViewModel.addExercise(exercise)
+//                }
                 findNavController().navigateUp()
             }
         }
@@ -114,7 +116,7 @@ class ExerciseFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        app.exercises.deleteOne(exercise.id)
+//        app.exercises.deleteOne(exercise.id)
         findNavController().navigateUp()
         return true
     }

@@ -3,7 +3,7 @@ package com.example.petminder.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.petminder.databinding.CardFeedBinding
+import com.example.petminder.databinding.CardExerciseBinding
 import com.example.petminder.models.exercises.ExerciseModel
 
 
@@ -15,7 +15,7 @@ class ExerciseAdapter constructor(private var exercises: List<ExerciseModel>, pr
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExerciseAdapter.MainHolder {
-        val binding = CardFeedBinding.inflate(
+        val binding = CardExerciseBinding.inflate(
             LayoutInflater.from(parent.context), parent, false)
 
         return MainHolder(binding)
@@ -29,12 +29,14 @@ class ExerciseAdapter constructor(private var exercises: List<ExerciseModel>, pr
     override fun getItemCount(): Int = exercises.size
 
 
-    class MainHolder(private val binding: CardFeedBinding):
+    class MainHolder(private val binding: CardExerciseBinding):
             RecyclerView.ViewHolder(binding.root) {
                 fun bind(exercise: ExerciseModel, listener: ExercsieListener){
-                    binding.feedTime.text = exercise.name
-                    binding.feedWeight.text = exercise.length.toString()
+//                    binding.feedTime.text = exercise.name
+//                    binding.feedWeight.text = exercise.length.toString()
+                    binding.exercise = exercise
                     binding.root.setOnClickListener{listener.onExerciseClick(exercise)}
+                    binding.executePendingBindings()
                 }
             }
 

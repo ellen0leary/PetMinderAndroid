@@ -3,13 +3,12 @@ package com.example.petminder.ui.detail
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.petminder.R
-import com.example.petminder.adapters.ExerciseAdapter
-import com.example.petminder.adapters.ExercsieListener
-import com.example.petminder.adapters.FeedAdapter
-import com.example.petminder.adapters.FeedListener
+import com.example.petminder.adapters.*
 import com.example.petminder.databinding.FragmentPetInfoBinding
 import com.example.petminder.main.MainApp
 import com.example.petminder.models.exercises.ExerciseModel
@@ -28,6 +27,7 @@ class PetInfoFragment : Fragment(), ExercsieListener, FeedListener {
     private var _fragBinding: FragmentPetInfoBinding? = null
     private val fragBinding get() = _fragBinding!!
     var tab= ""
+    private lateinit var petInfoViewModel: PetInfoViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,6 +57,12 @@ class PetInfoFragment : Fragment(), ExercsieListener, FeedListener {
         fragBinding.weightText.setText(weightText)
         val layoutManager = LinearLayoutManager(activity)
         fragBinding.recycler.layoutManager = layoutManager
+
+        petInfoViewModel = ViewModelProvider(this).get(PetInfoViewModel::class.java)
+        petInfoViewModel.observableExerciseList.observe(viewLifecycleOwner, Observer {
+                exercise: List<ExerciseModel> ->
+            exercise?.let { render(exercise) }
+        })
         setButtonListener(fragBinding)
         return root
     }
@@ -101,7 +107,7 @@ class PetInfoFragment : Fragment(), ExercsieListener, FeedListener {
     }
 
     private fun loadFeeds(){
-        showFeeds(app.feeds.findByPet(pet!!.id))
+//        showFeeds(app.feeds.findByPet(pet!!.id))
     }
 
     fun showFeeds(feeds: List<FeedModel>){
@@ -111,7 +117,7 @@ class PetInfoFragment : Fragment(), ExercsieListener, FeedListener {
     }
 
     private fun loadExercises(){
-        showExercises(app.exercises.findByPet(pet!!.id))
+//        showExercises(app.exercises.findByPet(pet!!.id))
     }
 
     fun showExercises(exercise: List<ExerciseModel>){
@@ -151,10 +157,21 @@ class PetInfoFragment : Fragment(), ExercsieListener, FeedListener {
                 return true
             }
             R.id.delete ->{
-                app.pets.deleteOne(pet!!.id)
+//                app.pets.deleteOne(pet!!.id)
                 findNavController().navigateUp()
             }
         }
         return true
+    }
+
+    private fun render(exerciseList: List<ExerciseModel>){
+        fragBinding.recycler.adapter = ExerciseAdapter(exerciseList, this)
+        if(exerciseList.isEmpty()){
+            fragBinding.recycler.visibility = View.GONE
+            fragBinding.exerciseNotFound.visibility = View.VISIBLE
+        }else {
+            fragBinding.recycler.visibility = View.VISIBLE
+            fragBinding.exerciseNotFound.visibility = View.GONE
+        }
     }
 }

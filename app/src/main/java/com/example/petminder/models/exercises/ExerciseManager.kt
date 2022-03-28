@@ -5,7 +5,7 @@ import com.example.petminder.helpers.read
 import com.example.petminder.helpers.write
 import timber.log.Timber
 
-class ExerciseManager: ExerciseStore {
+object ExerciseManager: ExerciseStore {
     var exercises = ArrayList<ExerciseModel>()
 
     override fun findAll(): MutableList<ExerciseModel> {

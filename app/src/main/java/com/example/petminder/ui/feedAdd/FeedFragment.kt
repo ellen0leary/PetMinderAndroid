@@ -83,9 +83,9 @@ class FeedFragment : Fragment() {
                 Snackbar.make(it, R.string.enter_pet_title, Snackbar.LENGTH_SHORT).show()
             } else{
                 if (edit) {
-                    app.feeds.update(feed.copy())
+//                    app.feeds.update(feed.copy())
                 } else {
-                    app.feeds.create(feed.copy())
+//                    app.feeds.create(feed.copy())
                 }
                 findNavController().navigateUp()
             }
@@ -124,7 +124,7 @@ class FeedFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        app.feeds.deleteOne(feed.id)
+//        app.feeds.deleteOne(feed.id)
         findNavController().navigateUp()
         return true
     }
