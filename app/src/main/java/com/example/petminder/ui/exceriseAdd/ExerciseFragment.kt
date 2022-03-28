@@ -6,11 +6,10 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.petminder.R
 import com.example.petminder.databinding.FragmentExerciseBinding
-import com.example.petminder.fragments.ExerciseFragmentDirections
 import com.example.petminder.main.MainApp
-import com.example.petminder.models.ExerciseModel
-import com.example.petminder.models.Location
-import com.example.petminder.models.PetModel
+import com.example.petminder.models.exercises.ExerciseModel
+import com.example.petminder.models.exercises.Location
+import com.example.petminder.models.pets.PetModel
 import com.google.android.material.snackbar.Snackbar
 import timber.log.Timber
 

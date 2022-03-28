@@ -1,4 +1,4 @@
-package com.example.petminder.fragments
+package com.example.petminder.ui.feedAdd
 
 import android.os.Bundle
 import android.view.*
@@ -8,8 +8,8 @@ import androidx.navigation.fragment.findNavController
 import com.example.petminder.R
 import com.example.petminder.databinding.FragmentFeedBinding
 import com.example.petminder.main.MainApp
-import com.example.petminder.models.FeedModel
-import com.example.petminder.models.PetModel
+import com.example.petminder.models.feeds.FeedModel
+import com.example.petminder.models.pets.PetModel
 import com.google.android.material.snackbar.Snackbar
 import timber.log.Timber
 

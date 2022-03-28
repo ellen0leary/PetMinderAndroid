@@ -1,4 +1,4 @@
-package com.example.petminder.models
+package com.example.petminder.models.exercises
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

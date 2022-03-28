@@ -1,4 +1,4 @@
-package com.example.petminder.models
+package com.example.petminder.models.exercises
 
 import android.content.Context
 import android.net.Uri
@@ -23,7 +23,7 @@ val exerciselistType = object : TypeToken<ArrayList<ExerciseModel>>() {}.type
 fun generateRandomExerciseId() : Long{
     return  Random().nextLong()
 }
-class ExerciseJSONStore(private val context: Context) : ExerciseStore{
+class ExerciseJSONStore(private val context: Context) : ExerciseStore {
     var exercises = mutableListOf<ExerciseModel>()
 
 
@@ -55,7 +55,7 @@ class ExerciseJSONStore(private val context: Context) : ExerciseStore{
     }
 
     fun findOne(id: Long): ExerciseModel? {
-        var foundExercise : ExerciseModel? = exercises.find{p -> p.id == id}
+        var foundExercise : ExerciseModel? = exercises.find{ p -> p.id == id}
         return foundExercise
     }
 
@@ -69,7 +69,7 @@ class ExerciseJSONStore(private val context: Context) : ExerciseStore{
 
 
     override fun update(exercise: ExerciseModel) {
-        var foundExercise: ExerciseModel? = exercises.find {p-> p.id == exercise.id}
+        var foundExercise: ExerciseModel? = exercises.find { p-> p.id == exercise.id}
         if(foundExercise != null) {
             foundExercise.name = exercise.name
             foundExercise.length = exercise.length

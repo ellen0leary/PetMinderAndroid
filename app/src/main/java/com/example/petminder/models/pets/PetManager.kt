@@ -1,4 +1,4 @@
-package com.example.petminder.models
+package com.example.petminder.models.pets
 
 import timber.log.Timber.i
 

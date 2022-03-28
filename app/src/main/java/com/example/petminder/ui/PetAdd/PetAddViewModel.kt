@@ -3,8 +3,8 @@ package com.example.petminder.ui.PetAdd
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.petminder.models.PetManager
-import com.example.petminder.models.PetModel
+import com.example.petminder.models.pets.PetManager
+import com.example.petminder.models.pets.PetModel
 import java.lang.IllegalArgumentException
 
 class PetAddViewModel: ViewModel() {

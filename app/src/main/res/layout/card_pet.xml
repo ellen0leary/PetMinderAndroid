@@ -6,7 +6,7 @@
 <data>
     <variable
         name="pet"
-        type="com.example.petminder.models.PetModel" />
+        type="com.example.petminder.models.pets.PetModel" />
 </data>
 
     <androidx.cardview.widget.CardView

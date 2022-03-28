@@ -1,4 +1,4 @@
-package com.example.petminder.models
+package com.example.petminder.models.exercises
 
 interface ExerciseStore {
     fun findAll(): List<ExerciseModel>

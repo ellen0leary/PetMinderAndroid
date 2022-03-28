@@ -6,7 +6,7 @@
     <data>
         <variable
             name="feed"
-            type="com.example.petminder.models.FeedModel" />
+            type="com.example.petminder.models.feeds.FeedModel" />
     </data>
 <androidx.cardview.widget.CardView
     xmlns:tools="http://schemas.android.com/tools"

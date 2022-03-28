@@ -1,4 +1,4 @@
-package com.example.petminder.models
+package com.example.petminder.models.pets
 
 import android.net.Uri
 import android.os.Parcelable

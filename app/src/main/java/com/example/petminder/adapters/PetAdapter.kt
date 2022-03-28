@@ -4,8 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.petminder.databinding.CardPetBinding
-import com.example.petminder.models.PetModel
-import com.squareup.picasso.Picasso
+import com.example.petminder.models.pets.PetModel
 
 interface PetListener {
     fun onPetClick(pet: PetModel)

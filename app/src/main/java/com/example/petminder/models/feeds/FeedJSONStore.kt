@@ -1,4 +1,4 @@
-package com.example.petminder.models
+package com.example.petminder.models.feeds
 
 import android.content.Context
 import android.net.Uri
@@ -22,7 +22,7 @@ val feedlistType = object : TypeToken<ArrayList<FeedModel>>() {}.type
 fun generateRandomFeedId() : Long{
     return  Random().nextLong()
 }
-class FeedJSONStore(private val context: Context) : FeedStore{
+class FeedJSONStore(private val context: Context) : FeedStore {
     var feeds = mutableListOf<FeedModel>()
 
 
@@ -54,7 +54,7 @@ class FeedJSONStore(private val context: Context) : FeedStore{
     }
 
     fun findOne(id: Long): FeedModel? {
-        var foundFeed : FeedModel? = feeds.find{p -> p.id == id}
+        var foundFeed : FeedModel? = feeds.find{ p -> p.id == id}
         return foundFeed
     }
 
@@ -68,7 +68,7 @@ class FeedJSONStore(private val context: Context) : FeedStore{
 
 
     override fun update(feed: FeedModel) {
-        var foundFeed: FeedModel? = feeds.find {p-> p.id == feed.id}
+        var foundFeed: FeedModel? = feeds.find { p-> p.id == feed.id}
         if(foundFeed != null) {
             foundFeed.time = feed.time
             foundFeed.weigth = feed.weigth

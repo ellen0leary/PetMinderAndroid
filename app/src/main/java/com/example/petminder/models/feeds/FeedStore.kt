@@ -1,4 +1,4 @@
-package com.example.petminder.models
+package com.example.petminder.models.feeds
 
 interface FeedStore {
     fun findAll(): List<FeedModel>

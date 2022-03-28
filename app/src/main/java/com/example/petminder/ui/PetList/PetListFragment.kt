@@ -16,7 +16,7 @@ import com.example.petminder.adapters.PetAdapter
 import com.example.petminder.adapters.PetListener
 import com.example.petminder.databinding.FragmentPetListBinding
 import com.example.petminder.main.MainApp
-import com.example.petminder.models.PetModel
+import com.example.petminder.models.pets.PetModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import timber.log.Timber
 

@@ -1,4 +1,4 @@
-package com.example.petminder.ui.feedAdd
+package com.example.petminder.ui.Maps
 
 import androidx.fragment.app.Fragment
 
@@ -8,9 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.petminder.databinding.FragmentMapsBinding
 import com.example.petminder.main.MainApp
-import com.example.petminder.models.ExerciseModel
-import com.example.petminder.models.Location
-import com.example.petminder.models.PetModel
+import com.example.petminder.models.exercises.ExerciseModel
+import com.example.petminder.models.exercises.Location
+import com.example.petminder.models.pets.PetModel
 import com.example.petminder.ui.exceriseAdd.ExerciseFragment
 
 import com.google.android.gms.maps.CameraUpdateFactory

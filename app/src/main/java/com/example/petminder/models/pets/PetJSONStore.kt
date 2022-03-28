@@ -1,4 +1,4 @@
-package com.example.petminder.models
+package com.example.petminder.models.pets
 
 import android.content.Context
 import android.net.Uri

@@ -11,12 +11,11 @@ import com.example.petminder.adapters.ExercsieListener
 import com.example.petminder.adapters.FeedAdapter
 import com.example.petminder.adapters.FeedListener
 import com.example.petminder.databinding.FragmentPetInfoBinding
-import com.example.petminder.fragments.PetInfoFragmentDirections
 import com.example.petminder.main.MainApp
-import com.example.petminder.models.ExerciseModel
-import com.example.petminder.models.FeedModel
-import com.example.petminder.models.Location
-import com.example.petminder.models.PetModel
+import com.example.petminder.models.exercises.ExerciseModel
+import com.example.petminder.models.feeds.FeedModel
+import com.example.petminder.models.exercises.Location
+import com.example.petminder.models.pets.PetModel
 import com.example.petminder.ui.PetList.PetListFragment
 import com.squareup.picasso.Picasso
 import timber.log.Timber

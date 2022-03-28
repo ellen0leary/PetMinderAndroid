@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.petminder.databinding.CardFeedBinding
-import com.example.petminder.models.FeedModel
+import com.example.petminder.models.feeds.FeedModel
 
 interface FeedListener {
     fun onFeedClick(feed: FeedModel)
