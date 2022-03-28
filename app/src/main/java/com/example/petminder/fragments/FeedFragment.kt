@@ -3,14 +3,10 @@ package com.example.petminder.fragments
 import android.os.Bundle
 import android.view.*
 import android.widget.ArrayAdapter
-import android.widget.Spinner
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.NavigationUI
 import com.example.petminder.R
 import com.example.petminder.databinding.FragmentFeedBinding
-import com.example.petminder.databinding.FragmentPetAddBinding
 import com.example.petminder.main.MainApp
 import com.example.petminder.models.FeedModel
 import com.example.petminder.models.PetModel

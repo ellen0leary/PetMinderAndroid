@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
+<layout xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -9,22 +9,24 @@
         type="com.example.petminder.models.PetModel" />
 </data>
 
-<androidx.cardview.widget.CardView
-    xmlns:tools="http://schemas.android.com/tools"
+    <androidx.cardview.widget.CardView
     android:layout_width="150dp"
     android:layout_height="wrap_content">
+
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorPrimary"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:layout_marginTop="70dp">
 
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:srcCompat="@tools:sample/avatars" />
+            tools:srcCompat="@tools:sample/avatars"
+            tools:ignore="MissingClass" />
 
         <TextView
             android:id="@+id/PetName"
@@ -40,5 +42,5 @@
             tools:text="A Title" />
 
     </RelativeLayout>
-</androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView>
 </layout>

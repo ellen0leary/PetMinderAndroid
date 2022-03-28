@@ -1,12 +1,12 @@
-package com.example.petminder.fragments
+package com.example.petminder.ui.exceriseAdd
 
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
-import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import com.example.petminder.R
 import com.example.petminder.databinding.FragmentExerciseBinding
+import com.example.petminder.fragments.ExerciseFragmentDirections
 import com.example.petminder.main.MainApp
 import com.example.petminder.models.ExerciseModel
 import com.example.petminder.models.Location

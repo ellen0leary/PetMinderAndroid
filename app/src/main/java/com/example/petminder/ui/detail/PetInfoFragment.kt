@@ -1,4 +1,4 @@
-package com.example.petminder.fragments
+package com.example.petminder.ui.detail
 
 import android.os.Bundle
 import android.view.*
@@ -11,6 +11,7 @@ import com.example.petminder.adapters.ExercsieListener
 import com.example.petminder.adapters.FeedAdapter
 import com.example.petminder.adapters.FeedListener
 import com.example.petminder.databinding.FragmentPetInfoBinding
+import com.example.petminder.fragments.PetInfoFragmentDirections
 import com.example.petminder.main.MainApp
 import com.example.petminder.models.ExerciseModel
 import com.example.petminder.models.FeedModel

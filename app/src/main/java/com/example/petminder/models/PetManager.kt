@@ -14,7 +14,7 @@ object PetManager : PetStore {
     }
 
     override fun update(pet: PetModel) {
-        var foundPet: PetModel? = pets.find {p-> p.id == pet.id}
+        var foundPet: PetModel? = pets.find { p-> p.id == pet.id}
         if(foundPet!= null){
             foundPet.name = pet.name
             foundPet.weight = pet.weight

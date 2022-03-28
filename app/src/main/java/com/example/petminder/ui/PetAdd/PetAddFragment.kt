@@ -18,12 +18,10 @@ import androidx.navigation.ui.NavigationUI
 import com.example.petminder.R
 import com.example.petminder.databinding.FragmentPetAddBinding
 import com.example.petminder.helpers.showImagePicker
-import com.example.petminder.main.MainApp
 import com.example.petminder.models.PetModel
 import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Picasso
 import timber.log.Timber
-import java.security.acl.Owner
 
 private const val ARG_PET = "pet"
 private const val ARG_EDIT = "edit"

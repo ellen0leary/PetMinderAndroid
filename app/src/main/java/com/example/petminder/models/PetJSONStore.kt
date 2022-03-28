@@ -19,7 +19,7 @@ val PetlistType = object : TypeToken<ArrayList<PetModel>>() {}.type
 fun generateRandomId() : Long{
     return  Random().nextLong()
 }
-class PetJSONStore(private val context: Context) : PetStore{
+class PetJSONStore(private val context: Context) : PetStore {
     var pets = mutableListOf<PetModel>()
 
 
@@ -42,7 +42,7 @@ class PetJSONStore(private val context: Context) : PetStore{
 
 
     override fun update(pet: PetModel) {
-        var foundPet: PetModel? = pets.find {p-> p.id == pet.id}
+        var foundPet: PetModel? = pets.find { p-> p.id == pet.id}
         if(foundPet!= null){
             foundPet.name = pet.name
             foundPet.weight = pet.weight

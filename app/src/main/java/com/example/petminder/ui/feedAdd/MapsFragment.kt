@@ -1,25 +1,21 @@
-package com.example.petminder.fragments
+package com.example.petminder.ui.feedAdd
 
-import android.app.Activity
-import android.content.Intent
 import androidx.fragment.app.Fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.petminder.R
-import com.example.petminder.databinding.FragmentExerciseBinding
 import com.example.petminder.databinding.FragmentMapsBinding
 import com.example.petminder.main.MainApp
 import com.example.petminder.models.ExerciseModel
 import com.example.petminder.models.Location
 import com.example.petminder.models.PetModel
+import com.example.petminder.ui.exceriseAdd.ExerciseFragment
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions

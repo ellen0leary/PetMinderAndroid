@@ -32,13 +32,15 @@ class PetAdapter constructor(private var pets: List<PetModel>, private val liste
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(pet: PetModel, listener: PetListener) {
-            binding.PetName.text = pet.name
-            Picasso.get()
-                .load(pet.image)
-                .centerCrop()
-                .resize(360,360) //resize image
-                .into(binding.imageView)
+//            binding.PetName.text = pet.name
+//            Picasso.get()
+//                .load(pet.image)
+//                .centerCrop()
+//                .resize(360,360) //resize image
+//                .into(binding.imageView)
+            binding.pet = pet
             binding.root.setOnClickListener{listener.onPetClick(pet)}
+            binding.executePendingBindings()
         }
     }
 }

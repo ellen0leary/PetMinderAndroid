@@ -3,6 +3,7 @@ package com.example.petminder.main
 import android.app.Application
 import android.content.Context
 import com.example.petminder.models.*
+import com.example.petminder.models.PetStore
 import com.github.ajalt.timberkt.Timber
 import timber.log.Timber.i
 
