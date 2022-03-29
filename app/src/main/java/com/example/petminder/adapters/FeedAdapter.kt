@@ -31,8 +31,6 @@ class FeedAdapter constructor(private var feeds: List<FeedModel>, private val li
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(feed: FeedModel, listener: FeedListener) {
-//            binding.feedTime.text = feed.time
-//            binding.feedWeight.text = feed.weigth.toString()
             binding.feed = feed
             binding.root.setOnClickListener{listener.onFeedClick(feed)}
             binding.executePendingBindings()
