@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.*
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.petminder.R
 import com.example.petminder.databinding.FragmentFeedBinding
@@ -24,6 +25,7 @@ class FeedFragment : Fragment() {
     var pet= PetModel()
     var feed = FeedModel()
     var edit = false
+    private lateinit var feedViewModel: FeedViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,7 +60,7 @@ class FeedFragment : Fragment() {
         spinner.adapter = adapter
         setButtonListener(fragBinding)
 
-
+        feedViewModel = ViewModelProvider(this).get(FeedViewModel::class.java)
         if(edit){
             fragBinding.spinner.setSelection(
                 (fragBinding.spinner.getAdapter() as ArrayAdapter<String?>).getPosition(
@@ -82,11 +84,12 @@ class FeedFragment : Fragment() {
             if (feed.time.isEmpty()) {
                 Snackbar.make(it, R.string.enter_pet_title, Snackbar.LENGTH_SHORT).show()
             } else{
-                if (edit) {
+//                if (edit) {
 //                    app.feeds.update(feed.copy())
-                } else {
+//                } else {
 //                    app.feeds.create(feed.copy())
-                }
+//                }
+                feedViewModel.addFeed(feed)
                 findNavController().navigateUp()
             }
         }
