@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
+<layout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="feed"
+            type="com.example.petminder.models.feeds.FeedModel" />
+    </data>
+<androidx.cardview.widget.CardView
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -24,6 +31,7 @@
             android:layout_marginTop="4dp"
             android:textAlignment="viewStart"
             android:textSize="30sp"
+            android:text="@{feed.time}"
             android:textColor="@color/white"
             tools:text="Time" />
 
@@ -36,8 +44,10 @@
             android:textAlignment="viewStart"
             app:layout_constraintLeft_toRightOf="@+id/feedTime"
             app:layout_constraintBottom_toBottomOf="@+id/feedTime"
+            android:text="@{Float.toString(feed.weigth)}"
             android:textColor="@color/white"
             tools:text="Weight kg" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
+</layout>

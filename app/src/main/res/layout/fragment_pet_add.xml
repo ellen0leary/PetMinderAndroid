@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.PetActivity">
+    tools:context=".ui.PetAdd.PetAddFragment">
 
     <Toolbar
         android:id="@+id/toolbar"
@@ -33,7 +33,26 @@
                     android:id="@+id/petType"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
+                    android:background="@color/colorPrimaryAccent"
+                    android:dropDownSelector="@color/colorPrimaryAccent"
+                    android:padding="10dp"
+                    android:textColor="@color/white"
                     />
+
+                <EditText
+                    android:id="@+id/petTypeText"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_margin="8dp"
+                    android:background="@color/colorPrimaryAccent"
+                    android:hint="@string/pet_type"
+                    android:ems="10"
+                    android:maxLength="25"
+                    android:maxLines="1"
+                    android:padding="8dp"
+                    android:visibility="gone"
+                    android:textColor="@color/white" />
+
                 <EditText
                     android:id="@+id/petName"
                     android:layout_width="match_parent"
@@ -55,6 +74,7 @@
                     android:layout_height="50dp"
                     android:layout_margin="8dp"
                     android:background="@color/colorPrimaryAccent"
+                    android:hint="@string/pet_age"
                     android:ems="10"
                     android:inputType="number"
                     android:maxLength="25"
@@ -69,6 +89,7 @@
                     android:layout_margin="8dp"
                     android:background="@color/colorPrimaryAccent"
                     android:ems="10"
+                    android:hint="@string/pet_weight"
                     android:inputType="numberDecimal"
                     android:maxLength="25"
                     android:maxLines="1"

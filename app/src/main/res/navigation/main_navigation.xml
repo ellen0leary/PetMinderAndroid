@@ -6,9 +6,9 @@
     app:startDestination="@id/petListFragment">
     <fragment
         android:id="@+id/petAddFragment"
-        android:name="com.example.petminder.fragments.PetAddFragment"
+        android:name="com.example.petminder.ui.PetAdd.PetAddFragment"
         android:label="fragment_pet_add"
-        tools:layout="@layout/fragment_pet_add" >
+        tools:layout="@layout/fragment_pet_add">
         <action
             android:id="@+id/action_petAddFragment_to_petListFragment"
             app:destination="@id/petListFragment"
@@ -19,11 +19,11 @@
             app:argType="boolean" />
         <argument
             android:name="pet"
-            app:argType="com.example.petminder.models.PetModel" />
+            app:argType="com.example.petminder.models.pets.PetModel" />
     </fragment>
     <fragment
         android:id="@+id/petListFragment"
-        android:name="com.example.petminder.fragments.PetListFragment"
+        android:name="com.example.petminder.ui.PetList.PetListFragment"
         android:label="fragment_pet_list"
         tools:layout="@layout/fragment_pet_list" >
         <action
@@ -39,12 +39,12 @@
     </fragment>
     <fragment
         android:id="@+id/petInfoFragment"
-        android:name="com.example.petminder.fragments.PetInfoFragment"
+        android:name="com.example.petminder.ui.detail.PetInfoFragment"
         android:label="fragment_pet_info"
         tools:layout="@layout/fragment_pet_info" >
         <argument
             android:name="pet"
-            app:argType="com.example.petminder.models.PetModel" />
+            app:argType="com.example.petminder.models.pets.PetModel" />
         <action
             android:id="@+id/action_petInfoFragment_to_feedFragment"
             app:destination="@id/feedFragment" />
@@ -57,36 +57,36 @@
     </fragment>
     <fragment
         android:id="@+id/feedFragment"
-        android:name="com.example.petminder.fragments.FeedFragment"
+        android:name="com.example.petminder.ui.feedAdd.FeedFragment"
         android:label="fragment_feed"
         tools:layout="@layout/fragment_feed" >
         <argument
             android:name="pet"
-            app:argType="com.example.petminder.models.PetModel" />
+            app:argType="com.example.petminder.models.pets.PetModel" />
         <action
             android:id="@+id/action_feedFragment_to_petInfoFragment"
             app:destination="@id/petInfoFragment" />
         <argument
             android:name="feed"
-            app:argType="com.example.petminder.models.FeedModel" />
+            app:argType="com.example.petminder.models.feeds.FeedModel" />
         <argument
             android:name="edit"
             app:argType="boolean" />
     </fragment>
     <fragment
         android:id="@+id/exerciseFragment"
-        android:name="com.example.petminder.fragments.ExerciseFragment"
+        android:name="com.example.petminder.ui.exceriseAdd.ExerciseFragment"
         android:label="fragment_exercise"
         tools:layout="@layout/fragment_exercise" >
         <argument
             android:name="pet"
-            app:argType="com.example.petminder.models.PetModel" />
+            app:argType="com.example.petminder.models.pets.PetModel" />
         <action
             android:id="@+id/action_exerciseFragment_to_petInfoFragment"
             app:destination="@id/petInfoFragment" />
         <argument
             android:name="exercise"
-            app:argType="com.example.petminder.models.ExerciseModel" />
+            app:argType="com.example.petminder.models.exercises.ExerciseModel" />
         <argument
             android:name="edit"
             app:argType="boolean" />
@@ -98,11 +98,11 @@
             app:argType="boolean" />
         <argument
             android:name="location"
-            app:argType="com.example.petminder.models.Location" />
+            app:argType="com.example.petminder.models.exercises.Location" />
     </fragment>
     <fragment
         android:id="@+id/mapsFragment"
-        android:name="com.example.petminder.fragments.MapsFragment"
+        android:name="com.example.petminder.ui.Maps.MapsFragment"
         android:label="fragment_maps"
         tools:layout="@layout/fragment_maps" >
         <argument
@@ -110,6 +110,6 @@
             app:argType="boolean" />
         <argument
             android:name="location"
-            app:argType="com.example.petminder.models.Location" />
+            app:argType="com.example.petminder.models.exercises.Location" />
     </fragment>
 </navigation>

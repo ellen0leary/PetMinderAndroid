@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.petminder.databinding.CardFeedBinding
-import com.example.petminder.models.FeedModel
+import com.example.petminder.models.feeds.FeedModel
 
 interface FeedListener {
     fun onFeedClick(feed: FeedModel)
@@ -31,9 +31,11 @@ class FeedAdapter constructor(private var feeds: List<FeedModel>, private val li
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(feed: FeedModel, listener: FeedListener) {
-            binding.feedTime.text = feed.time
-            binding.feedWeight.text = feed.weigth.toString()
+//            binding.feedTime.text = feed.time
+//            binding.feedWeight.text = feed.weigth.toString()
+            binding.feed = feed
             binding.root.setOnClickListener{listener.onFeedClick(feed)}
+            binding.executePendingBindings()
         }
     }
 }

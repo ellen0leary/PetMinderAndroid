@@ -4,8 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.petminder.databinding.CardPetBinding
-import com.example.petminder.models.PetModel
-import com.squareup.picasso.Picasso
+import com.example.petminder.models.pets.PetModel
 
 interface PetListener {
     fun onPetClick(pet: PetModel)
@@ -32,13 +31,15 @@ class PetAdapter constructor(private var pets: List<PetModel>, private val liste
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(pet: PetModel, listener: PetListener) {
-            binding.PetName.text = pet.name
-            Picasso.get()
-                .load(pet.image)
-                .centerCrop()
-                .resize(360,360) //resize image
-                .into(binding.imageView)
+//            binding.PetName.text = pet.name
+//            Picasso.get()
+//                .load(pet.image)
+//                .centerCrop()
+//                .resize(360,360) //resize image
+//                .into(binding.imageView)
+            binding.pet = pet
             binding.root.setOnClickListener{listener.onPetClick(pet)}
+            binding.executePendingBindings()
         }
     }
 }
