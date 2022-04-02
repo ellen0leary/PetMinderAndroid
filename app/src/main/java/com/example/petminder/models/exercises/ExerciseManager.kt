@@ -13,11 +13,11 @@ object ExerciseManager: ExerciseStore {
     }
 
     override fun create(exercise: ExerciseModel) {
-        exercise.id = generateRandomExerciseId()
+//        exercise.id = generateRandomExerciseId()
         exercises.add(exercise)
     }
 
-    override fun findByPet(petId: Long): List<ExerciseModel> {
+    override fun findByPet(petId: String): List<ExerciseModel> {
         val list = java.util.ArrayList<ExerciseModel>()
         for(i in exercises){
             if(i.petId == petId){

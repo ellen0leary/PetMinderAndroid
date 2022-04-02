@@ -9,11 +9,11 @@ object FeedManager: FeedStore {
     }
 
     override fun create(feed: FeedModel) {
-        feed.id = generateRandomFeedId()
+//        feed.id = generateRandomFeedId()
         feeds.add(feed)
     }
 
-    override fun findByPet(petId: Long): List<FeedModel> {
+    override fun findByPet(petId: String): List<FeedModel> {
         val list = java.util.ArrayList<FeedModel>()
         for (i in feeds) {
             if (i.petId == petId) {

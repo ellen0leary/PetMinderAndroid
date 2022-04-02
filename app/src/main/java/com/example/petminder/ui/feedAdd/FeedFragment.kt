@@ -78,7 +78,7 @@ class FeedFragment : Fragment() {
     fun setButtonListener(layout: FragmentFeedBinding) {
         layout.btnAdd.setOnClickListener {
             Timber.i("CLicking btn")
-            feed.petId = pet!!.id
+            feed.petId = pet!!.uid
             feed.time = layout.spinner.selectedItem.toString()
             feed.weigth = layout.feedWeight.text.toString().toFloat()
             if (feed.time.isEmpty()) {

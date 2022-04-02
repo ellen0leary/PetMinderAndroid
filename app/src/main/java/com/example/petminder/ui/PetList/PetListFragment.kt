@@ -41,7 +41,8 @@ class PetListFragment : PetListener, Fragment() {
         _fragBinding = FragmentPetListBinding.inflate(inflater, container, false)
         val root = fragBinding.root
         fragBinding.recyclerView.layoutManager = GridLayoutManager(activity, 2)
-//        fragBinding.recyclerView.adapter = PetAdapter(app.pets.findAll(), this)
+//        fragBinding.recyclerView.adapter = PetAdapter(donationList, this)
+
         fragBinding.searchBar.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
             }

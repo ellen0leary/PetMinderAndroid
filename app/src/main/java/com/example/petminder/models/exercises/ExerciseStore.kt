@@ -4,6 +4,6 @@ interface ExerciseStore {
     fun findAll(): List<ExerciseModel>
     fun create(exercise: ExerciseModel)
     fun update(exercise: ExerciseModel)
-    fun findByPet(petId: Long): List<ExerciseModel>
+    fun findByPet(petId: String): List<ExerciseModel>
     fun deleteOne(exerciseId: Long)
 }

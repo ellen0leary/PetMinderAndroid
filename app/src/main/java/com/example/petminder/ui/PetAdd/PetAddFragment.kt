@@ -10,6 +10,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -19,6 +20,7 @@ import com.example.petminder.R
 import com.example.petminder.databinding.FragmentPetAddBinding
 import com.example.petminder.helpers.showImagePicker
 import com.example.petminder.models.pets.PetModel
+import com.example.petminder.ui.auth.LoggedInViewModel
 import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Picasso
 import timber.log.Timber
@@ -33,6 +35,7 @@ class PetAddFragment : Fragment() {
     private lateinit var imageIntentLauncher : ActivityResultLauncher<Intent>
     private var pet = PetModel()
     private lateinit var petAddViewModel: PetAddViewModel
+    private val loggedInViewModel : LoggedInViewModel by activityViewModels()
     var edit = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -125,7 +128,7 @@ class PetAddFragment : Fragment() {
             if (name.isEmpty()) {
                 Snackbar.make(it, R.string.enter_pet_title, Snackbar.LENGTH_SHORT).show()
             } else {
-                petAddViewModel.addPet(PetModel(type = type, name = name, weight = weight, age = age))
+                petAddViewModel.addPet(loggedInViewModel.liveFirebaseUser,PetModel(type = type, name = name, weight = weight, age = age))
 //                if(edit){
 //                    app.pets.update(pet.copy())
 //                    findNavController().navigateUp()
@@ -158,7 +161,7 @@ class PetAddFragment : Fragment() {
                     AppCompatActivity.RESULT_OK -> {
                         if (result.data != null) {
                             Timber.i("Got Result ${result.data!!.data}")
-                            pet.image = result.data!!.data!!
+//                            pet.image = result.data!!.data!!
                             Picasso.get()
                                 .load(pet.image)
                                 .into(fragBinding.petImage)

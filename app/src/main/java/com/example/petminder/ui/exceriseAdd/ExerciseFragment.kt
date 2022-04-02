@@ -69,7 +69,7 @@ class ExerciseFragment : Fragment() {
 
     fun setButtonListener(layout: FragmentExerciseBinding){
         layout.btnAdd.setOnClickListener {
-            exercise.petId = pet.id
+            exercise.petId = pet.uid
             exercise.name = layout.exerciseType.text.toString()
             exercise.length = layout.exerciseLength.text.toString().toInt()
             exercise.lat = location.lat
