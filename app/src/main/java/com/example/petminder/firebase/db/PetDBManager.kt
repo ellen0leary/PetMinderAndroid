@@ -15,6 +15,7 @@ object PetDBManager: PetStore {
     }
 
     override fun findAll(userid: String, petList: MutableLiveData<List<PetModel>>) {
+        Timber.i("Firebase DB Reference : $ , findAll")
         database.child("user-pets").child(userid)
             .addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {

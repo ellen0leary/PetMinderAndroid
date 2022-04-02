@@ -58,7 +58,7 @@
     <string name="petsNotFound">No Pets Yet....\nAdd then</string>
     <string name="petError">Error : Couldn\'t add a Pet…</string>
 
-
+    <string name="messageLoading">Please Wait while we find all the pets...</string>
     !-- START Firebase Resources-->
 
     <string name="label_emailpassword">Email/Password Authentication</string>

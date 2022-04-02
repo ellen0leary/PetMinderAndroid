@@ -1,10 +1,12 @@
 package com.example.petminder.ui.PetList
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -17,7 +19,12 @@ import com.example.petminder.adapters.PetListener
 import com.example.petminder.databinding.FragmentPetListBinding
 import com.example.petminder.main.MainApp
 import com.example.petminder.models.pets.PetModel
+import com.example.petminder.ui.auth.LoggedInViewModel
+import com.example.petminder.utils.createLoader
+import com.example.petminder.utils.hideLoader
+import com.example.petminder.utils.showLoader
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.auth.FirebaseUser
 import timber.log.Timber
 
 class PetListFragment : PetListener, Fragment() {
@@ -27,6 +34,8 @@ class PetListFragment : PetListener, Fragment() {
     private val fragBinding get() = _fragBinding!!
     var viewSearchBar = false
     private lateinit var petListViewModel: PetListViewModel
+    lateinit var loader :AlertDialog
+    private val loggedInViewModel : LoggedInViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,9 +49,10 @@ class PetListFragment : PetListener, Fragment() {
     ): View? {
         _fragBinding = FragmentPetListBinding.inflate(inflater, container, false)
         val root = fragBinding.root
+        loader = createLoader(requireActivity())
         fragBinding.recyclerView.layoutManager = GridLayoutManager(activity, 2)
 //        fragBinding.recyclerView.adapter = PetAdapter(donationList, this)
-
+        showLoader(loader,"Downloading Pets")
         fragBinding.searchBar.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
             }
@@ -58,7 +68,8 @@ class PetListFragment : PetListener, Fragment() {
         petListViewModel = ViewModelProvider(this).get(PetListViewModel::class.java)
         petListViewModel.observablePetList.observe(viewLifecycleOwner, Observer {
                 pets: List<PetModel> ->
-            pets?.let { render(pets) }
+            pets?.let { render(pets as ArrayList<PetModel>)
+            hideLoader(loader)}
         })
         val fab: FloatingActionButton = fragBinding.fab
         fab.setOnClickListener {
@@ -125,6 +136,19 @@ class PetListFragment : PetListener, Fragment() {
             requireView().findNavController()) || super.onOptionsItemSelected(item)
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+        showLoader(loader,"Downloading Pets")
+        loggedInViewModel.liveFirebaseUser.observe(viewLifecycleOwner, Observer { firebaseUser: FirebaseUser ->
+            if (firebaseUser != null) {
+                petListViewModel.liveFirebaseUser.value = firebaseUser
+                petListViewModel.load()
+            }
+        })
+//        hideLoader(loader)
+    }
+
 
     private fun render(petList: List<PetModel>){
         fragBinding.recyclerView.adapter = PetAdapter(petList, this)
