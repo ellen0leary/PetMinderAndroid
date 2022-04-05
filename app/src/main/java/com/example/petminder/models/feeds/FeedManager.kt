@@ -23,12 +23,12 @@ object FeedManager: FeedStore {
         return list
     }
 
-    fun findOne(id: Long): FeedModel? {
-        var foundFeed: FeedModel? = feeds.find { p -> p.id == id }
+    fun findOne(id: String): FeedModel? {
+        var foundFeed: FeedModel? = feeds.find { p -> p.uid == id }
         return foundFeed
     }
 
-    override fun deleteOne(feedId: Long) {
+    override fun deleteOne(feedId: String) {
         val foundFeed = findOne(feedId)
         if (foundFeed != null) {
             feeds.remove(foundFeed)
@@ -37,7 +37,7 @@ object FeedManager: FeedStore {
 
 
     override fun update(feed: FeedModel) {
-        var foundFeed: FeedModel? = feeds.find { p -> p.id == feed.id }
+        var foundFeed: FeedModel? = feeds.find { p -> p.uid == feed.uid }
         if (foundFeed != null) {
             foundFeed.time = feed.time
             foundFeed.weigth = feed.weigth
