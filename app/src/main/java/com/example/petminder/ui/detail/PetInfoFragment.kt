@@ -49,7 +49,7 @@ class PetInfoFragment : Fragment(), ExercsieListener, FeedListener {
         activity?.title = pet!!.name
         tab = "feed"
         loadFeeds()
-        Picasso.get().load(pet!!.image).into(fragBinding.petImage)
+//        Picasso.get().load(pet!!.image).into(fragBinding.petImage)
         val ageText = "Age - " + pet?.age.toString() + " years"
         fragBinding.ageText.setText(ageText)
 

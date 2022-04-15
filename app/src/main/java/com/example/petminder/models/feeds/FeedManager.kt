@@ -1,14 +1,16 @@
 package com.example.petminder.models.feeds
 
+import androidx.lifecycle.MutableLiveData
+
 object FeedManager: FeedStore {
     var feeds = ArrayList<FeedModel>()
 
 
-    override fun findAll(): MutableList<FeedModel> {
+     fun findAll(): MutableList<FeedModel> {
         return feeds
     }
 
-    override fun create(feed: FeedModel) {
+     fun create(feed: FeedModel) {
 //        feed.id = generateRandomFeedId()
         feeds.add(feed)
     }
@@ -33,6 +35,14 @@ object FeedManager: FeedStore {
         if (foundFeed != null) {
             feeds.remove(foundFeed)
         }
+    }
+
+    override fun findAll(feedList: MutableLiveData<List<FeedModel>>) {
+        TODO("Not yet implemented")
+    }
+
+    override fun create(petId: String, feed: FeedModel) {
+        TODO("Not yet implemented")
     }
 
 

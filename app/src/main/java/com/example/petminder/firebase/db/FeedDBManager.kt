@@ -7,13 +7,13 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import timber.log.Timber
 
-class FeedDBManager: FeedStore {
+object FeedDBManager: FeedStore {
     val database : DatabaseReference = FirebaseDatabase.getInstance().reference
     override fun findAll(feedList: MutableLiveData<List<FeedModel>>) {
         TODO("Not yet implemented")
     }
 
-    override fun create(feed: FeedModel) {
+    override fun create(petId: String,feed: FeedModel) {
         Timber.i("Firebase DB Reference : ${PetDBManager.database}")
 
         val key = PetDBManager.database.child("feeds").push().key
@@ -22,10 +22,11 @@ class FeedDBManager: FeedStore {
             return
         }
         feed.uid = key
-        val petValues = feed.toMap()
+        val feedValues = feed.toMap()
+        val petiD = feed.petId
 
         val childAdd = HashMap<String, Any>()
-        childAdd["/pets/$key"] = petValues
+        childAdd["/feeds/$petiD/$key"] = feedValues
 //        childAdd["/user-pets/$uid/$key"] = petValues
 
         PetDBManager.database.updateChildren(childAdd)
