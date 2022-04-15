@@ -37,7 +37,11 @@ object FeedManager: FeedStore {
         }
     }
 
-    override fun findAll(feedList: MutableLiveData<List<FeedModel>>) {
+     fun findAll(feedList: MutableLiveData<List<FeedModel>>) {
+        TODO("Not yet implemented")
+    }
+
+    override fun findAll(id: String, feedList: MutableLiveData<List<FeedModel>>) {
         TODO("Not yet implemented")
     }
 

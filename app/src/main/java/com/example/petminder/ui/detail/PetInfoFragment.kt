@@ -16,6 +16,7 @@ import com.example.petminder.models.feeds.FeedModel
 import com.example.petminder.models.exercises.Location
 import com.example.petminder.models.pets.PetModel
 import com.example.petminder.ui.PetList.PetListFragment
+import com.google.firebase.auth.FirebaseUser
 import com.squareup.picasso.Picasso
 import timber.log.Timber
 
@@ -173,5 +174,36 @@ class PetInfoFragment : Fragment(), ExercsieListener, FeedListener {
             fragBinding.recycler.visibility = View.VISIBLE
             fragBinding.exerciseNotFound.visibility = View.GONE
         }
+    }
+
+    private fun renderFeed(feedList: List<FeedModel>){
+//        Timber.
+        fragBinding.recycler.adapter = FeedAdapter(feedList, this)
+        if(feedList.isEmpty()){
+            fragBinding.recycler.visibility = View.GONE
+            fragBinding.exerciseNotFound.visibility = View.VISIBLE
+        }else {
+            fragBinding.recycler.visibility = View.VISIBLE
+            fragBinding.exerciseNotFound.visibility = View.GONE
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+//        petInfoViewModel.observalePet.observe(viewLifecycleOwner, Observer { petId: String ->
+//            if (petId != null) {
+        petInfoViewModel.observalePet.value = pet!!.uid
+        petInfoViewModel.load()
+//        renderFeed(petInfoViewModel.observableFeedList.value!!)
+        petInfoViewModel.observableFeedList.observe(viewLifecycleOwner, Observer {
+                feed: List<FeedModel> ->
+            feed?.let { renderFeed(feed) }
+        })
+//            }
+//        })
+//        petInfoViewModel.observalePet = pet!!.uid
+//        Timber.i(petInfoViewModel.observalePet.value)
+//        petInfoViewModel.load()
     }
 }
