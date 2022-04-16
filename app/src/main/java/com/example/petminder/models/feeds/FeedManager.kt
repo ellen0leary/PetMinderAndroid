@@ -25,12 +25,16 @@ object FeedManager: FeedStore {
         return list
     }
 
+    override fun deleteOne(petId: String, feedId: String) {
+        TODO("Not yet implemented")
+    }
+
     fun findOne(id: String): FeedModel? {
         var foundFeed: FeedModel? = feeds.find { p -> p.uid == id }
         return foundFeed
     }
 
-    override fun deleteOne(feedId: String) {
+     fun deleteOne(feedId: String) {
         val foundFeed = findOne(feedId)
         if (foundFeed != null) {
             feeds.remove(foundFeed)
@@ -49,8 +53,12 @@ object FeedManager: FeedStore {
         TODO("Not yet implemented")
     }
 
+    override fun update(petId: String, feed: FeedModel) {
+        TODO("Not yet implemented")
+    }
 
-    override fun update(feed: FeedModel) {
+
+     fun update(feed: FeedModel) {
         var foundFeed: FeedModel? = feeds.find { p -> p.uid == feed.uid }
         if (foundFeed != null) {
             foundFeed.time = feed.time

@@ -84,12 +84,11 @@ class FeedFragment : Fragment() {
             if (feed.time.isEmpty()) {
                 Snackbar.make(it, R.string.enter_pet_title, Snackbar.LENGTH_SHORT).show()
             } else{
-//                if (edit) {
-//                    app.feeds.update(feed.copy())
-//                } else {
-//                    app.feeds.create(feed.copy())
-//                }
-                feedViewModel.addFeed(feed.petId,feed)
+                if (edit) {
+                    feedViewModel.updateFeed(feed.petId,feed)
+                } else {
+                    feedViewModel.addFeed(feed.petId,feed)
+                }
                 findNavController().navigateUp()
             }
         }

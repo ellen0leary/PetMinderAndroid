@@ -24,7 +24,7 @@ object FeedDBManager: FeedStore {
                         val feed = it.getValue(FeedModel::class.java)
                         localList.add(feed!!)
                     }
-                    PetDBManager.database.child("feeds").child(id)
+                    database.child("feeds").child(id)
                         .removeEventListener(this)
 
                     feedList.value = localList
@@ -33,9 +33,9 @@ object FeedDBManager: FeedStore {
     }
 
     override fun create(petId: String,feed: FeedModel) {
-        Timber.i("Firebase DB Reference : ${PetDBManager.database}")
+        Timber.i("Firebase DB Reference : ${database}")
 
-        val key = PetDBManager.database.child("feeds").push().key
+        val key = database.child("feeds").push().key
         if (key == null) {
             Timber.i("Firebase Error : Key Empty")
             return
@@ -46,21 +46,27 @@ object FeedDBManager: FeedStore {
 
         val childAdd = HashMap<String, Any>()
         childAdd["/feeds/$petiD/$key"] = feedValues
-//        childAdd["/user-pets/$uid/$key"] = petValues
 
-        PetDBManager.database.updateChildren(childAdd)
+        database.updateChildren(childAdd)
 
     }
 
-    override fun update(feed: FeedModel) {
-        TODO("Not yet implemented")
+    override fun update(petId: String,feed: FeedModel) {
+        val feedValue = feed.toMap()
+        val childUpdate: MutableMap<String, Any?> = HashMap()
+        val feedId = feed.uid
+        childUpdate["feeds/$petId/$feedId"] = feedValue
+        database.updateChildren(childUpdate)
     }
 
     override fun findByPet(petId: String): List<FeedModel> {
         TODO("Not yet implemented")
     }
 
-    override fun deleteOne(feedId: String) {
-        TODO("Not yet implemented")
+    override fun deleteOne(petId: String,feedId: String) {
+        val childDelete : MutableMap<String, Any?> = HashMap()
+        childDelete["/feeds/$petId]"] = null
+
+        database.updateChildren(childDelete)
     }
 }
