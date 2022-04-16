@@ -15,7 +15,7 @@ object FeedManager: FeedStore {
         feeds.add(feed)
     }
 
-    override fun findByPet(petId: String): List<FeedModel> {
+      fun findByPet(petId: String): List<FeedModel> {
         val list = java.util.ArrayList<FeedModel>()
         for (i in feeds) {
             if (i.petId == petId) {

@@ -31,7 +31,6 @@ object ExerciseDBManager:ExerciseStore {
     }
 
     override fun create(petId: String, exercise: ExerciseModel) {
-//        TODO("Not yet implemented")
         Timber.i("Firebase DB Reference : ${database}")
 
         val key = database.child("exercises").push().key
@@ -41,14 +40,14 @@ object ExerciseDBManager:ExerciseStore {
         }
 
         exercise.uid = key
+        val petiD = exercise.petId
         val exerciseValues = exercise.toMap()
         val childAdd = HashMap<String, Any>()
-        childAdd["exercises/$petId/$key"] = exerciseValues
+        childAdd["exercises/$petiD/$key"] = exerciseValues
         database.updateChildren(childAdd)
     }
 
     override fun update(petId: String, exercise: ExerciseModel) {
-//        TODO("Not yet implemented")
         val exerciseValue = exercise.toMap()
         val childUpdate: MutableMap<String, Any?> = HashMap()
         val exerciseId = exercise.petId
@@ -57,7 +56,6 @@ object ExerciseDBManager:ExerciseStore {
     }
 
     override fun deleteOne(petId: String, exerciseId: String) {
-//        TODO("Not yet implemented")
         val childDelete: MutableMap<String, Any?> = HashMap()
         childDelete["exercises/$petId/$exerciseId"] = null
         database.updateChildren(childDelete)

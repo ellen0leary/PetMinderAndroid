@@ -4,12 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.petminder.firebase.db.FeedDBManager
-import com.example.petminder.firebase.db.PetDBManager
-import com.example.petminder.models.exercises.ExerciseManager
 import com.example.petminder.models.exercises.ExerciseModel
-import com.example.petminder.models.feeds.FeedManager
 import com.example.petminder.models.feeds.FeedModel
-import com.google.firebase.auth.FirebaseUser
 import timber.log.Timber
 import java.lang.Exception
 

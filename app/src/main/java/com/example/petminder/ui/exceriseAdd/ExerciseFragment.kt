@@ -78,11 +78,11 @@ class ExerciseFragment : Fragment() {
             if (exercise.name.isEmpty()) {
                 Snackbar.make(it, R.string.enter_exercise_name, Snackbar.LENGTH_SHORT).show()
             } else{
-//                if (edit) {
+                if (edit) {
 //                    app.exercises.update(exercise.copy())
-//                } else {
-                    exerciseViewModel.addExercise(exercise)
-//                }
+                } else {
+                    exerciseViewModel.addExercise(exercise.uid,exercise)
+                }
                 findNavController().navigateUp()
             }
         }
