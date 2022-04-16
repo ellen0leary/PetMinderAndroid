@@ -126,7 +126,7 @@ class FeedFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        app.feeds.deleteOne(feed.id)
+        feedViewModel.delete(pet.uid, feed.uid)
         findNavController().navigateUp()
         return true
     }

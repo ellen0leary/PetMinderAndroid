@@ -65,7 +65,7 @@ object FeedDBManager: FeedStore {
 
     override fun deleteOne(petId: String,feedId: String) {
         val childDelete : MutableMap<String, Any?> = HashMap()
-        childDelete["/feeds/$petId]"] = null
+        childDelete["/feeds/$petId/$feedId"] = null
 
         database.updateChildren(childDelete)
     }
