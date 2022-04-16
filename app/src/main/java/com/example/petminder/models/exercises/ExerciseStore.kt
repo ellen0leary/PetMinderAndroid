@@ -7,5 +7,5 @@ interface ExerciseStore {
 
     fun create(petId: String,exercise: ExerciseModel)
     fun update(petId: String,exercise: ExerciseModel)
-    fun deleteOne(petId: String,exerciseId: Long)
+    fun deleteOne(petId: String,exerciseId: String)
 }
