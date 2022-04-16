@@ -59,9 +59,6 @@ object FeedDBManager: FeedStore {
         database.updateChildren(childUpdate)
     }
 
-    override fun findByPet(petId: String): List<FeedModel> {
-        TODO("Not yet implemented")
-    }
 
     override fun deleteOne(petId: String,feedId: String) {
         val childDelete : MutableMap<String, Any?> = HashMap()

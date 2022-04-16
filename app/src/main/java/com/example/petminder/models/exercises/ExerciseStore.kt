@@ -1,9 +1,11 @@
 package com.example.petminder.models.exercises
 
+import androidx.lifecycle.MutableLiveData
+
 interface ExerciseStore {
-    fun findAll(): List<ExerciseModel>
-    fun create(exercise: ExerciseModel)
-    fun update(exercise: ExerciseModel)
-    fun findByPet(petId: String): List<ExerciseModel>
-    fun deleteOne(exerciseId: Long)
+    fun findAll(id: String, exerciseList: MutableLiveData<List<ExerciseModel>>)
+
+    fun create(petId: String,exercise: ExerciseModel)
+    fun update(petId: String,exercise: ExerciseModel)
+    fun deleteOne(petId: String,exerciseId: Long)
 }
