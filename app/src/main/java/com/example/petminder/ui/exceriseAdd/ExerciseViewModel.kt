@@ -21,4 +21,13 @@ class ExerciseViewModel: ViewModel() {
             false
         }
     }
+
+    fun updateExercise(petId :String,exercise: ExerciseModel){
+        status.value = try{
+            ExerciseDBManager.update(petId,exercise)
+            true
+        } catch (e: IllegalArgumentException){
+            false
+        }
+    }
 }

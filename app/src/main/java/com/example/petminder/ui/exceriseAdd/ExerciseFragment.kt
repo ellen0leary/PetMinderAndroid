@@ -79,7 +79,7 @@ class ExerciseFragment : Fragment() {
                 Snackbar.make(it, R.string.enter_exercise_name, Snackbar.LENGTH_SHORT).show()
             } else{
                 if (edit) {
-//                    app.exercises.update(exercise.copy())
+                    exerciseViewModel.updateExercise(exercise.uid,exercise)
                 } else {
                     exerciseViewModel.addExercise(exercise.uid,exercise)
                 }

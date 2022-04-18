@@ -3,6 +3,7 @@ package com.example.petminder.firebase.db
 import androidx.lifecycle.MutableLiveData
 import com.example.petminder.models.exercises.ExerciseModel
 import com.example.petminder.models.exercises.ExerciseStore
+import com.example.petminder.models.feeds.FeedModel
 import com.google.firebase.database.*
 import timber.log.Timber
 
@@ -10,23 +11,25 @@ object ExerciseDBManager:ExerciseStore {
     val database: DatabaseReference = FirebaseDatabase.getInstance().reference
 
     override fun findAll(id: String, exerciseList: MutableLiveData<List<ExerciseModel>>) {
-        database.child("exercises").child(id)
+        Timber.i(id)
+        FeedDBManager.database.child("exercises").child(id)
             .addValueEventListener(object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
+                    Timber.i("Firebase Donation error : ${error.message}")
+                }
+
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val localList = ArrayList<ExerciseModel>()
                     val children = snapshot.children
-                    children.forEach{
-                        val exercise = it.getValue(ExerciseModel::class.java)
-                        localList.add(exercise!!)
+                    children.forEach {
+                        val feed = it.getValue(ExerciseModel::class.java)
+                        localList.add(feed!!)
                     }
-                    database.child("exercises").child(id)
+                    database.child("feeds").child(id)
                         .removeEventListener(this)
-                }
 
-                override fun onCancelled(error: DatabaseError) {
-                    Timber.i("Firebase Exercise error : ${error.message}")
+                    exerciseList.value = localList
                 }
-
             })
     }
 

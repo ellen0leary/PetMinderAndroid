@@ -49,7 +49,7 @@ class PetInfoFragment : Fragment(), ExercsieListener, FeedListener {
 
         activity?.title = pet!!.name
         tab = "feed"
-        loadFeeds()
+//        loadFeeds()
 //        Picasso.get().load(pet!!.image).into(fragBinding.petImage)
         val ageText = "Age - " + pet?.age.toString() + " years"
         fragBinding.ageText.setText(ageText)
@@ -109,6 +109,13 @@ class PetInfoFragment : Fragment(), ExercsieListener, FeedListener {
 
     private fun loadFeeds(){
 //        showFeeds(app.feeds.findByPet(pet!!.id))
+        petInfoViewModel.observalePet.value = pet!!.uid
+        petInfoViewModel.load()
+        petInfoViewModel.observableFeedList.observe(viewLifecycleOwner, Observer {
+                feed: List<FeedModel> ->
+            feed?.let { renderFeed(feed) }
+        })
+
     }
 
     fun showFeeds(feeds: List<FeedModel>){
@@ -119,6 +126,12 @@ class PetInfoFragment : Fragment(), ExercsieListener, FeedListener {
 
     private fun loadExercises(){
 //        showExercises(app.exercises.findByPet(pet!!.id))
+        petInfoViewModel.observalePet.value = pet!!.uid
+        petInfoViewModel.loadExe()
+        petInfoViewModel.observableExerciseList.observe(viewLifecycleOwner, Observer {
+                exercise: List<ExerciseModel> ->
+            exercise?.let { render(exercise) }
+        })
     }
 
     fun showExercises(exercise: List<ExerciseModel>){
@@ -167,6 +180,7 @@ class PetInfoFragment : Fragment(), ExercsieListener, FeedListener {
 
     private fun render(exerciseList: List<ExerciseModel>){
         fragBinding.recycler.adapter = ExerciseAdapter(exerciseList, this)
+        fragBinding.recycler.adapter?.notifyDataSetChanged()
         if(exerciseList.isEmpty()){
             fragBinding.recycler.visibility = View.GONE
             fragBinding.exerciseNotFound.visibility = View.VISIBLE
@@ -177,8 +191,9 @@ class PetInfoFragment : Fragment(), ExercsieListener, FeedListener {
     }
 
     private fun renderFeed(feedList: List<FeedModel>){
-//        Timber.
+        Timber.i(feedList.size.toString())
         fragBinding.recycler.adapter = FeedAdapter(feedList, this)
+        fragBinding.recycler.adapter?.notifyDataSetChanged()
         if(feedList.isEmpty()){
             fragBinding.recycler.visibility = View.GONE
             fragBinding.exerciseNotFound.visibility = View.VISIBLE
@@ -193,12 +208,20 @@ class PetInfoFragment : Fragment(), ExercsieListener, FeedListener {
 
 //        petInfoViewModel.observalePet.observe(viewLifecycleOwner, Observer { petId: String ->
 //            if (petId != null) {
+//        petInfoViewModel.observalePet.value = pet!!.uid
+//        petInfoViewModel.load()
+//        petInfoViewModel.loadExe()
+////        renderFeed(petInfoViewModel.observableFeedList.value!!)
+//        petInfoViewModel.observableFeedList.observe(viewLifecycleOwner, Observer {
+//                feed: List<FeedModel> ->
+//            feed?.let { renderFeed(feed) }
+//        })
+
         petInfoViewModel.observalePet.value = pet!!.uid
-        petInfoViewModel.load()
-//        renderFeed(petInfoViewModel.observableFeedList.value!!)
-        petInfoViewModel.observableFeedList.observe(viewLifecycleOwner, Observer {
-                feed: List<FeedModel> ->
-            feed?.let { renderFeed(feed) }
+        petInfoViewModel.loadExe()
+        petInfoViewModel.observableExerciseList.observe(viewLifecycleOwner, Observer {
+                exercise: List<ExerciseModel> ->
+            exercise?.let { render(exercise) }
         })
 //            }
 //        })
