@@ -53,8 +53,9 @@ object ExerciseDBManager:ExerciseStore {
     override fun update(petId: String, exercise: ExerciseModel) {
         val exerciseValue = exercise.toMap()
         val childUpdate: MutableMap<String, Any?> = HashMap()
-        val exerciseId = exercise.petId
-        childUpdate["exercises/$petId/$exerciseId"] = exerciseValue
+        val petid = exercise.petId
+        val exerciseiD = exercise.uid
+        childUpdate["exercises/$petid/$exerciseiD"] = exerciseValue
         database.updateChildren(childUpdate)
     }
 
