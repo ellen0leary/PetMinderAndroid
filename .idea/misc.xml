@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Ellen/AndroidStudioProjects/PetMinder/app/src/main/res/drawable/ic_swipe_delete.xml" value="0.103" />
+        <entry key="..\:/Users/Ellen/AndroidStudioProjects/PetMinder/app/src/main/res/drawable/ic_swipe_edit.xml" value="0.103" />
         <entry key="..\:/Users/Ellen/AndroidStudioProjects/PetMinder/app/src/main/res/drawable/side_nav_bar.xml" value="0.1" />
         <entry key="..\:/Users/Ellen/AndroidStudioProjects/PetMinder/app/src/main/res/layout/activity_exercise.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/Ellen/AndroidStudioProjects/PetMinder/app/src/main/res/layout/activity_feed.xml" value="0.1" />

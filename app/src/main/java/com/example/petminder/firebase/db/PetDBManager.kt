@@ -69,15 +69,17 @@ object PetDBManager: PetStore {
     override fun update(userid: String, petid: String, pet: PetModel) {
         val petValue = pet.toMap()
         val childUpdate: MutableMap<String, Any?> = HashMap()
-        childUpdate["donations/$petid"] = petValue
-        childUpdate["user-donations/$userid/$petid"] = petValue
+        childUpdate["pets/$petid"] = petValue
+        childUpdate["user-pets/$userid/$petid"] = petValue
         database.updateChildren(childUpdate)
     }
 
-    override fun deleteOne(userid: String, petid: String, pet: PetModel) {
+    override fun deleteOne(userid: String, petid: String) {
         val childDelete : MutableMap<String, Any?> = HashMap()
-        childDelete["/donations/$petid]"] = null
-        childDelete["/user-donations/$userid/$petid"] = null
+        Timber.i("pets/$petid")
+        Timber.i("/user-pets/$userid/$petid")
+        childDelete["pets/$petid"] = null
+        childDelete["/user-pets/$userid/$petid"] = null
 
         database.updateChildren(childDelete)
     }

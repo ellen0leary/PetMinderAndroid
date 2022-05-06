@@ -13,6 +13,9 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.petminder.R
 import com.example.petminder.adapters.PetAdapter
 import com.example.petminder.adapters.PetListener
@@ -20,9 +23,7 @@ import com.example.petminder.databinding.FragmentPetListBinding
 import com.example.petminder.main.MainApp
 import com.example.petminder.models.pets.PetModel
 import com.example.petminder.ui.auth.LoggedInViewModel
-import com.example.petminder.utils.createLoader
-import com.example.petminder.utils.hideLoader
-import com.example.petminder.utils.showLoader
+import com.example.petminder.utils.*
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseUser
 import timber.log.Timber
@@ -50,7 +51,7 @@ class PetListFragment : PetListener, Fragment() {
         _fragBinding = FragmentPetListBinding.inflate(inflater, container, false)
         val root = fragBinding.root
         loader = createLoader(requireActivity())
-        fragBinding.recyclerView.layoutManager = GridLayoutManager(activity, 2)
+        fragBinding.recyclerView.layoutManager = LinearLayoutManager(activity)
 //        fragBinding.recyclerView.adapter = PetAdapter(donationList, this)
         showLoader(loader,"Downloading Pets")
         fragBinding.searchBar.addTextChangedListener(object : TextWatcher {
@@ -76,6 +77,31 @@ class PetListFragment : PetListener, Fragment() {
             val action = PetListFragmentDirections.actionPetListFragmentToPetAddFragment(false, PetModel())
             findNavController().navigate(action)
         }
+
+        val swipeDeleteHandler = object : SwipeToDeleteCallback(requireContext()) {
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                showLoader(loader, "Deleting Donation")
+                val adapter = fragBinding.recyclerView.adapter as PetAdapter
+                adapter.removeAt(viewHolder.adapterPosition)
+                petListViewModel.delete(
+                    petListViewModel.liveFirebaseUser.value?.uid!!,
+                    (viewHolder.itemView.tag as PetModel).uid!!
+                )
+                hideLoader(loader)
+            }
+        }
+        val itemTouchDeleteHelper = ItemTouchHelper(swipeDeleteHandler)
+        itemTouchDeleteHelper.attachToRecyclerView(fragBinding.recyclerView)
+
+
+        val swipeEditHandler = object : SwipeToEditCallback(requireContext()) {
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                Timber.i(viewHolder.itemView.tag.toString())
+                onPetClick(viewHolder.itemView.tag as PetModel)
+            }
+        }
+        val itemTouchEditHelper = ItemTouchHelper(swipeEditHandler)
+            itemTouchEditHelper.attachToRecyclerView(fragBinding.recyclerView)
 
 
         return root
@@ -150,7 +176,7 @@ class PetListFragment : PetListener, Fragment() {
     }
 
 
-    private fun render(petList: List<PetModel>){
+    private fun render(petList: ArrayList<PetModel>){
         fragBinding.recyclerView.adapter = PetAdapter(petList, this)
         if(petList.isEmpty()){
             fragBinding.recyclerView.visibility = View.GONE

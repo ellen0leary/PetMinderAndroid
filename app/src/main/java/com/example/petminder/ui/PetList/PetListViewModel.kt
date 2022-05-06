@@ -30,4 +30,15 @@ class PetListViewModel: ViewModel() {
             Timber.i("Report Load Error : $e.message")
         }
     }
+
+
+    fun delete(userid: String, id: String) {
+        try {
+            PetDBManager.deleteOne(userid,id)
+            Timber.i("Report Delete Success")
+        }
+        catch (e: Exception) {
+            Timber.i("Report Delete Error : $e.message")
+        }
+    }
 }

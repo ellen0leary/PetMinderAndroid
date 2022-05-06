@@ -10,5 +10,5 @@ interface PetStore {
 
     fun create(firbaseUser: MutableLiveData<FirebaseUser>, pet: PetModel)
     fun update(userid:String, petid: String, pet: PetModel)
-    fun deleteOne(userid: String, petid: String, pet: PetModel)
+    fun deleteOne(userid: String, petid: String)
 }

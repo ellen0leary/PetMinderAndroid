@@ -10,7 +10,7 @@ interface PetListener {
     fun onPetClick(pet: PetModel)
 }
 
-class PetAdapter constructor(private var pets: List<PetModel>, private val listener: PetListener) :
+class PetAdapter constructor(private var pets: ArrayList<PetModel>, private val listener: PetListener) :
     RecyclerView.Adapter<PetAdapter.MainHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
@@ -25,6 +25,10 @@ class PetAdapter constructor(private var pets: List<PetModel>, private val liste
         holder.bind(pet, listener)
     }
 
+    fun removeAt(position: Int) {
+        pets.removeAt(position)
+        notifyItemRemoved(position)
+    }
     override fun getItemCount(): Int = pets.size
 
     class MainHolder(private val binding : CardPetBinding) :
@@ -38,6 +42,7 @@ class PetAdapter constructor(private var pets: List<PetModel>, private val liste
 //                .resize(360,360) //resize image
 //                .into(binding.imageView)
             binding.pet = pet
+            binding.root.tag = pet
             binding.root.setOnClickListener{listener.onPetClick(pet)}
             binding.executePendingBindings()
         }

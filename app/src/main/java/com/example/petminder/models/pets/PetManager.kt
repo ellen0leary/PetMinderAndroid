@@ -66,8 +66,12 @@ object PetManager : PetStore {
         TODO("Not yet implemented")
     }
 
+    override fun deleteOne(userid: String, petid: String) {
+        TODO("Not yet implemented")
+    }
 
-    override fun deleteOne(userid: String, petId: String, pet: PetModel) {
+
+     fun deleteOne(userid: String, petId: String, pet: PetModel) {
         TODO("Not yet implemented")
     }
 }
