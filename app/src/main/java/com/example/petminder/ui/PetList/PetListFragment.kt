@@ -140,7 +140,8 @@ class PetListFragment : PetListener, Fragment() {
             PetListFragmentDirections.actionPetListFragmentToPetInfoFragment(
                 pet
             )
-        findNavController().navigate(direction)
+        if(!petListViewModel.readOnly.value!!)
+            findNavController().navigate(direction)
     }
 
 
@@ -189,7 +190,7 @@ class PetListFragment : PetListener, Fragment() {
 
 
     private fun render(petList: ArrayList<PetModel>){
-        fragBinding.recyclerView.adapter = PetAdapter(petList, this)
+        fragBinding.recyclerView.adapter = PetAdapter(petList, this, petListViewModel.readOnly.value!!)
         if(petList.isEmpty()){
             fragBinding.recyclerView.visibility = View.GONE
             fragBinding.petsNotFound.visibility = View.VISIBLE

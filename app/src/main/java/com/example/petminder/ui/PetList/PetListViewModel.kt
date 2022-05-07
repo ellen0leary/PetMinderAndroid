@@ -16,6 +16,8 @@ class PetListViewModel: ViewModel() {
     val observablePetList: LiveData<List<PetModel>>
         get() = petList
 
+    var readOnly = MutableLiveData(false)
+
     var liveFirebaseUser = MutableLiveData<FirebaseUser>()
     init {
         load()
@@ -23,6 +25,7 @@ class PetListViewModel: ViewModel() {
 
     fun load() {
         try {
+            readOnly.value = false
             PetDBManager.findAll(liveFirebaseUser.value?.uid!!, petList)
             Timber.i("Report Load Success : ${petList.value.toString()}")
         }
@@ -33,6 +36,7 @@ class PetListViewModel: ViewModel() {
 
     fun loadAll(){
         try {
+            readOnly.value = false
 //            readOnly.value = true
             PetDBManager.findAll(petList)
             Timber.i("Report LoadAll Success : ${petList.value.toString()}")
