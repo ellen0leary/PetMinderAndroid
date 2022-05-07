@@ -55,6 +55,7 @@ class Home : AppCompatActivity() {
         )
         initNavHeader()
         setupActionBarWithNavController(navController, appBarConfiguration)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
     }
 
     public override fun onStart() {
