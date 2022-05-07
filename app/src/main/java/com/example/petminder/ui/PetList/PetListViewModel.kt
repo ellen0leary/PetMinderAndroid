@@ -31,7 +31,16 @@ class PetListViewModel: ViewModel() {
         }
     }
 
-
+    fun loadAll(){
+        try {
+//            readOnly.value = true
+            PetDBManager.findAll(petList)
+            Timber.i("Report LoadAll Success : ${petList.value.toString()}")
+        }
+        catch (e: Exception) {
+            Timber.i("Report LoadAll Error : $e.message")
+        }
+    }
     fun delete(userid: String, id: String) {
         try {
             PetDBManager.deleteOne(userid,id)

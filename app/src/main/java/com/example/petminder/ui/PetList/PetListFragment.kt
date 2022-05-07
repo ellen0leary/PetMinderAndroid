@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.*
+import androidx.appcompat.widget.SwitchCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
@@ -144,7 +145,18 @@ class PetListFragment : PetListener, Fragment() {
 
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_add, menu)
+        inflater.inflate(R.menu.menu_list, menu)
+
+        val item = menu.findItem(R.id.toggleDonations) as MenuItem
+        item.setActionView(R.layout.togglebutton_layout)
+        val toggleDonations: SwitchCompat = item.actionView.findViewById(R.id.toggleButton)
+        toggleDonations.isChecked = false
+
+        toggleDonations.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) petListViewModel.loadAll()
+            else petListViewModel.load()
+        }
+
         super.onCreateOptionsMenu(menu, inflater)
     }
 

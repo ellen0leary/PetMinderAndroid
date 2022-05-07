@@ -21,4 +21,9 @@
     <style name="Theme.PetMinder.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.PetMinder.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="toggleStyle">
+        <item name="colorControlActivated">@color/white</item>
+        <item name="colorControlHighlight">@color/black</item>
+    </style>
 </resources>

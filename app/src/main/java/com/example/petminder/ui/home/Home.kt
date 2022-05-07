@@ -36,7 +36,7 @@ class Home : AppCompatActivity() {
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
 
-        toolbar.title = "PetMinder"
+//        toolbar.title = "PetMinder"
         val navController = findNavController(R.id.nav_host_fragment)
         NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
         val navView = homeBinding.navView

@@ -11,7 +11,25 @@ object PetDBManager: PetStore {
     val database: DatabaseReference = FirebaseDatabase.getInstance().reference
 
     override fun findAll(petList: MutableLiveData<List<PetModel>>) {
-        TODO("Not yet implemented")
+        database.child("pets")
+            .addValueEventListener(object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
+                    Timber.i("Firebase Donation error : ${error.message}")
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val localList = ArrayList<PetModel>()
+                    val children = snapshot.children
+                    children.forEach {
+                        val pet = it.getValue(PetModel::class.java)
+                        localList.add(pet!!)
+                    }
+                    database.child("donations")
+                        .removeEventListener(this)
+
+                    petList.value = localList
+                }
+            })
     }
 
     override fun findAll(userid: String, petList: MutableLiveData<List<PetModel>>) {
