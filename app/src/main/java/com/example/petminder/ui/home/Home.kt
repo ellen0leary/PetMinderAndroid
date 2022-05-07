@@ -1,9 +1,11 @@
 package com.example.petminder.ui.home
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
@@ -14,6 +16,7 @@ import androidx.navigation.ui.*
 import com.example.petminder.R
 import com.example.petminder.databinding.HomeBinding
 import com.example.petminder.databinding.NavHeaderBinding
+import com.example.petminder.firebase.FirebaseImageManager
 import com.example.petminder.ui.auth.LoggedInViewModel
 import com.example.petminder.ui.auth.Login
 import com.google.firebase.auth.FirebaseUser
@@ -26,6 +29,8 @@ class Home : AppCompatActivity() {
     private lateinit var navHeaderBinding : NavHeaderBinding
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var loggedInViewModel : LoggedInViewModel
+    private lateinit var headerView : View
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -46,6 +51,7 @@ class Home : AppCompatActivity() {
                 R.id.petAddFragment, R.id.petListFragment
             ), drawerLayout
         )
+        initNavHeader()
         setupActionBarWithNavController(navController, appBarConfiguration)
     }
 
@@ -75,9 +81,38 @@ class Home : AppCompatActivity() {
     }
 
     private fun updateNavHeader(currentUser: FirebaseUser) {
-        var headerView = homeBinding.navView.getHeaderView(0)
-        navHeaderBinding = NavHeaderBinding.bind(headerView)
+        FirebaseImageManager.imageUri.observe(this) { result ->
+            if (result == Uri.EMPTY) {
+                Timber.i("DX NO Existing imageUri")
+                if (currentUser.photoUrl != null) {
+                    //if you're a google user
+                    FirebaseImageManager.updateUserImage(
+                        currentUser.uid,
+                        currentUser.photoUrl,
+                        navHeaderBinding.navHeaderImage,
+                        false
+                    )
+                } else {
+                    Timber.i("DX Loading Existing Default imageUri")
+                    FirebaseImageManager.updateDefaultImage(
+                        currentUser.uid,
+                        R.drawable.ic_launcher_background,
+                        navHeaderBinding.navHeaderImage
+                    )
+                }
+            } else // load existing image from firebase
+            {
+                Timber.i("DX Loading Existing imageUri")
+                FirebaseImageManager.updateUserImage(
+                    currentUser.uid,
+                    FirebaseImageManager.imageUri.value,
+                    navHeaderBinding.navHeaderImage, false
+                )
+            }
+        }
 //        navHeaderBinding.navHeaderEmail.text = currentUser.email
+        if(currentUser.displayName != null)
+            navHeaderBinding.textView.text = currentUser.displayName
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -89,5 +124,11 @@ class Home : AppCompatActivity() {
         val intent = Intent(this, Login::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
         startActivity(intent)
+    }
+
+    private fun initNavHeader() {
+        Timber.i("DX Init Nav Header")
+        headerView = homeBinding.navView.getHeaderView(0)
+        navHeaderBinding = NavHeaderBinding.bind(headerView)
     }
 }
