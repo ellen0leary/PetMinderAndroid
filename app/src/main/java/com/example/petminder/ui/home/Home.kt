@@ -1,11 +1,13 @@
 package com.example.petminder.ui.home
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
@@ -125,6 +127,21 @@ class Home : AppCompatActivity() {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
         startActivity(intent)
     }
+
+    fun changeMode(item: MenuItem) {
+//        if(AppCompatDelegate.)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        val currentNightMode = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
+        when (currentNightMode) {
+            Configuration.UI_MODE_NIGHT_NO -> {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            } // Night mode is not active, we're using the light theme
+            Configuration.UI_MODE_NIGHT_YES -> {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            } // Night mode is active, we're using dark theme
+        }
+    }
+
 
     private fun initNavHeader() {
         Timber.i("DX Init Nav Header")

@@ -36,4 +36,14 @@
                 android:title="@string/sign_out" />
         </menu>
     </item>
+
+    <item android:title="Other">
+        <menu>
+            <item
+                android:id="@+id/drakMode"
+                android:icon="@android:drawable/ic_menu_revert"
+                android:onClick="changeMode"
+                android:title="@string/changeTheme" />
+        </menu>
+    </item>
 </menu>

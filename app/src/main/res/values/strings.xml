@@ -84,4 +84,5 @@
     <string name="update">Update</string>
     <string name="delete">Delete</string>
     <string name="select_profile_image">Select Image</string>
+    <string name="changeTheme">Change Theme</string>
 </resources>
