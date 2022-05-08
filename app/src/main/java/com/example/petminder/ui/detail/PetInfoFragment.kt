@@ -2,6 +2,7 @@ package com.example.petminder.ui.detail
 
 import android.os.Bundle
 import android.view.*
+import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.petminder.R
 import com.example.petminder.adapters.*
 import com.example.petminder.databinding.FragmentPetInfoBinding
+import com.example.petminder.firebase.FirebaseImageManager
 import com.example.petminder.main.MainApp
 import com.example.petminder.models.exercises.ExerciseModel
 import com.example.petminder.models.feeds.FeedModel
@@ -64,6 +66,7 @@ class PetInfoFragment : Fragment(), ExercsieListener, FeedListener {
                 exercise: List<ExerciseModel> ->
             exercise?.let { render(exercise) }
         })
+        setImageView()
         setButtonListener(fragBinding)
         return root
     }
@@ -228,5 +231,18 @@ class PetInfoFragment : Fragment(), ExercsieListener, FeedListener {
 //        petInfoViewModel.observalePet = pet!!.uid
 //        Timber.i(petInfoViewModel.observalePet.value)
 //        petInfoViewModel.load()
+    }
+
+
+    fun setImageView(){
+        pet?.let {
+            FirebaseImageManager.updatePetImage(
+                it.uid,
+                it.image.toUri(),
+                fragBinding.petImage,
+                false,
+                it
+            )
+        }
     }
 }

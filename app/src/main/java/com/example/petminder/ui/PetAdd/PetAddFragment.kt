@@ -18,9 +18,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.petminder.R
 import com.example.petminder.databinding.FragmentPetAddBinding
+import com.example.petminder.firebase.FirebaseImageManager
 import com.example.petminder.helpers.showImagePicker
 import com.example.petminder.models.pets.PetModel
 import com.example.petminder.ui.auth.LoggedInViewModel
+import com.example.petminder.utils.readImageUri
 import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Picasso
 import timber.log.Timber
@@ -37,6 +39,7 @@ class PetAddFragment : Fragment() {
     private lateinit var petAddViewModel: PetAddViewModel
     private val loggedInViewModel : LoggedInViewModel by activityViewModels()
     var edit = false
+    private lateinit var intentLauncher : ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -93,7 +96,7 @@ class PetAddFragment : Fragment() {
             fragBinding.petTypeText.setText(pet.type)
             fragBinding.btnAdd.setText(R.string.save_pet)
             fragBinding.chooseImage.setText(R.string.update_image)
-            Picasso.get().load(pet.image).into(fragBinding.petImage)
+//            Picasso.get().load(pet.image).into(fragBinding.petImage)
         }
 
         petAddViewModel = ViewModelProvider(this).get(PetAddViewModel::class.java)
@@ -125,22 +128,29 @@ class PetAddFragment : Fragment() {
             val weight = layout.petWeight.text.toString().toFloat()
             val age = layout.petAge.text.toString().toInt()
             val type = layout.petTypeText.toString()
+//            val imageRe
             if (name.isEmpty()) {
                 Snackbar.make(it, R.string.enter_pet_title, Snackbar.LENGTH_SHORT).show()
             } else {
-                petAddViewModel.addPet(loggedInViewModel.liveFirebaseUser,PetModel(type = type, name = name, weight = weight, age = age))
-//                if(edit){
-//                    app.pets.update(pet.copy())
-//                    findNavController().navigateUp()
-//                } else {
-//                    app.pets.create(pet.copy())
+                if (edit){
+                    petAddViewModel.updatePet(
+                            loggedInViewModel.liveFirebaseUser,
+                            PetModel(uid = pet.uid,type = type, name = name, weight = weight, age = age)
+                        )
+                    findNavController().navigateUp()
+                }
+                else {
+                    petAddViewModel.addPet(
+                        loggedInViewModel.liveFirebaseUser,
+                        PetModel(type = type, name = name, weight = weight, age = age)
+                    )
 //                    val directions = PetAddFragmentDirections.actionPetAddFragmentToPetListFragment()
 //                    findNavController().navigate(directions)
-//                }
+                }
             }
         }
         layout.chooseImage.setOnClickListener {
-            showImagePicker(imageIntentLauncher)
+            showImagePicker(intentLauncher)
             Timber.i("click button")
         }
     }
@@ -154,17 +164,17 @@ class PetAddFragment : Fragment() {
 
 
     private fun registerImagePickerCallback() {
-        imageIntentLauncher =
-            registerForActivityResult(ActivityResultContracts.StartActivityForResult())
-            { result ->
+        intentLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
                 when(result.resultCode){
                     AppCompatActivity.RESULT_OK -> {
                         if (result.data != null) {
-                            Timber.i("Got Result ${result.data!!.data}")
-//                            pet.image = result.data!!.data!!
-                            Picasso.get()
-                                .load(pet.image)
-                                .into(fragBinding.petImage)
+                            Timber.i("DX registerPickerCallback() ${readImageUri(result.resultCode, result.data).toString()}")
+                            FirebaseImageManager
+                                .updatePetImage(pet.uid,
+                                    readImageUri(result.resultCode, result.data),
+                                    fragBinding.petImage,
+                                    edit, pet)
                         } // end of if
                     }
                     AppCompatActivity.RESULT_CANCELED -> { } else -> { }

@@ -6,6 +6,7 @@ import android.net.Uri
 import android.widget.ImageView
 import androidx.lifecycle.MutableLiveData
 import com.example.petminder.firebase.db.PetDBManager
+import com.example.petminder.models.pets.PetModel
 import com.example.petminder.utils.customTransformation
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
@@ -37,6 +38,8 @@ object FirebaseImageManager {
             imageUri.value = Uri.EMPTY
         }
     }
+
+    //for person images
 
     fun uploadImageToFirebase(userid: String, bitmap: Bitmap, updating : Boolean) {
         // Get the data from an ImageView as bytes
@@ -106,6 +109,65 @@ object FirebaseImageManager {
                     Timber.i("DX onBitmapLoaded $bitmap")
                     uploadImageToFirebase(userid, bitmap!!,false)
                     imageView.setImageBitmap(bitmap)
+                }
+
+                override fun onBitmapFailed(e: java.lang.Exception?,
+                                            errorDrawable: Drawable?) {
+                    Timber.i("DX onBitmapFailed $e")
+                }
+
+                override fun onPrepareLoad(placeHolderDrawable: Drawable?) {}
+            })
+    }
+
+
+
+    //for pet images
+    fun uploadPetImageToFirebase(petid: String, bitmap: Bitmap, updating : Boolean) {
+        // Get the data from an ImageView as bytes
+        val imageRef = storage.child("pet-photos").child("${petid}.jpg")
+        //val bitmap = (imageView as BitmapDrawable).bitmap
+        val baos = ByteArrayOutputStream()
+        lateinit var uploadTask: UploadTask
+
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+        val data = baos.toByteArray()
+
+        imageRef.metadata.addOnSuccessListener { //File Exists
+            if(updating) // Update existing Image
+            {
+                uploadTask = imageRef.putBytes(data)
+                uploadTask.addOnSuccessListener { ut ->
+                    ut.metadata!!.reference!!.downloadUrl.addOnCompleteListener { task ->
+                        imageUri.value = task.result!!
+                        PetDBManager.updatePetImageRef(petid,imageUri.value.toString())
+                    }
+                }
+            }
+        }.addOnFailureListener { //File Doesn't Exist
+            uploadTask = imageRef.putBytes(data)
+            uploadTask.addOnSuccessListener { ut ->
+                ut.metadata!!.reference!!.downloadUrl.addOnCompleteListener { task ->
+                    imageUri.value = task.result!!
+                }
+            }
+        }
+    }
+
+    fun updatePetImage(petid: String, imageUri : Uri?, imageView: ImageView, updating : Boolean, pet: PetModel) {
+        Timber.i(imageUri.toString())
+        Picasso.get().load(imageUri)
+            .resize(200, 200)
+            .memoryPolicy(MemoryPolicy.NO_CACHE)
+            .centerCrop()
+            .into(object : Target {
+                override fun onBitmapLoaded(bitmap: Bitmap?,
+                                            from: Picasso.LoadedFrom?
+                ) {
+                    Timber.i("DX onBitmapLoaded $bitmap")
+                    uploadPetImageToFirebase(petid, bitmap!!,updating)
+                    imageView.setImageBitmap(bitmap)
+                    pet.image = imageUri.toString()
                 }
 
                 override fun onBitmapFailed(e: java.lang.Exception?,

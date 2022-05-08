@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.petminder.databinding.CardPetBinding
 import com.example.petminder.models.pets.PetModel
+import com.squareup.picasso.Picasso
 
 interface PetListener {
     fun onPetClick(pet: PetModel)
