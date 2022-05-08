@@ -109,17 +109,7 @@ class PetListFragment : PetListener, Fragment() {
     }
 
     fun filter(s: String){
-//        if(s==""){
-////            fragBinding.recyclerView.adapter = PetAdapter(app.pets.findAll(), this)
-//        }else {
-//            val filteredPets = ArrayList<PetModel>();
-//            for (pet in app.pets.findAll()) {
-//                if (pet.toString().uppercase().contains(s.uppercase())) {
-//                    filteredPets.add(pet)
-//                }
-//            }
-//            fragBinding.recyclerView.adapter = PetAdapter(filteredPets, this)
-//        }
+
     }
     companion object {
         @JvmStatic
@@ -185,7 +175,7 @@ class PetListFragment : PetListener, Fragment() {
                 petListViewModel.load()
             }
         })
-//        hideLoader(loader)
+        hideLoader(loader)
     }
 
 

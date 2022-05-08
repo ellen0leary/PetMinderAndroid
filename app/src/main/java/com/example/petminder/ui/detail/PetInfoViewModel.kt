@@ -22,6 +22,7 @@ class PetInfoViewModel: ViewModel() {
         get() = exerciseList
 
     var observalePet =  MutableLiveData<String>()
+
     init {
 //        load()
     }

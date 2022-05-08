@@ -1,7 +1,9 @@
 package com.example.petminder.ui.detail
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.*
+import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -10,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.petminder.R
 import com.example.petminder.adapters.*
 import com.example.petminder.databinding.FragmentPetInfoBinding
+import com.example.petminder.firebase.FirebaseImageManager
 import com.example.petminder.main.MainApp
 import com.example.petminder.models.exercises.ExerciseModel
 import com.example.petminder.models.feeds.FeedModel
@@ -36,6 +39,7 @@ class PetInfoFragment : Fragment(), ExercsieListener, FeedListener {
         setHasOptionsMenu(true)
         arguments?.let {
             pet = it.getParcelable(ARG_PET)
+            Timber.i(pet.toString())
         }
     }
 
@@ -64,6 +68,7 @@ class PetInfoFragment : Fragment(), ExercsieListener, FeedListener {
                 exercise: List<ExerciseModel> ->
             exercise?.let { render(exercise) }
         })
+//        setImageView()
         setButtonListener(fragBinding)
         return root
     }
@@ -206,17 +211,21 @@ class PetInfoFragment : Fragment(), ExercsieListener, FeedListener {
     override fun onResume() {
         super.onResume()
 
-//        petInfoViewModel.observalePet.observe(viewLifecycleOwner, Observer { petId: String ->
-//            if (petId != null) {
-//        petInfoViewModel.observalePet.value = pet!!.uid
-//        petInfoViewModel.load()
-//        petInfoViewModel.loadExe()
-////        renderFeed(petInfoViewModel.observableFeedList.value!!)
-//        petInfoViewModel.observableFeedList.observe(viewLifecycleOwner, Observer {
-//                feed: List<FeedModel> ->
-//            feed?.let { renderFeed(feed) }
-//        })
 
+        Timber.i("Uri - ${pet?.image}")
+        if (pet?.image  != "")
+        {
+            Timber.i("DX Loading Existing imageUri")
+            pet?.let {
+                Timber.i("Uri - ${it.image}")
+//                FirebaseImageManager.updatePetImage(
+//                    it.uid,
+//                    it.image.toUri(),
+//                    fragBinding.petImage,false, it
+//                )
+                Picasso.get().load(it.image.toUri()).into(fragBinding.petImage)
+            }
+        }
         petInfoViewModel.observalePet.value = pet!!.uid
         petInfoViewModel.loadExe()
         petInfoViewModel.observableExerciseList.observe(viewLifecycleOwner, Observer {
@@ -229,4 +238,7 @@ class PetInfoFragment : Fragment(), ExercsieListener, FeedListener {
 //        Timber.i(petInfoViewModel.observalePet.value)
 //        petInfoViewModel.load()
     }
+
+
+
 }

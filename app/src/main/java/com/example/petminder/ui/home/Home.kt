@@ -7,6 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
@@ -21,6 +24,8 @@ import com.example.petminder.databinding.NavHeaderBinding
 import com.example.petminder.firebase.FirebaseImageManager
 import com.example.petminder.ui.auth.LoggedInViewModel
 import com.example.petminder.ui.auth.Login
+import com.example.petminder.utils.readImageUri
+import com.example.petminder.utils.showImagePicker
 import com.google.firebase.auth.FirebaseUser
 import timber.log.Timber
 
@@ -32,6 +37,7 @@ class Home : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var loggedInViewModel : LoggedInViewModel
     private lateinit var headerView : View
+    private lateinit var intentLauncher : ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,11 +61,12 @@ class Home : AppCompatActivity() {
         )
         initNavHeader()
         setupActionBarWithNavController(navController, appBarConfiguration)
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
     }
 
     public override fun onStart() {
         super.onStart()
+        registerImagePickerCallback()
+
         loggedInViewModel = ViewModelProvider(this).get(LoggedInViewModel::class.java)
         loggedInViewModel.liveFirebaseUser.observe(this, Observer { firebaseUser ->
             if (firebaseUser != null) {
@@ -130,8 +137,6 @@ class Home : AppCompatActivity() {
     }
 
     fun changeMode(item: MenuItem) {
-//        if(AppCompatDelegate.)
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         val currentNightMode = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
         when (currentNightMode) {
             Configuration.UI_MODE_NIGHT_NO -> {
@@ -148,5 +153,28 @@ class Home : AppCompatActivity() {
         Timber.i("DX Init Nav Header")
         headerView = homeBinding.navView.getHeaderView(0)
         navHeaderBinding = NavHeaderBinding.bind(headerView)
+        navHeaderBinding.navHeaderImage.setOnClickListener {
+            showImagePicker(intentLauncher)
+        }
+    }
+
+
+    private fun registerImagePickerCallback() {
+        intentLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                when(result.resultCode){
+                    RESULT_OK -> {
+                        if (result.data != null) {
+                            Timber.i("DX registerPickerCallback() ${readImageUri(result.resultCode, result.data).toString()}")
+                            FirebaseImageManager
+                                .updateUserImage(loggedInViewModel.liveFirebaseUser.value!!.uid,
+                                    readImageUri(result.resultCode, result.data),
+                                    navHeaderBinding.navHeaderImage,
+                                    true)
+                        } // end of if
+                    }
+                    RESULT_CANCELED -> { } else -> { }
+                }
+            }
     }
 }

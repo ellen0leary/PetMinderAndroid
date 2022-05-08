@@ -87,6 +87,8 @@ object PetDBManager: PetStore {
     override fun update(userid: String, petid: String, pet: PetModel) {
         val petValue = pet.toMap()
         val childUpdate: MutableMap<String, Any?> = HashMap()
+        Timber.i("pets/$petid")
+        Timber.i("/user-pets/$userid/$petid")
         childUpdate["pets/$petid"] = petValue
         childUpdate["user-pets/$userid/$petid"] = petValue
         database.updateChildren(childUpdate)
@@ -123,5 +125,25 @@ object PetDBManager: PetStore {
             })
     }
 
+    fun updatePetImageRef(petid: String,imageUri: String, userid: String) {
+
+        val userPets = database.child("user-pets").child(userid).child(petid)
+        val allPets = database.child("pets")
+
+        allPets.addListenerForSingleValueEvent(
+            object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {}
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    snapshot.children.forEach {
+                        //Update Users imageUri
+                        it.ref.child("image").setValue(imageUri)
+                        //Update all donations that match 'it'
+                        val donation = it.getValue(PetModel::class.java)
+                        userPets
+                            .child("image").setValue(imageUri)
+                    }
+                }
+            })
+    }
 
 }
