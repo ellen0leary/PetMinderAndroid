@@ -70,8 +70,7 @@ class PetListFragment : PetListener, Fragment() {
         petListViewModel = ViewModelProvider(this).get(PetListViewModel::class.java)
         petListViewModel.observablePetList.observe(viewLifecycleOwner, Observer {
                 pets: List<PetModel> ->
-            pets?.let { render(pets as ArrayList<PetModel>)
-            hideLoader(loader)}
+            pets?.let { render(pets as ArrayList<PetModel>) }
         })
         val fab: FloatingActionButton = fragBinding.fab
         fab.setOnClickListener {
@@ -81,7 +80,7 @@ class PetListFragment : PetListener, Fragment() {
 
         val swipeDeleteHandler = object : SwipeToDeleteCallback(requireContext()) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                showLoader(loader, "Deleting Donation")
+                showLoader(loader, "Deleting Pet")
                 val adapter = fragBinding.recyclerView.adapter as PetAdapter
                 adapter.removeAt(viewHolder.adapterPosition)
                 petListViewModel.delete(
@@ -175,7 +174,7 @@ class PetListFragment : PetListener, Fragment() {
                 petListViewModel.load()
             }
         })
-        hideLoader(loader)
+//        hideLoader(loader)
     }
 
 
@@ -188,6 +187,7 @@ class PetListFragment : PetListener, Fragment() {
             fragBinding.recyclerView.visibility = View.VISIBLE
             fragBinding.petsNotFound.visibility = View.GONE
         }
+        hideLoader(loader)
     }
 
 }
