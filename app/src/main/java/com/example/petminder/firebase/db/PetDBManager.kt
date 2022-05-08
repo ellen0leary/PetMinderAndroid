@@ -44,8 +44,8 @@ object PetDBManager: PetStore {
                     val localList = ArrayList<PetModel>()
                     val children = snapshot.children
                     children.forEach {
-//                        val donation = it.getValue(PetModel::class.java)
-//                        localList.add(donation!!)
+                        val donation = it.getValue(PetModel::class.java)
+                        localList.add(donation!!)
                     }
                     database.child("user-pets").child(userid)
                         .removeEventListener(this)
@@ -125,12 +125,12 @@ object PetDBManager: PetStore {
             })
     }
 
-    fun updatePetImageRef(petid: String,imageUri: String) {
+    fun updatePetImageRef(petid: String,imageUri: String, userid: String) {
 
-        val userDonations = database.child("user-pets").child(petid)
-        val allDonations = database.child("pets")
+        val userPets = database.child("user-pets").child(userid).child(petid)
+        val allPets = database.child("pets")
 
-        userDonations.addListenerForSingleValueEvent(
+        allPets.addListenerForSingleValueEvent(
             object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {}
                 override fun onDataChange(snapshot: DataSnapshot) {
@@ -139,8 +139,8 @@ object PetDBManager: PetStore {
                         it.ref.child("image").setValue(imageUri)
                         //Update all donations that match 'it'
                         val donation = it.getValue(PetModel::class.java)
-                        allDonations.child(donation!!.uid!!)
-                            .child("unage").setValue(imageUri)
+                        userPets
+                            .child("image").setValue(imageUri)
                     }
                 }
             })

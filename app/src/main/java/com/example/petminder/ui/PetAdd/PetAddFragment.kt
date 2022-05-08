@@ -174,7 +174,7 @@ class PetAddFragment : Fragment() {
                                 .updatePetImage(pet.uid,
                                     readImageUri(result.resultCode, result.data),
                                     fragBinding.petImage,
-                                    edit, pet)
+                                    edit, pet,loggedInViewModel.liveFirebaseUser.value!!.uid)
                         } // end of if
                     }
                     AppCompatActivity.RESULT_CANCELED -> { } else -> { }

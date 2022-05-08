@@ -123,7 +123,7 @@ object FirebaseImageManager {
 
 
     //for pet images
-    fun uploadPetImageToFirebase(petid: String, bitmap: Bitmap, updating : Boolean) {
+    fun uploadPetImageToFirebase(userid: String,petid: String, bitmap: Bitmap, updating : Boolean) {
         // Get the data from an ImageView as bytes
         val imageRef = storage.child("pet-photos").child("${petid}.jpg")
         //val bitmap = (imageView as BitmapDrawable).bitmap
@@ -140,7 +140,7 @@ object FirebaseImageManager {
                 uploadTask.addOnSuccessListener { ut ->
                     ut.metadata!!.reference!!.downloadUrl.addOnCompleteListener { task ->
                         imageUri.value = task.result!!
-                        PetDBManager.updatePetImageRef(petid,imageUri.value.toString())
+                        PetDBManager.updatePetImageRef(petid,imageUri.value.toString(),userid)
                     }
                 }
             }
@@ -154,7 +154,7 @@ object FirebaseImageManager {
         }
     }
 
-    fun updatePetImage(petid: String, imageUri : Uri?, imageView: ImageView, updating : Boolean, pet: PetModel) {
+    fun updatePetImage(petid: String, imageUri : Uri?, imageView: ImageView, updating : Boolean, pet:PetModel,userid: String) {
         Timber.i(imageUri.toString())
         Picasso.get().load(imageUri)
             .resize(200, 200)
@@ -165,9 +165,8 @@ object FirebaseImageManager {
                                             from: Picasso.LoadedFrom?
                 ) {
                     Timber.i("DX onBitmapLoaded $bitmap")
-                    uploadPetImageToFirebase(petid, bitmap!!,updating)
+                    uploadPetImageToFirebase(userid,petid, bitmap!!,updating)
                     imageView.setImageBitmap(bitmap)
-                    pet.image = imageUri.toString()
                 }
 
                 override fun onBitmapFailed(e: java.lang.Exception?,
