@@ -1,5 +1,6 @@
 package com.example.petminder.ui.detail
 
+import android.app.AlertDialog
 import android.net.Uri
 import android.os.Bundle
 import android.view.*
@@ -19,6 +20,9 @@ import com.example.petminder.models.feeds.FeedModel
 import com.example.petminder.models.exercises.Location
 import com.example.petminder.models.pets.PetModel
 import com.example.petminder.ui.PetList.PetListFragment
+import com.example.petminder.utils.createLoader
+import com.example.petminder.utils.hideLoader
+import com.example.petminder.utils.showLoader
 import com.google.firebase.auth.FirebaseUser
 import com.squareup.picasso.Picasso
 import timber.log.Timber
@@ -30,6 +34,7 @@ class PetInfoFragment : Fragment(), ExercsieListener, FeedListener {
     lateinit var app : MainApp
     private var _fragBinding: FragmentPetInfoBinding? = null
     private val fragBinding get() = _fragBinding!!
+    lateinit var loader : AlertDialog
     var tab= ""
     private lateinit var petInfoViewModel: PetInfoViewModel
 
@@ -53,6 +58,8 @@ class PetInfoFragment : Fragment(), ExercsieListener, FeedListener {
 
         activity?.title = pet!!.name
         tab = "feed"
+
+        loader = createLoader(requireActivity())
 //        loadFeeds()
 //        Picasso.get().load(pet!!.image).into(fragBinding.petImage)
         val ageText = "Age - " + pet?.age.toString() + " years"
@@ -74,6 +81,7 @@ class PetInfoFragment : Fragment(), ExercsieListener, FeedListener {
     }
 
     private fun changeTab(){
+        showLoader(loader,"Loading")
         if(tab=="feed") {
             Timber.i("loading Exercises")
             loadExercises()
@@ -193,6 +201,7 @@ class PetInfoFragment : Fragment(), ExercsieListener, FeedListener {
             fragBinding.recycler.visibility = View.VISIBLE
             fragBinding.exerciseNotFound.visibility = View.GONE
         }
+        hideLoader(loader)
     }
 
     private fun renderFeed(feedList: List<FeedModel>){
@@ -206,23 +215,19 @@ class PetInfoFragment : Fragment(), ExercsieListener, FeedListener {
             fragBinding.recycler.visibility = View.VISIBLE
             fragBinding.exerciseNotFound.visibility = View.GONE
         }
+        hideLoader(loader)
     }
 
     override fun onResume() {
         super.onResume()
 
-
+        showLoader(loader,"Loading Pet")
         Timber.i("Uri - ${pet?.image}")
         if (pet?.image  != "")
         {
             Timber.i("DX Loading Existing imageUri")
             pet?.let {
                 Timber.i("Uri - ${it.image}")
-//                FirebaseImageManager.updatePetImage(
-//                    it.uid,
-//                    it.image.toUri(),
-//                    fragBinding.petImage,false, it
-//                )
                 Picasso.get().load(it.image.toUri()).into(fragBinding.petImage)
             }
         }
@@ -232,11 +237,6 @@ class PetInfoFragment : Fragment(), ExercsieListener, FeedListener {
                 exercise: List<ExerciseModel> ->
             exercise?.let { render(exercise) }
         })
-//            }
-//        })
-//        petInfoViewModel.observalePet = pet!!.uid
-//        Timber.i(petInfoViewModel.observalePet.value)
-//        petInfoViewModel.load()
     }
 
 
